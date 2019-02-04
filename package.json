@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@angular/fire": "^5.1.1",
+    "bootstrap": "^4.2.1",
     "firebase": "^5.8.2"
   },
   "devDependencies": {

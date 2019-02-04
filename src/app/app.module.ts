@@ -12,10 +12,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+// Service
 import { ElectronService } from './providers/electron.service';
 
+// Directive
 import { WebviewDirective } from './directives/webview.directive';
 
+// Component
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 
