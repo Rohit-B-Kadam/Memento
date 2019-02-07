@@ -21,6 +21,8 @@ function createWindow() {
     height: size.height
   });
 
+  win.setMenu(null);
+
   if (serve) {
     require('electron-reload')(__dirname, {
       electron: require(`${__dirname}/node_modules/electron`)
@@ -35,6 +37,8 @@ function createWindow() {
     }));
   }
 
+  
+  // remove in production mode
   win.webContents.openDevTools();
 
   // Emitted when the window is closed.
