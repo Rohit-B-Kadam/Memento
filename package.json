@@ -1,11 +1,9 @@
 {
-  "name": "angular-electron",
+  "name": "memento",
   "version": "5.1.0",
-  "description": "Angular 7 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "description": "Photo Gallery App",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Rohit Kadam"
   },
   "keywords": [
     "angular",
