@@ -22,7 +22,7 @@ import {MatButtonModule,
     MatTreeModule,
     MatButtonModule,
     MatCheckboxModule,
-     LayoutModule
+    LayoutModule
   ],
   exports:[
     MatToolbarModule,

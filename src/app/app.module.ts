@@ -26,8 +26,13 @@ import { WebviewDirective } from './directives/webview.directive';
 
 // Component
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
+import { TimelineComponent } from './components/organisation/timeline/timeline.component';
+import { DocumentsComponent } from './components/organisation/documents/documents.component';
+import { OtherPhotosComponent } from './components/organisation/other-photos/other-photos.component';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { RegistrationComponent } from './components/authentication/registration/registration.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,9 +42,14 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     WebviewDirective,
     SidebarComponent,
+    TimelineComponent,
+    DocumentsComponent,
+    OtherPhotosComponent,
+    NavbarComponent,
+    LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,

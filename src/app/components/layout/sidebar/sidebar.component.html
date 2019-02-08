@@ -13,31 +13,37 @@
         </mat-toolbar-row>
       </mat-toolbar>
     
-
     <mat-nav-list>
-        <h2 matSubheader> Basic </h2>
+        <h2 matSubheader> Organ</h2>
       
-        <a mat-list-item  
+        <a
+          class="sidebar-list" 
+          mat-list-item  
           routerLinkActive  
-          routerLink=""
+          routerLink="/timeline"
           #routerLinkActiveInstance1="routerLinkActive"
           [class.list-item-active]="routerLinkActiveInstance1.isActive"
-        >Time Line</a>
+        >
+          Time Line
+        </a>
 
-        <a mat-list-item  
+        <a 
+          class="sidebar-list"
+          mat-list-item  
           routerLinkActive  
-          routerLink=""
+          routerLink="/document"
           #routerLinkActiveInstance2="routerLinkActive"
           [class.list-item-active]="routerLinkActiveInstance2.isActive"
         >Document</a>
 
-        <a mat-list-item  
+        <a
+          class="sidebar-list" 
+          mat-list-item  
           routerLinkActive  
-          routerLink=""
+          routerLink="/other-photos"
           #routerLinkActiveInstance3="routerLinkActive"
           [class.list-item-active]="routerLinkActiveInstance3.isActive"
-        >Other Photo</a>
-
+        >Other Photos</a>
 
       <!--
 
@@ -53,10 +59,11 @@
       </a>
 
       -->
-    </mat-nav-list>
+    </mat-nav-list> 
     <hr>
 
     <mat-nav-list>
+        <h2 matSubheader> Features </h2>
         <a mat-list-item href="#" >Duplicate</a>
         <a mat-list-item href="#">People</a>
         <a mat-list-item href="#">Profile</a>
@@ -66,18 +73,21 @@
 
   <!--Upper Nagivation  -->
   <mat-sidenav-content>
+    
     <mat-toolbar color="primary">
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>TimeLine</span>
     </mat-toolbar>
+
     <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+    
   </mat-sidenav-content>
 
 
