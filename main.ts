@@ -22,6 +22,8 @@ function createWindow() {
   });
 
   win.setMenu(null);
+  win.setMenuBarVisibility(false);
+  win.setAutoHideMenuBar(true);
 
   if (serve) {
     require('electron-reload')(__dirname, {

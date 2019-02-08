@@ -8,6 +8,12 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
+// Material
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+// Shared Module
+import { AngularMaterialModule } from './shared-module/angular-material/angular-material.module';
+
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -21,6 +27,7 @@ import { WebviewDirective } from './directives/webview.directive';
 // Component
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -31,20 +38,23 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
-    WebviewDirective
+    WebviewDirective,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,
     AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
       }
-    })
+    }),
+    AngularMaterialModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
