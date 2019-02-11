@@ -3,7 +3,7 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 225px;
 }
 
 .sidenav .mat-toolbar {
@@ -27,14 +27,13 @@ $sidenav-width: 320px;
   margin: 0 16px 0 16px;
 }
 
-/*
-.mat-subheader {
-  font-size: 18px;
-  font-weight: 900;
-}
-*/
-.sidebar-list {
-  padding-left: 12px;
+// .mat-subheader {
+//   font-size: 18px;
+//   font-weight: 900;
+// }
+
+.app-nav-list-icon {
+  margin: 0 12px 0 12px;
 }
 
 .list-item-active{

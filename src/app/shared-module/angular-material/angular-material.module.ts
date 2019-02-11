@@ -10,6 +10,14 @@ import {MatButtonModule,
 
   import {MatTreeModule} from '@angular/material/tree';
   import { LayoutModule } from '@angular/cdk/layout';
+  import { MatMenuModule} from '@angular/material/menu';
+  import {MatInputModule} from '@angular/material/input';
+  import {MatAutocompleteModule} from '@angular/material/autocomplete';
+  import {MatFormFieldModule} from '@angular/material/form-field';
+
+  // FlexLayout
+  import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [],
@@ -22,7 +30,13 @@ import {MatButtonModule,
     MatTreeModule,
     MatButtonModule,
     MatCheckboxModule,
-    LayoutModule
+    LayoutModule,
+    MatMenuModule,
+    FlexLayoutModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatFormFieldModule
+    
   ],
   exports:[
     MatToolbarModule,
@@ -32,7 +46,12 @@ import {MatButtonModule,
     MatTreeModule,
     MatButtonModule,
     MatCheckboxModule,
-    LayoutModule 
+    LayoutModule ,
+    MatMenuModule,
+    FlexLayoutModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatFormFieldModule
   ]
 })
 export class AngularMaterialModule { }

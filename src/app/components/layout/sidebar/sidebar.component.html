@@ -9,41 +9,47 @@
 
     <mat-toolbar>
         <mat-toolbar-row>
+            <mat-icon style="margin:0%" matListIcon class="app-nav-list-icon">monochrome_photos</mat-icon>
           <h2 class="toolbar-title" style="font-size: 35px;"> {{ 'PAGES.HOME.TITLE' | translate  }} </h2>
         </mat-toolbar-row>
       </mat-toolbar>
     
+
+      <mat-divider></mat-divider>
+
     <mat-nav-list>
-        <h2 matSubheader> Organ</h2>
+        <h2 matSubheader> Organisation</h2>
       
         <a
-          class="sidebar-list" 
           mat-list-item  
           routerLinkActive  
           routerLink="/timeline"
           #routerLinkActiveInstance1="routerLinkActive"
           [class.list-item-active]="routerLinkActiveInstance1.isActive"
         >
+        <mat-icon matListIcon class="app-nav-list-icon"> timeline </mat-icon>
           Time Line
         </a>
 
         <a 
-          class="sidebar-list"
           mat-list-item  
           routerLinkActive  
           routerLink="/document"
           #routerLinkActiveInstance2="routerLinkActive"
           [class.list-item-active]="routerLinkActiveInstance2.isActive"
-        >Document</a>
+        >
+        <mat-icon matListIcon class="app-nav-list-icon"> insert_drive_file </mat-icon>
+        Document</a>
 
         <a
-          class="sidebar-list" 
           mat-list-item  
           routerLinkActive  
           routerLink="/other-photos"
           #routerLinkActiveInstance3="routerLinkActive"
           [class.list-item-active]="routerLinkActiveInstance3.isActive"
-        >Other Photos</a>
+        >
+        <mat-icon matListIcon class="app-nav-list-icon"> folder </mat-icon>
+        Other Photos</a>
 
       <!--
 
@@ -60,7 +66,8 @@
 
       -->
     </mat-nav-list> 
-    <hr>
+    
+    <mat-divider></mat-divider>
 
     <mat-nav-list>
         <h2 matSubheader> Features </h2>
@@ -68,13 +75,15 @@
         <a mat-list-item href="#">People</a>
         <a mat-list-item href="#">Profile</a>
     </mat-nav-list>
-    <hr>
+    
+    <mat-divider></mat-divider>
+
   </mat-sidenav>
 
   <!--Upper Nagivation  -->
   <mat-sidenav-content>
     
-    <mat-toolbar color="primary">
+    <!-- <mat-toolbar color="primary">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -83,7 +92,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>TimeLine</span>
-    </mat-toolbar>
+    </mat-toolbar> -->
+
+    <app-navbar (toggleSidenav)="drawer.toggle()"></app-navbar>
 
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
