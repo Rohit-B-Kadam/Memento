@@ -15,22 +15,23 @@
 
         <!-- Search -->
         <mat-form-field class="example-form-field">
-            
-            <input matInput type="text" placeholder="Search" [(ngModel)]="searchValue"
-                   [matAutocomplete]="auto">
-            
-            <button mat-button  matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-              <mat-icon>search</mat-icon>
-            </button>
-            
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of options" [value]="option">
-                  {{option}}
-                </mat-option>
-            </mat-autocomplete>
-            
-          </mat-form-field>
 
+          <input matInput type="text" placeholder="Search" [(ngModel)]="searchValue" [matAutocomplete]="auto">
+
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+
+          <!-- button is not working -->
+          
+
+
+        </mat-form-field>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+            <mat-icon>search</mat-icon>
+          </button>
 
         <!--  Notification-->
         <li fxHide.xs>
@@ -47,13 +48,15 @@
           </button>
 
           <mat-menu #auth="matMenu">
-            <button mat-menu-item > <!--(click)=logot-->
+            <button mat-menu-item>
+              <!--(click)=logot-->
               <mat-icon>exit_to_app</mat-icon>
               <span>Switch Account</span>
               <!--Profile-->
             </button>
 
-            <button mat-menu-item > <!--(click)=logot-->
+            <button mat-menu-item>
+              <!--(click)=logot-->
               <mat-icon>exit_to_app</mat-icon>
               <span>Sign out</span>
               <!--Profile-->
