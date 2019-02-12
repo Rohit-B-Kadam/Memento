@@ -33,6 +33,9 @@ import { OtherPhotosComponent } from './components/organisation/other-photos/oth
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegistrationComponent } from './components/authentication/registration/registration.component';
+import { DuplicateComponent } from './components/features/duplicate/duplicate.component';
+import { PeopleListComponent } from './components/features/people-list/people-list.component';
+import { ProfileComponent } from './components/features/profile/profile.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -50,6 +53,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarComponent,
     LoginComponent,
     RegistrationComponent,
+    DuplicateComponent,
+    PeopleListComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

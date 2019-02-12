@@ -10,7 +10,7 @@
     <mat-toolbar>
         <mat-toolbar-row>
             <mat-icon style="margin:0%" matListIcon class="app-nav-list-icon">monochrome_photos</mat-icon>
-          <h2 class="toolbar-title" style="font-size: 35px;"> {{ 'PAGES.HOME.TITLE' | translate  }} </h2>
+          <h1 class="toolbar-title" > {{ 'PAGES.HOME.TITLE' | translate  }} </h1>
         </mat-toolbar-row>
       </mat-toolbar>
     
@@ -71,9 +71,39 @@
 
     <mat-nav-list>
         <h2 matSubheader> Features </h2>
-        <a mat-list-item href="#" >Duplicate</a>
-        <a mat-list-item href="#">People</a>
-        <a mat-list-item href="#">Profile</a>
+        <a
+        mat-list-item  
+        routerLinkActive  
+        routerLink="/duplicate"
+        #routerLinkActiveInstance4="routerLinkActive"
+        [class.list-item-active]="routerLinkActiveInstance4.isActive"
+      >
+      <mat-icon matListIcon class="app-nav-list-icon"> photo_library </mat-icon>
+      Duplicate
+      </a>
+
+      <a 
+        mat-list-item  
+        routerLinkActive  
+        routerLink="/people-list"
+        #routerLinkActiveInstance5="routerLinkActive"
+        [class.list-item-active]="routerLinkActiveInstance5.isActive"
+      >
+      <mat-icon matListIcon class="app-nav-list-icon"> people </mat-icon>
+      People</a>
+
+      <a
+        mat-list-item  
+        routerLinkActive  
+        routerLink="/profile"
+        #routerLinkActiveInstance6="routerLinkActive"
+        [class.list-item-active]="routerLinkActiveInstance6.isActive"
+      >
+      <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
+      Profile
+    </a>
+
+
     </mat-nav-list>
     
     <mat-divider></mat-divider>

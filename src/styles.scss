@@ -9,8 +9,14 @@
 // Icon
 @import '~material-design-icons/iconfont/material-icons.css';
 
+// Google-Font
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
 html, body {
   margin: 0;
   padding: 0;
   height: 95%;
+  font-family: 'Roboto', sans-serif;
 }
+
