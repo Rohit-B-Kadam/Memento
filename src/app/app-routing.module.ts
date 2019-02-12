@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TimelineComponent } from './components/organisation/timeline/timeline.component';
 import { DocumentsComponent } from './components/organisation/documents/documents.component';
 import { OtherPhotosComponent } from './components/organisation/other-photos/other-photos.component';
+import { LoginComponent } from './components/authentication/login/login.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,9 @@ const routes: Routes = [
     },
     {
         path: 'other-photos', component: OtherPhotosComponent
+    },
+    {
+        path: 'login', component: LoginComponent
     },
     { 
         path: '',
