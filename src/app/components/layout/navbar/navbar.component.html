@@ -25,13 +25,14 @@
           </mat-autocomplete>
 
           <!-- button is not working -->
-          
-
 
         </mat-form-field>
+
+
         <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
-            <mat-icon>search</mat-icon>
-          </button>
+          <mat-icon>search</mat-icon>
+        </button>
+
 
         <!--  Notification-->
         <li fxHide.xs>
@@ -43,6 +44,8 @@
 
 
         <li>
+
+          <!-- Profile -->
           <button mat-icon-button [matMenuTriggerFor]="auth">
             <mat-icon>person_outline</mat-icon>
           </button>
@@ -52,17 +55,7 @@
               <!--(click)=logot-->
               <mat-icon>exit_to_app</mat-icon>
               <span>Switch Account</span>
-              <!--Profile-->
             </button>
-
-            <button mat-menu-item>
-              <!--(click)=logot-->
-              <mat-icon>exit_to_app</mat-icon>
-              <span>Sign out</span>
-              <!--Profile-->
-            </button>
-
-
           </mat-menu>
 
         </li>

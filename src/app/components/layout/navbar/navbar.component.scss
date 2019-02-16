@@ -1,8 +1,22 @@
-$crm-toolbar-title-padding: 16px !default;
+$crm-toolbar-title-padding: 0px !default;
+
+
+.crm-navigation-bar
+{
+//   height: 80px;
+//   display: flex;
+//   justify-content: center;
+//   align-content: center;
+//   font-size: 25px;
+//      position: static;
+      z-index: 2;
+
+}
 
 .toolbar-title {
   margin: 0 $crm-toolbar-title-padding 0 $crm-toolbar-title-padding;
 }
+
 
 .navigation-items {
   list-style: none;

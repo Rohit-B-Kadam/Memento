@@ -1,0 +1,69 @@
+
+.event-container
+{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+
+}
+
+.event-title
+{
+    font-size: 50px;
+    color: #212121;
+}
+
+
+.event-sub-info
+{
+    font-size: 18px;
+    padding: 20px 50px 20px 50px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+
+.event-description
+{
+    padding: 20px 50px 20px 50px;
+    font-size: 20px;
+    color: #363636;
+    letter-spacing: 0.6px;
+    word-spacing: 2px;
+    line-height: 30px;
+    text-align: justify;
+    height: 300px;
+}
+
+.list-container
+{
+    padding: 20px 50px 0px 50px;;
+    display: flex;
+    flex-flow: row wrap;
+    text-align: justify;
+
+}
+
+
+.list-title
+{
+    font-size: 21px;
+    padding-right: 20px;
+    color: #212121;
+}
+
+.list-item
+{ 
+    font-size: 18px;
+    color: #414A51;
+}
+
+.upper-container
+{
+    display:flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}

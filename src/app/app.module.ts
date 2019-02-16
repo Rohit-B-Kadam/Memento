@@ -36,6 +36,8 @@ import { RegistrationComponent } from './components/authentication/registration/
 import { DuplicateComponent } from './components/features/duplicate/duplicate.component';
 import { PeopleListComponent } from './components/features/people-list/people-list.component';
 import { ProfileComponent } from './components/features/profile/profile.component';
+import { EventDetailComponent } from './components/organisation/timeline/event-detail/event-detail.component';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,6 +58,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DuplicateComponent,
     PeopleListComponent,
     ProfileComponent,
+    EventDetailComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -1,55 +1,45 @@
-
 <mat-sidenav-container class="sidenav-container">
 
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
+  <!-- Slider button -->
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
 
 
+    <!-- Project Title -->
     <mat-toolbar>
-        <mat-toolbar-row>
-            <mat-icon style="margin:0%" matListIcon class="app-nav-list-icon">monochrome_photos</mat-icon>
-          <h1 class="toolbar-title" > {{ 'PAGES.HOME.TITLE' | translate  }} </h1>
-        </mat-toolbar-row>
-      </mat-toolbar>
-    
+      <mat-toolbar-row>
+        <mat-icon style="margin:0%" matListIcon class="app-nav-list-icon">monochrome_photos</mat-icon>
+        <h1 class="toolbar-title"> {{ 'PAGES.HOME.TITLE' | translate }} </h1>
+      </mat-toolbar-row>
+    </mat-toolbar>
 
-      <mat-divider></mat-divider>
 
+    <mat-divider></mat-divider>
+
+    <!-- Organisation Section -->
     <mat-nav-list>
-        <h2 matSubheader> Organisation</h2>
-      
-        <a
-          mat-list-item  
-          routerLinkActive  
-          routerLink="/timeline"
-          #routerLinkActiveInstance1="routerLinkActive"
-          [class.list-item-active]="routerLinkActiveInstance1.isActive"
-        >
+      <h2 matSubheader> Organisation </h2>
+
+      <!-- TimeLine -->
+      <a mat-list-item routerLinkActive routerLink="/timeline" #routerLinkActiveInstance1="routerLinkActive"
+        [class.list-item-active]="routerLinkActiveInstance1.isActive">
         <mat-icon matListIcon class="app-nav-list-icon"> timeline </mat-icon>
-          Time Line
-        </a>
+        Time Line
+      </a>
 
-        <a 
-          mat-list-item  
-          routerLinkActive  
-          routerLink="/document"
-          #routerLinkActiveInstance2="routerLinkActive"
-          [class.list-item-active]="routerLinkActiveInstance2.isActive"
-        >
+      <!-- Document -->
+      <a mat-list-item routerLinkActive routerLink="/document" #routerLinkActiveInstance2="routerLinkActive"
+        [class.list-item-active]="routerLinkActiveInstance2.isActive">
         <mat-icon matListIcon class="app-nav-list-icon"> insert_drive_file </mat-icon>
-        Document</a>
+        Document
+      </a>
 
-        <a
-          mat-list-item  
-          routerLinkActive  
-          routerLink="/login"
-          #routerLinkActiveInstance3="routerLinkActive"
-          [class.list-item-active]="routerLinkActiveInstance3.isActive"
-        >
+      <!-- Other Photo -->
+      <a mat-list-item routerLinkActive routerLink="/login" #routerLinkActiveInstance3="routerLinkActive"
+        [class.list-item-active]="routerLinkActiveInstance3.isActive">
         <mat-icon matListIcon class="app-nav-list-icon"> folder </mat-icon>
-        Other Photos</a>
+        Other Photos
+      </a>
 
       <!--
 
@@ -65,71 +55,52 @@
       </a>
 
       -->
-    </mat-nav-list> 
-    
+    </mat-nav-list>
+
+    <!-- Divider -->
     <mat-divider></mat-divider>
 
+    <!-- Feature Section -->
     <mat-nav-list>
-        <h2 matSubheader> Features </h2>
-        <a
-        mat-list-item  
-        routerLinkActive  
-        routerLink="/duplicate"
-        #routerLinkActiveInstance4="routerLinkActive"
-        [class.list-item-active]="routerLinkActiveInstance4.isActive"
-      >
-      <mat-icon matListIcon class="app-nav-list-icon"> photo_library </mat-icon>
-      Duplicate
+      <h2 matSubheader> Features </h2>
+
+      <!-- Duplicate -->
+      <a mat-list-item routerLinkActive routerLink="/duplicate" #routerLinkActiveInstance4="routerLinkActive"
+        [class.list-item-active]="routerLinkActiveInstance4.isActive">
+        <mat-icon matListIcon class="app-nav-list-icon"> photo_library </mat-icon>
+        Duplicate
       </a>
 
-      <a 
-        mat-list-item  
-        routerLinkActive  
-        routerLink="/people-list"
-        #routerLinkActiveInstance5="routerLinkActive"
-        [class.list-item-active]="routerLinkActiveInstance5.isActive"
-      >
-      <mat-icon matListIcon class="app-nav-list-icon"> people </mat-icon>
-      People</a>
+      <!-- People -->
+      <a mat-list-item routerLinkActive routerLink="/people-list" #routerLinkActiveInstance5="routerLinkActive"
+        [class.list-item-active]="routerLinkActiveInstance5.isActive">
+        <mat-icon matListIcon class="app-nav-list-icon"> people </mat-icon>
+        People
+      </a>
 
-      <a
-        mat-list-item  
-        routerLinkActive  
-        routerLink="/profile"
-        #routerLinkActiveInstance6="routerLinkActive"
-        [class.list-item-active]="routerLinkActiveInstance6.isActive"
-      >
-      <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
-      Profile
-    </a>
+      <!-- Profile -->
+      <a mat-list-item routerLinkActive routerLink="/profile" #routerLinkActiveInstance6="routerLinkActive"
+        [class.list-item-active]="routerLinkActiveInstance6.isActive">
+        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
+        Profile
+      </a>
 
 
     </mat-nav-list>
-    
+
     <mat-divider></mat-divider>
 
   </mat-sidenav>
 
-  <!--Upper Nagivation  -->
+  <!-- Main Content  -->
   <mat-sidenav-content>
     
-    <!-- <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>TimeLine</span>
-    </mat-toolbar> -->
-
+    <!--Upper Nagivation  -->
     <app-navbar (toggleSidenav)="drawer.toggle()"></app-navbar>
 
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
-    
-  </mat-sidenav-content>
 
+  </mat-sidenav-content>
 
 </mat-sidenav-container>

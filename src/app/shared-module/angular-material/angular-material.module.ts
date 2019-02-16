@@ -14,6 +14,10 @@ import {MatButtonModule,
   import {MatInputModule} from '@angular/material/input';
   import {MatAutocompleteModule} from '@angular/material/autocomplete';
   import {MatFormFieldModule} from '@angular/material/form-field';
+  import {MatGridListModule} from '@angular/material/grid-list';
+  import {MatCardModule} from '@angular/material/card';
+  import {MatChipsModule} from '@angular/material/chips';
+  
 
   // FlexLayout
   import { FlexLayoutModule } from '@angular/flex-layout';
@@ -35,8 +39,10 @@ import {MatButtonModule,
     FlexLayoutModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatFormFieldModule
-    
+    MatFormFieldModule,
+    MatGridListModule,
+    MatCardModule,
+    MatChipsModule
   ],
   exports:[
     MatToolbarModule,
@@ -51,7 +57,10 @@ import {MatButtonModule,
     FlexLayoutModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule,
+    MatCardModule,
+    MatChipsModule
   ]
 })
 export class AngularMaterialModule { }

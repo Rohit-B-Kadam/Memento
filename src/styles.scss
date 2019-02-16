@@ -10,13 +10,19 @@
 @import '~material-design-icons/iconfont/material-icons.css';
 
 // Google-Font
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
+@import '~typeface-roboto/index.css';
 
 html, body {
   margin: 0;
   padding: 0;
-  height: 95%;
+  height: 100%;
+  width: 100%;
   font-family: 'Roboto', sans-serif;
+}
+
+
+// ngx-gallery plugin
+.mat-sidenav-container, .mat-sidenav-content, .mat-tab-body-content {
+  transform: none !important;
 }
 
