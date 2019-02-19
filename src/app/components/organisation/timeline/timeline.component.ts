@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-timeline',
@@ -7,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimelineComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
   }

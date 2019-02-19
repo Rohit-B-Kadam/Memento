@@ -1,113 +1,105 @@
+<div class="grid-container">
+  <mat-grid-list  cols="4" rowHeight="100px">
 
-<mat-grid-list cols="4" rowHeight="100px">
+    <!-- Event Container -->
+    <mat-grid-tile colspan="2" rowspan="7">
+      <mat-card class="event-container">
 
-  <!-- Upper Tiles-->
-  <mat-grid-tile colspan="4">
-    <mat-card class="upper-container">
-      <!--
-      <mat-card-content>
-      <button mat-raised-button color="primary">Primary</button>
-      <button mat-stroked-button color="primary">Primary</button>
-      <button mat-raised-button color="accent">Accent</button>
-    </mat-card-content>
-    -->  
-  </mat-card>
-  </mat-grid-tile>
+        <!-- Title-->
+        <mat-card-header class="event-title">
+          {{ eventInfo.title }}
+        </mat-card-header>
 
-  <!-- Event Container -->
-  <mat-grid-tile colspan="2" rowspan="7">
-    <mat-card class="event-container">
-  
-      <!-- Title-->
-      <mat-card-header class="event-title">
-        {{ eventInfo.title }}
-      </mat-card-header>
-  
-      <!-- location and date  -->
-      <mat-card-subtitle class="event-sub-info">
-        <div>
-          <mat-icon> date_range </mat-icon>
-          <span>
-            {{ eventInfo.date.getDate() }} {{ months[eventInfo.date.getMonth() -1] }}, {{ eventInfo.date.getFullYear() }}
-          </span>
-        </div>
-  
-        <div>
-          <mat-icon> location_on </mat-icon>
-          <span>
-            {{ eventInfo.location }}
-          </span>
-        </div>
-      </mat-card-subtitle>
-  
-      <mat-divider></mat-divider> <!-- divider-->
+        <!-- location and date  -->
+        <mat-card-subtitle class="event-sub-info">
+          <div>
+            <mat-icon> date_range </mat-icon>
+            <span>
+              {{ eventInfo.date.getDate() }} {{ months[eventInfo.date.getMonth() -1] }},
+              {{ eventInfo.date.getFullYear() }}
+            </span>
+          </div>
 
-      <!-- Event Decription -->
-      <mat-card-content class="event-description">
-          &nbsp;&nbsp;&nbsp;&nbsp; {{ eventInfo.description }}. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-    has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-    scrambled it to make a type specimen book.
-      </mat-card-content>
-      
-      <mat-divider></mat-divider> <!-- Divider -->
+          <div>
+            <mat-icon> location_on </mat-icon>
+            <span>
+              {{ eventInfo.location }}
+            </span>
+          </div>
+        </mat-card-subtitle>
 
-      <!-- Catergoies -->
-      <mat-card-content class = "list-container">
-        <span class="list-title">Categoies: </span>
-        <mat-chip-list>
-          <mat-chip *ngFor="let category of eventInfo.categories" class="list-item" color="primary" >
+        <mat-divider></mat-divider> <!-- divider-->
+
+        <!-- Event Decription -->
+        <mat-card-content class="event-description">
+          &nbsp;&nbsp;&nbsp;&nbsp; {{ eventInfo.description }}. Lorem Ipsum is simply dummy text of the printing and
+          typesetting industry. Lorem Ipsum
+          has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+          type and
+          scrambled it to make a type specimen book.
+        </mat-card-content>
+
+        <mat-divider></mat-divider> <!-- Divider -->
+
+        <!-- Catergoies -->
+        <mat-card-content class="list-container">
+          <span class="list-title">Categoies: </span>
+          <mat-chip-list>
+            <mat-chip *ngFor="let category of eventInfo.categories" class="list-item" color="primary">
               {{category}}
-          </mat-chip>
-        </mat-chip-list>
-      </mat-card-content>
+            </mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
 
-      <!-- Tags -->
-      <mat-card-content class = "list-container">
-        <span class="list-title">Tags:</span>
-        <mat-chip-list>
+        <!-- Tags -->
+        <mat-card-content class="list-container">
+          <span class="list-title">Tags:</span>
+          <mat-chip-list>
             <mat-chip *ngFor="let tag of eventInfo.tags" class="list-item">
-                {{ tag }}
+              {{ tag }}
             </mat-chip>
           </mat-chip-list>
-      </mat-card-content>
+        </mat-card-content>
 
-      <!-- Friends -->
-      <mat-card-content class = "list-container">
-        <span class="list-title">Friends:</span>
-        <mat-chip-list>
+        <!-- Friends -->
+        <mat-card-content class="list-container">
+          <span class="list-title">Friends:</span>
+          <mat-chip-list>
             <mat-chip *ngFor="let friend of eventInfo.friends" class="list-item">
-                {{ friend }}
+              {{ friend }}
             </mat-chip>
           </mat-chip-list>
-      </mat-card-content>
-      
-      <mat-divider></mat-divider> <!--Divider-->
-    </mat-card>
-    
-  </mat-grid-tile>
+        </mat-card-content>
 
-  <!-- Image gallery -->
-  <mat-grid-tile  colspan="2" rowspan="7">
-    
-    <mat-card class="event-container">
-      <mat-card-header class="gallery-title"> Gallery </mat-card-header>
-      
-      <!-- gallery -->
-      <mat-card-content class="gallery-container">
-        <gallery  [items]="images"
-                  [imageSize] ="'cover'"
-                  [autoPlay]="'true'"
-                  [playerInterval]="'4000'"
-                  [loadingStrategy]="'preload'"
-                  [loadingMode]="'indeterminate'"
-                  [counter]="'false'"
-                  [thumbMode]="'free'"
-                
-        ></gallery>
+        <mat-divider></mat-divider>
+        <!--Divider-->
+      </mat-card>
 
-      </mat-card-content>
-    </mat-card>
+    </mat-grid-tile>
 
-  </mat-grid-tile>
+    <!-- Image gallery -->
+    <mat-grid-tile colspan="2" rowspan="7">
 
-</mat-grid-list>
+      <mat-card class="event-container">
+        <mat-card-header class="gallery-title"> 
+          Gallery: 
+          <div fxFlex fxLayout fxLayoutAlign="flex-end">
+              <button mat-raised-button color="primary" matTooltip="see all image">
+                  Explore
+              </button>
+          </div>
+        </mat-card-header>
+
+        <!-- gallery -->
+        <mat-card-content class="gallery-container">
+          <gallery [items]="images" [imageSize]="'cover'" [autoPlay]="'true'" [playerInterval]="'4000'"
+            [loadingStrategy]="'preload'" [loadingMode]="'indeterminate'" [counter]="'false'" [thumbMode]="'free'">
+          </gallery>
+
+        </mat-card-content>
+      </mat-card>
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>

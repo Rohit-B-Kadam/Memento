@@ -1,5 +1,6 @@
 .sidenav-container {
   height: 100%;
+  width: 100%
 }
 
 .sidenav {
@@ -10,27 +11,15 @@
   background: inherit;
 }
 
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
 
-$sidenav-width: 320px;
-
-/*
-.mat-sidenav {
-  width: $sidenav-width;
-}
-*/
-.toolbar-title {
+.toolbar-title 
+{
   margin: 0 16px 0 16px;
-  font-size: 2rem;
+  font-size: 35px;
 }
 
-mat-subheader {
-   font-size: 12px;
-   //font-weight: 900;
+.mat-subheader {
+   font-size: 14px;
 }
 
 .app-nav-list-icon {
@@ -39,4 +28,9 @@ mat-subheader {
 
 .list-item-active{
   color: red;
+}
+
+.main-contain
+{
+  height: 90%;
 }

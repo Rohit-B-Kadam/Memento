@@ -41,6 +41,8 @@ import { DuplicateComponent } from './components/features/duplicate/duplicate.co
 import { PeopleListComponent } from './components/features/people-list/people-list.component';
 import { ProfileComponent } from './components/features/profile/profile.component';
 import { EventDetailComponent } from './components/organisation/timeline/event-detail/event-detail.component';
+import { EventListComponent } from './components/organisation/timeline/event-list/event-list.component';
+import { MatTreeModule, MatIconModule, MatButtonModule } from '@angular/material';
 
 
 // AoT requires an exported function for factories
@@ -63,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PeopleListComponent,
     ProfileComponent,
     EventDetailComponent,
+    EventListComponent,
     
   ],
   imports: [
@@ -79,7 +82,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     AngularMaterialModule,
-    GalleryModule
+    GalleryModule,
+    MatTreeModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

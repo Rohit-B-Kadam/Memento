@@ -1,8 +1,9 @@
 <mat-sidenav-container class="sidenav-container">
 
   <!-- Slider button -->
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+  <mat-sidenav #drawer class="sidenav" 
+              fixedInViewport="true"
+              mode="side" opened="true">
 
 
     <!-- Project Title -->
@@ -99,8 +100,9 @@
     <app-navbar (toggleSidenav)="drawer.toggle()"></app-navbar>
 
     <!-- Add Content Here -->
-    <router-outlet></router-outlet>
-
+    <div class="main-contain">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

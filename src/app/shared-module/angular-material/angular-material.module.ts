@@ -17,6 +17,7 @@ import {MatButtonModule,
   import {MatGridListModule} from '@angular/material/grid-list';
   import {MatCardModule} from '@angular/material/card';
   import {MatChipsModule} from '@angular/material/chips';
+  import {MatTooltipModule} from '@angular/material/tooltip';
   
 
   // FlexLayout
@@ -42,7 +43,8 @@ import {MatButtonModule,
     MatFormFieldModule,
     MatGridListModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
   ],
   exports:[
     MatToolbarModule,
@@ -60,7 +62,8 @@ import {MatButtonModule,
     MatFormFieldModule,
     MatGridListModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
   ]
 })
 export class AngularMaterialModule { }

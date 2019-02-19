@@ -1,1 +1,57 @@
-<app-event-detail></app-event-detail>
+<mat-sidenav-container class="sidenav-container">
+
+    <!-- Slider button -->
+    <mat-sidenav #drawer class="sidenav"
+      mode="side" opened="true"
+      position= "end" >
+  
+  
+      <!-- Sidebar Title -->
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <h1 class="toolbar-title">Event List</h1>
+        </mat-toolbar-row>
+      </mat-toolbar>
+  
+      <mat-divider></mat-divider>
+      <!-- Event List -->
+      <event-list></event-list>
+      <mat-divider></mat-divider>
+      
+    </mat-sidenav>
+  
+    <!-- Main Content  -->
+    <mat-sidenav-content>
+      
+      <!--Upper Nagivation  -->
+    <mat-toolbar class="upper-nav">    
+        <mat-toolbar-row>
+            <div fxFlex fxLayout fxLayoutAlign="flex-end">
+                <ul fxLayout fxLayoutGap="25px" class="navigation-items">
+                  <li>
+                    <button mat-stroked-button color="primary" matTooltip="create new event">
+                      Create Event
+                    </button>
+                  </li>
+                  <li>
+                    <button mat-stroked-button color="primary"
+                            matTooltip="import extrenal event">Import Event</button>
+                  </li>
+                  <li>
+                    <button (click)="drawer.toggle()" mat-icon-button matTooltip="toggle event list"
+                            color = "primary">
+                      <mat-icon>format_list_bulleted</mat-icon>
+                  </button>
+                  </li>
+                </ul>
+                
+            </div>
+        </mat-toolbar-row>
+    
+    </mat-toolbar><!-- Add Content Here -->
+    <div>
+      <app-event-detail></app-event-detail>
+    </div>
+    </mat-sidenav-content>
+  
+  </mat-sidenav-container>
