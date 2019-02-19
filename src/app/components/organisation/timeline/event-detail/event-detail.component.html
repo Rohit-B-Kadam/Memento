@@ -87,17 +87,27 @@
   </mat-grid-tile>
 
   <!-- Image gallery -->
-  <mat-grid-tile  colspan="2" rowspan="6">
+  <mat-grid-tile  colspan="2" rowspan="7">
     
     <mat-card class="event-container">
-      <mat-card-header> Gallery </mat-card-header>
+      <mat-card-header class="gallery-title"> Gallery </mat-card-header>
       
+      <!-- gallery -->
+      <mat-card-content class="gallery-container">
+        <gallery  [items]="images"
+                  [imageSize] ="'cover'"
+                  [autoPlay]="'true'"
+                  [playerInterval]="'4000'"
+                  [loadingStrategy]="'preload'"
+                  [loadingMode]="'indeterminate'"
+                  [counter]="'false'"
+                  [thumbMode]="'free'"
+                
+        ></gallery>
+
+      </mat-card-content>
     </mat-card>
 
   </mat-grid-tile>
 
-  <!-- explore -->
-  <mat-grid-tile style="background : lightblue;" colspan="2">
-    three
-  </mat-grid-tile>
 </mat-grid-list>

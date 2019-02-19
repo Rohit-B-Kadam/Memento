@@ -24,6 +24,10 @@ import { ElectronService } from './providers/electron.service';
 // Directive
 import { WebviewDirective } from './directives/webview.directive';
 
+
+// ngx-gallery
+import { GalleryModule } from '@ngx-gallery/core';
+
 // Component
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
@@ -74,7 +78,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    AngularMaterialModule
+    AngularMaterialModule,
+    GalleryModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
