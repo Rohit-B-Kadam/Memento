@@ -2,8 +2,10 @@
 
     <!-- Slider button -->
     <mat-sidenav #drawer class="sidenav"
-      mode="side" opened="true"
-      position= "end" >
+                  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                  [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                  [opened]="!(isHandset$ | async)"
+                  position= "end">
   
   
       <!-- Sidebar Title -->

@@ -42,8 +42,10 @@ import { PeopleListComponent } from './components/features/people-list/people-li
 import { ProfileComponent } from './components/features/profile/profile.component';
 import { EventDetailComponent } from './components/organisation/timeline/event-detail/event-detail.component';
 import { EventListComponent } from './components/organisation/timeline/event-list/event-list.component';
-import { MatTreeModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { MatTreeModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { EventGalleryComponent } from './components/organisation/timeline/event-gallery/event-gallery.component';
+import { TimepassComponent } from './timepass/timepass.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 // AoT requires an exported function for factories
@@ -68,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EventDetailComponent,
     EventListComponent,
     EventGalleryComponent,
+    TimepassComponent,
     
   ],
   imports: [
@@ -87,7 +90,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     GalleryModule,
     MatTreeModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

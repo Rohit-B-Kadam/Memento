@@ -1,9 +1,10 @@
 <mat-sidenav-container class="sidenav-container">
 
   <!-- Slider button -->
-  <mat-sidenav #drawer class="sidenav" 
-              fixedInViewport="true"
-              mode="side" opened="true">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+              [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+              [mode]="(isHandset$ | async) ? 'over' : 'side'"
+              [opened]="!(isHandset$ | async)">
 
 
     <!-- Project Title -->

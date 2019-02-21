@@ -11,7 +11,10 @@ import { map } from 'rxjs/operators';
 })
 export class TimelineComponent implements OnInit {
 
-
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe([ Breakpoints.Medium ,Breakpoints.Small ,Breakpoints.Handset ])
+  .pipe(
+    map(result => result.matches)
+  );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
