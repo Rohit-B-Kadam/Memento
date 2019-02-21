@@ -84,14 +84,14 @@
         <mat-card-header class="gallery-title"> 
           Gallery: 
           <div fxFlex fxLayout fxLayoutAlign="flex-end">
-              <button mat-raised-button color="primary" matTooltip="see all image">
-                  Explore
-              </button>
+              <a mat-raised-button color="primary" matTooltip="see all image"
+                 routerLinkActive routerLink="/event-gallery"> Explore </a>
           </div>
         </mat-card-header>
 
         <!-- gallery -->
         <mat-card-content class="gallery-container">
+          <!-- Import component -->
           <gallery [items]="images" [imageSize]="'cover'" [autoPlay]="'true'" [playerInterval]="'4000'"
             [loadingStrategy]="'preload'" [loadingMode]="'indeterminate'" [counter]="'false'" [thumbMode]="'free'">
           </gallery>

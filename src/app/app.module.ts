@@ -43,6 +43,7 @@ import { ProfileComponent } from './components/features/profile/profile.componen
 import { EventDetailComponent } from './components/organisation/timeline/event-detail/event-detail.component';
 import { EventListComponent } from './components/organisation/timeline/event-list/event-list.component';
 import { MatTreeModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { EventGalleryComponent } from './components/organisation/timeline/event-gallery/event-gallery.component';
 
 
 // AoT requires an exported function for factories
@@ -66,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent,
     EventDetailComponent,
     EventListComponent,
+    EventGalleryComponent,
     
   ],
   imports: [

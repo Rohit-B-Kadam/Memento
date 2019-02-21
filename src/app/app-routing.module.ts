@@ -8,6 +8,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { DuplicateComponent } from './components/features/duplicate/duplicate.component';
 import { PeopleListComponent } from './components/features/people-list/people-list.component';
 import { ProfileComponent } from './components/features/profile/profile.component';
+import { EventGalleryComponent } from './components/organisation/timeline/event-gallery/event-gallery.component';
 
 const routes: Routes = [
     {
@@ -30,6 +31,9 @@ const routes: Routes = [
     },
     {
         path: 'profile', component: ProfileComponent
+    },
+    {
+        path: 'event-gallery', component: EventGalleryComponent
     },
     { 
         path: '',

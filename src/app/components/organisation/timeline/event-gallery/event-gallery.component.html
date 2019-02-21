@@ -1,0 +1,68 @@
+<div class="main-container">
+
+  <!-- Toolbar -->
+  <mat-toolbar>
+    <mat-toolbar-row>
+        <button mat-icon-button class="example-icon" matTooltip="Back">
+            <mat-icon >arrow_back</mat-icon>
+        </button>
+      
+        
+      <span class="event-title"> Visarpur Fort </span>
+
+      <!-- This fills the remaining space of the current row -->
+      <span class="example-fill-remaining-space"></span>
+
+
+
+
+      <!--Tools-->
+      <button  mat-icon-button class="example-icon" matTooltip="Edit Event">
+          <mat-icon>create</mat-icon>
+      </button>
+
+      <button mat-icon-button class="example-icon" matTooltip="Add photo to Event">
+          <mat-icon >add_circle</mat-icon>
+      </button>
+    
+      <button mat-icon-button class="example-icon" matTooltip="Comment">
+          <mat-icon >chat_bubble</mat-icon>
+      </button>
+
+      <!-- more -->
+      <button mat-icon-button class="example-icon" [matMenuTriggerFor]="auth">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #auth="matMenu">
+        <!-- item1 -->
+        <button mat-menu-item>
+          <span>Delete event</span>
+        </button>
+        <!-- item2 -->
+        <button mat-menu-item>
+          <span>Hide event</span>
+        </button>
+        <button mat-menu-item>
+          <span>Import Event</span>
+        </button>
+      </mat-menu>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+
+
+  <!-- Gallery -->
+
+  <div class="gallery-container" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">  
+
+
+		<!-- loop over the products -->
+    <mat-card fxFlex="0 1 calc(20% - 20px)" *ngFor="let product of images; let i = index" class="card-container">
+      <img class="image-view" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="photo">
+
+    </mat-card>
+
+</div>
+</div>
+

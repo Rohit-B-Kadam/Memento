@@ -1,0 +1,44 @@
+.main-container
+{
+    height: 100%;
+    width: 100%;
+}
+
+.event-title
+{
+    font-size: 30px;
+    padding-left: 10px;
+}
+
+.example-fill-remaining-space 
+{
+    flex: 1 1 auto;
+}
+
+.example-icon 
+{
+    margin: 0 5px;
+}
+
+
+
+.gallery-container
+{
+    padding: 20px;
+    overflow-y: scroll;
+    overflow: hidden;
+}
+
+.card-container
+{
+    min-width: 400px;
+    text-align: center;
+    //margin: 20px 30px 0px 30px; /* same as fxLayoutGap for even distribution */
+    background-color: inherit;
+}
+
+.image-view
+{
+    height: 350px;
+    object-fit: contain;
+}
