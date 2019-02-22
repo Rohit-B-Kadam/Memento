@@ -57,10 +57,12 @@
   <div class="gallery-container" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">  
 
 
-		<!-- loop over the products -->
-    <mat-card fxFlex="0 1 calc(20% - 20px)" *ngFor="let product of images; let i = index" class="card-container">
-      <img class="image-view" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="photo">
-
+    <!-- loop over the products -->
+    
+    <mat-card fxFlex="0 1 calc(20% - 20px)" *ngFor="let image of images; let i = index" class="card-container">
+      <a routerLink="/photo-viewer">
+        <img class="image-view" mat-card-image [src]="image" alt="photo">
+      </a>
     </mat-card>
 
 </div>

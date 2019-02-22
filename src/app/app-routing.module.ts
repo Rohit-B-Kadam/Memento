@@ -9,6 +9,7 @@ import { DuplicateComponent } from './components/features/duplicate/duplicate.co
 import { PeopleListComponent } from './components/features/people-list/people-list.component';
 import { ProfileComponent } from './components/features/profile/profile.component';
 import { EventGalleryComponent } from './components/organisation/timeline/event-gallery/event-gallery.component';
+import { PhotoViewerComponent } from './components/organisation/timeline/photo-viewer/photo-viewer.component';
 
 const routes: Routes = [
     {
@@ -34,6 +35,9 @@ const routes: Routes = [
     },
     {
         path: 'event-gallery', component: EventGalleryComponent
+    },
+    {
+        path: 'photo-viewer', component: PhotoViewerComponent
     },
     { 
         path: '',

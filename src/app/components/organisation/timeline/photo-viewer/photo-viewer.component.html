@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <!-- Right Slider button -->
+  <mat-sidenav #drawer class="sidenav"
+                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                [opened]="!(isHandset$ | async)"
+                position= "end">
+
+
+    <!-- Sidebar Title -->
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <h1 class="toolbar-title">Setting</h1>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-divider></mat-divider>
+    <!-- Event List Component -->
+      
+    <mat-divider></mat-divider>
+    
+  </mat-sidenav>
+
+  <!-- Main Content  -->
+  <mat-sidenav-content>
+    
+    <!--Upper Nagivation  -->
+  <mat-toolbar class="upper-nav">    
+      <mat-toolbar-row>
+        
+          <button mat-icon-button matTooltip="Back">
+              <mat-icon >arrow_back</mat-icon>
+          </button>
+
+          <div fxFlex fxLayout fxLayoutAlign="flex-end">
+              <ul fxLayout fxLayoutGap="25px" class="navigation-items">
+                <li>
+                  <button mat-stroked-button color="primary" matTooltip="create new event">
+                    Create Event
+                  </button>
+                </li>
+                <li>
+                  <button mat-stroked-button color="primary"
+                          matTooltip="import extrenal event">Import Event</button>
+                </li>
+                <li>
+                  <button (click)="drawer.toggle()" mat-icon-button matTooltip="toggle event list"
+                          color = "primary">
+                    <mat-icon>format_list_bulleted</mat-icon>
+                </button>
+                </li>
+              </ul>
+              
+          </div>
+      </mat-toolbar-row>
+  
+  </mat-toolbar>
+  
+  <!-- Add Content Here -->
+  <div class="card-container">
+          <img class="image-view" src="/assets/Image/IMG_20190121_144905.jpg" alt="photo">
+  </div>
+  
+
+</mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -1,0 +1,45 @@
+
+//sider
+
+.sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    width: 300px;
+  }
+  
+  .sidenav .mat-toolbar {
+    background: inherit;
+  }
+  
+
+  // navigation
+  .upper-nav
+  {
+    box-shadow: 0 4px 6px -6px #333;
+  }
+
+
+  .navigation-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  
+    // vertical-align: middle;
+  }
+
+
+// photo
+
+.card-container
+{
+    max-height:600px;
+    background-color: aquamarine;
+}
+
+.image-view
+{
+   
+}
