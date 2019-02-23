@@ -45,6 +45,7 @@ import { EventListComponent } from './components/organisation/timeline/event-lis
 import { EventGalleryComponent } from './components/organisation/timeline/event-gallery/event-gallery.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PhotoViewerComponent } from './components/organisation/timeline/photo-viewer/photo-viewer.component';
+import { MainLayoutComponent } from './components/layout/main-layout/main-layout.component';
 
 
 // AoT requires an exported function for factories
@@ -69,7 +70,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     EventDetailComponent,
     EventListComponent,
     EventGalleryComponent,
-    PhotoViewerComponent
+    PhotoViewerComponent,
+    MainLayoutComponent
     
   ],
   imports: [

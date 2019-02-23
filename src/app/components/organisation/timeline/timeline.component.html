@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
 
-    <!-- Slider button -->
+    <!-- Eventlist Sidebar -->
     <mat-sidenav #drawer class="sidenav"
                   [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                   [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -22,14 +22,20 @@
       
     </mat-sidenav>
   
-    <!-- Main Content  -->
+
+
     <mat-sidenav-content>
       
-      <!--Upper Nagivation  -->
+      <!--Event Nagivation  -->
     <mat-toolbar class="upper-nav">    
         <mat-toolbar-row>
             <div fxFlex fxLayout fxLayoutAlign="flex-end">
                 <ul fxLayout fxLayoutGap="25px" class="navigation-items">
+                  
+                  <li>
+                    
+                  </li>
+
                   <li>
                     <button mat-stroked-button color="primary" matTooltip="create new event">
                       Create Event
@@ -50,8 +56,9 @@
             </div>
         </mat-toolbar-row>
     
-    </mat-toolbar><!-- Add Content Here -->
+    </mat-toolbar>
     <div>
+      <!-- Event Detail Component -->
       <app-event-detail></app-event-detail>
     </div>
     </mat-sidenav-content>
