@@ -1,0 +1,26 @@
+.searchbar
+{
+    background-color: #dee2eb;
+    border-radius: 30px;
+    padding-left:15px;
+    margin: 0 200px;
+}
+
+.search_input
+{
+    width: 250px;
+    font-size: 18px;
+    color: #212121;
+    border: 0;
+    outline: 0;
+    background: none;
+    padding: 2px;
+}
+
+// .searchbar:hover > .search_input
+// {
+//     padding: 0 10px;
+//     width: 450px;
+//     caret-color:red;
+//     transition: width 0.4s linear;
+// }

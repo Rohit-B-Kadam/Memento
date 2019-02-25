@@ -28,6 +28,7 @@ import { WebviewDirective } from './directives/webview.directive';
 // ngx-gallery
 import { GalleryModule } from '@ngx-gallery/core';
 
+
 // Component
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
@@ -46,6 +47,8 @@ import { EventGalleryComponent } from './components/organisation/timeline/event-
 import { LayoutModule } from '@angular/cdk/layout';
 import { PhotoViewerComponent } from './components/organisation/timeline/photo-viewer/photo-viewer.component';
 import { MainLayoutComponent } from './components/layout/main-layout/main-layout.component';
+import { SearchEventComponent } from './components/organisation/timeline/search-event/search-event.component';
+import { CreateEventComponent } from './components/organisation/timeline/create-event/create-event.component';
 
 
 // AoT requires an exported function for factories
@@ -71,7 +74,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     EventListComponent,
     EventGalleryComponent,
     PhotoViewerComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    SearchEventComponent,
+    CreateEventComponent
     
   ],
   imports: [

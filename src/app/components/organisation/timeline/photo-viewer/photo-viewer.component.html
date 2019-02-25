@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" >
 
   <!-- Right Slider button -->
   <mat-sidenav #drawer class="sidenav"
@@ -29,24 +29,30 @@
   <mat-toolbar class="upper-nav">    
       <mat-toolbar-row>
         
-          <button mat-icon-button matTooltip="Back">
-              <mat-icon >arrow_back</mat-icon>
+        <div  fxFlex fxLayout >
+          <button mat-icon-button matTooltip="Back" class="icon-button">
+              <mat-icon color="accent" >arrow_back</mat-icon>
           </button>
+        </div>
+          <div fxFlex fxLayout fxLayoutAlign="center">
+              <button mat-icon-button class="icon-button"><mat-icon  color="accent">chevron_left</mat-icon></button>
+              <button mat-icon-button class="icon-button"><mat-icon color="accent">chevron_right </mat-icon></button>
+          </div>
 
           <div fxFlex fxLayout fxLayoutAlign="flex-end">
-              <ul fxLayout fxLayoutGap="25px" class="navigation-items">
+              <ul fxLayout fxLayoutGap="25px" class="navigation-items" >
                 <li>
-                  <button mat-stroked-button color="primary" matTooltip="create new event">
+                  <!-- <button mat-stroked-button color="accent" matTooltip="create new event">
                     Create Event
-                  </button>
+                  </button> -->
                 </li>
-                <li>
-                  <button mat-stroked-button color="primary"
+                <!-- <li>
+                  <button mat-stroked-button color="accent"
                           matTooltip="import extrenal event">Import Event</button>
-                </li>
+                </li> -->
                 <li>
                   <button (click)="drawer.toggle()" mat-icon-button matTooltip="toggle event list"
-                          color = "primary">
+                  color="accent" class="icon-button">
                     <mat-icon>format_list_bulleted</mat-icon>
                 </button>
                 </li>
@@ -57,11 +63,23 @@
   
   </mat-toolbar>
   
+
+
   <!-- Add Content Here -->
-  <div class="card-container">
+  <!-- <div class="card-container">
           <img class="image-view" src="/assets/Image/IMG_20190121_144905.jpg" alt="photo">
-  </div>
-  
+  </div> -->
+
+    <mat-grid-list cols=1  rowHeight="93.2%">
+      <mat-grid-tile>
+        <div class="image-container">
+          
+          <img class="image-view" src="/assets/Image/IMG_20190121_144905.jpg" alt="photo">
+          
+        </div>
+        
+      </mat-grid-tile>
+    </mat-grid-list>
 
 </mat-sidenav-content>
 
