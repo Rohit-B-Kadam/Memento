@@ -1,3 +1,186 @@
-<p>
-  create-event works!
-</p>
+<div class="main-component">
+
+  <div>
+    <h1>
+      Create New Event
+    </h1>
+  </div>
+
+
+  <!-- Stepper -->
+  <mat-horizontal-stepper linear="false" #stepper style="background-color: inherit;">
+
+    <!-- First Step -->
+    <mat-step>
+
+      <form>
+        <ng-template matStepLabel>Upload Photo</ng-template>
+        
+          <div class="step-container first-step" >
+
+            <button (click)="fileInput.click()" mat-raised-button color="primary">
+                <mat-icon>add</mat-icon><span> Add Photo</span>
+              <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" 
+                    style="display:none;" multiple />
+            </button>
+            
+            <mat-card style="margin: 20px;">
+              <mat-card-header>Image Selected:</mat-card-header>
+             
+              <mat-card-content class="selected-image-container">
+                <img *ngFor="let image of images" [src]="image" class="image-box">
+              </mat-card-content>
+            </mat-card>
+
+          </div>
+
+        <div>
+          <button mat-button matStepperNext color="primary">Next</button>
+        </div>
+      
+      </form>
+
+    </mat-step>
+
+    <!-- Second Step -->
+    <mat-step [stepControl]="eventDetail">
+      <form [formGroup]="eventDetail" novalidate (ngSubmit)="onSubmit()">
+        <ng-template matStepLabel>Event Details</ng-template>
+        
+        <div class="step-container ">
+          
+          <!-- Start -->
+          <mat-card class="second-step">
+              
+              <mat-card-content>
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="Event Name" formControlName="eventName"
+                            style="font-size: 35px;">
+                        <mat-error *ngIf="eventDetail.controls['eventName'].hasError('required')">
+                         Event Name is  <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                        <input matInput [matDatepickerFilter]="dateFilter" [matDatepicker]="picker" placeholder="Choose a date"
+                                formControlName="eventDate">
+                      <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field class="full-width"> 
+                        <mat-select placeholder="Categories"  multiple  formControlName="eventCategory">
+                        <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                      <mat-form-field class="full-width">
+                        <span matPrefix ><mat-icon>location_on</mat-icon></span>
+                        <input matInput placeholder="Location" formControlName="location">
+                          <mat-error *ngIf="eventDetail.controls['location'].hasError('required')">
+                           Location is  <strong>required</strong>
+                          </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+               
+                  <div class="row">
+                      <div class="col">
+                        <mat-form-field class="full-width">
+                          <textarea matInput placeholder="Description" formControlName="description" value="">
+                          </textarea>
+                            <mat-error *ngIf="eventDetail.controls['description'].hasError('required')">
+                             Description is  <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+               
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-raised-button matStepperNext color="primary" type="submit">Next</button>
+              </mat-card-actions>
+            </mat-card> 
+          <!-- End -->
+
+          
+        </div>
+        
+        
+        <div>
+          <button mat-button matStepperPrevious color="primary">Back</button>
+          <button mat-button matStepperNext color="primary">Next</button>
+        </div>
+      
+      
+      </form>
+    </mat-step>
+
+
+
+    <!-- Third step-->
+    <mat-step >
+      <form>
+        <ng-template matStepLabel>Add Friends</ng-template>
+
+        <div class="step-container drag-drop">
+          <!-- Drag and Drop -->
+          <mat-card class="container">
+             <mat-card-header> <h2>Friend Lists</h2> </mat-card-header>
+             <mat-card-subtitle><span>Select and Drag</span></mat-card-subtitle>
+             <mat-card-content>
+              <div cdkDropList #friendListsT="cdkDropList" [cdkDropListData]="friendLists"
+                  [cdkDropListConnectedTo]="addedFriendsT" class="list" (cdkDropListDropped)="drop($event)">
+                <div class="list-item" *ngFor="let item of friendLists" cdkDrag>{{item}}</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+            
+            <mat-card class="container">
+              <mat-card-header><h2>Add Friend Here</h2></mat-card-header>
+              <mat-card-subtitle><span>Drag and Drop here</span></mat-card-subtitle>
+              <mat-card-content>
+              <div cdkDropList #addedFriendsT="cdkDropList" [cdkDropListData]="addedFriends"
+                  [cdkDropListConnectedTo]="friendListsT" class="list" (cdkDropListDropped)="drop($event)">
+                <div class="list-item" *ngFor="let item of addedFriends" cdkDrag>{{item}}</div>
+              </div>
+            </mat-card-content>
+            </mat-card>
+            
+        </div>
+        <div>
+          <button mat-button matStepperPrevious color="primary">Back</button>
+          <button mat-button matStepperNext color="primary">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <!-- Fourth Step -->
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div class="step-container">
+        <button mat-raised-button color="primary"> Add the Event </button>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious color="primary">Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</div>

@@ -1,0 +1,136 @@
+.main-component
+{
+    padding: 20px;
+
+    background-color: inherit;
+}
+
+.step-container
+{
+    height:600px;
+    padding: 20px; 
+}
+
+
+.second-step
+{
+    min-width: 120px;
+    margin: 20px 200px;
+}
+
+.form-field
+{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.full-width {
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .mat-radio-button {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .col {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .col:last-child {
+    margin-right: 0;
+  }
+
+  // Image
+  .selected-image-container
+  {
+    height: 500px;
+    scroll-behavior: auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .image-box
+  {
+    height: 100px;
+    max-width: 200px;
+    padding: 10px;
+    object-fit: cover;
+    image-orientation: from-image;
+  }
+
+  // Drag and Drop
+  .drag-drop
+  {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .container {
+    width: 400px;
+    max-width: 100%;
+    width: 500px;
+    margin: 0 20px;
+    vertical-align: top;
+  }
+  
+  .list {
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    display: block;
+    overflow: hidden;
+    scroll-behavior: auto;
+    overflow-y: auto;
+    height: 450px; 
+  }
+  
+  .list-item {
+    padding: 20px 10px;
+    border-bottom: solid 1px #ccc;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    color: black;
+    font-size: 14px;
+  }
+  
+  .list-item:last-child {
+    border: none;
+  }
+  
+  /* Highlight the list item that is being dragged. */
+  .cdk-drag-preview {
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Animate items as they're being sorted. */
+  .cdk-drop-dragging .cdk-drag {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  /* Animate an item that has been dropped. */
+  .cdk-drag-animating {
+    transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  

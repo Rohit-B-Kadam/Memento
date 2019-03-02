@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
@@ -28,6 +28,8 @@ import { WebviewDirective } from './directives/webview.directive';
 // ngx-gallery
 import { GalleryModule } from '@ngx-gallery/core';
 
+// Reactive form
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Component
 import { AppComponent } from './app.component';
@@ -49,7 +51,11 @@ import { PhotoViewerComponent } from './components/organisation/timeline/photo-v
 import { MainLayoutComponent } from './components/layout/main-layout/main-layout.component';
 import { SearchEventComponent } from './components/organisation/timeline/search-event/search-event.component';
 import { CreateEventComponent } from './components/organisation/timeline/create-event/create-event.component';
-
+import { DragDropComponent } from './drag-drop/drag-drop.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CheckingComponent } from './checking/checking.component';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatInputModule, MatSelectModule, MatRadioModule, MatCardModule } from '@angular/material';
+import { FormCheckingComponent } from './form-checking/form-checking.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -76,7 +82,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     PhotoViewerComponent,
     MainLayoutComponent,
     SearchEventComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    DragDropComponent,
+    CheckingComponent,
+    FormCheckingComponent
     
   ],
   imports: [
@@ -93,9 +102,22 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     AngularMaterialModule,
-    GalleryModule
+    GalleryModule,
+    ReactiveFormsModule,
+    DragDropModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule
   ],
-  providers: [ElectronService],
+  providers: [ElectronService,
+              FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

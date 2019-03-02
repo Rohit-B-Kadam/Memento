@@ -6,7 +6,9 @@ import {MatButtonModule,
   MatToolbarModule, 
   MatSidenavModule, 
   MatIconModule, 
-  MatListModule} from '@angular/material';
+  MatListModule,
+  MatNativeDateModule
+} from '@angular/material';
 
 
   import {MatTreeModule} from '@angular/material/tree';
@@ -20,6 +22,8 @@ import {MatButtonModule,
   import {MatChipsModule} from '@angular/material/chips';
   import {MatTooltipModule} from '@angular/material/tooltip';
   import {MatStepperModule} from '@angular/material/stepper';
+  import { MatDatepickerModule } from '@angular/material/datepicker';
+  import {MatSelectModule} from '@angular/material/select';
   
 
   // FlexLayout
@@ -47,7 +51,10 @@ import {MatButtonModule,
     MatCardModule,
     MatChipsModule,
     MatTooltipModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   exports:[
     MatToolbarModule,
@@ -67,7 +74,10 @@ import {MatButtonModule,
     MatCardModule,
     MatChipsModule,
     MatTooltipModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ]
 })
 export class AngularMaterialModule { }

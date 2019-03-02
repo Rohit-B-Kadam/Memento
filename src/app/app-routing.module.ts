@@ -10,6 +10,7 @@ import { PeopleListComponent } from './components/features/people-list/people-li
 import { ProfileComponent } from './components/features/profile/profile.component';
 import { EventGalleryComponent } from './components/organisation/timeline/event-gallery/event-gallery.component';
 import { PhotoViewerComponent } from './components/organisation/timeline/photo-viewer/photo-viewer.component';
+import { CreateEventComponent } from './components/organisation/timeline/create-event/create-event.component';
 
 const routes: Routes = [
     {
@@ -38,6 +39,9 @@ const routes: Routes = [
     },
     {
         path: 'photo-viewer', component: PhotoViewerComponent
+    },
+    {
+        path: 'create-event', component: CreateEventComponent
     },
     { 
         path: '',
