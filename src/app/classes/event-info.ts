@@ -2,11 +2,12 @@ export class EventInfo
 {
     constructor(
        public title :  string,
-       public description: string,
-       public location: string,
        public date: Date,
+       public location: string,
+       public eventType: string,
        public categories : string[],
-       public tags: string[],
-       public friends: string[] 
+       public description: string,
+       public friends: string[],
+       public isHidden?:boolean
     ){ }
 }

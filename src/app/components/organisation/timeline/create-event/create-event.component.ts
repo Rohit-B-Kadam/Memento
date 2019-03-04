@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { EventsService } from '../../../../providers/Database/events.service';
+import { EventInfo } from '../../../../classes/event-info';
+import { PhotoInfo } from '../../../../classes/photo-info';
 //import { EXIF } from 'exif-js';
 
 @Component({
@@ -10,29 +13,30 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 export class CreateEventComponent implements OnInit 
 {
-
-  eventDetail = this._formBuilder.group(
-    {
-      eventName: [null , Validators.required],
-      eventDate: [null, Validators.required],
-      eventCategory: [null, Validators.required],
-      location: [null, Validators.required],
-      description: [null, Validators.required],
-
-    }
-  );
-
-
   // Date Filter
-  dateFilter = (d: Date): boolean => {
+  dateFilter = (d: Date): boolean => 
+  {
     let dateNow = new Date();
     // Prevent to selected future date.
     return d <= dateNow;
   }
 
-  // categories
+
+  // Form Group
+  
+  public uploadControl: FormGroup;
+
+  public eventDetail: FormGroup;
+
+  public isHidden: boolean;
+
+
+
+  // Filling data
   categories: string[] = ["Family" , "Friend", "College Friends"];
-  public images = [];
+  
+  eventType: string[] = ["Trekking","Marriage","Pinic"];
+  
   friendLists:string[] = [
     'Sonam Karale',
     'Abhishek Zambre',
@@ -49,12 +53,39 @@ export class CreateEventComponent implements OnInit
     'Vaibhav Magar'
   ];
 
-  addedFriends:string[] = [];
+  
+  // storing info
+  public images = [];
 
+  addedFriends: string[] = [];
 
-  constructor(private _formBuilder: FormBuilder) 
+  public photoInfos : PhotoInfo[] = [];
+
+  public eventInfo: EventInfo;
+
+  constructor(private _formBuilder: FormBuilder, private eventCollection: EventsService) 
   {
     
+    // initialising the form control
+    this.uploadControl = this._formBuilder.group(
+      {
+        addPhoto : [null,Validators.required] 
+      }
+    )
+
+    this.eventDetail = this._formBuilder.group(
+      {
+        eventName: [null, Validators.required],
+        eventDate: [null, Validators.required],
+        location: [null, Validators.required],
+        eventType: [null, Validators.required],
+        eventCategory: [null, Validators.required],
+        description: [null, Validators.required],
+  
+      }
+    );
+
+    this.isHidden = false;
   }
 
   ngOnInit() 
@@ -66,7 +97,9 @@ export class CreateEventComponent implements OnInit
   public onFileInput(event: any)
   {
     for( let i = 0 ; i < event.target.files.length; i++)
-    {     
+    {
+        this.photoInfos.push(new PhotoInfo(event.target.files[i].path));     
+        //console.log(event.target.files[i])
         this.readTheImagedata(event.target.files[i]); 
     }
 
@@ -85,10 +118,10 @@ export class CreateEventComponent implements OnInit
 
 
    // Drag and drop event
-   drop(event: CdkDragDrop<string[]>) {
+   public drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) 
     {
-      
+      // not in same list
     } else {
       transferArrayItem(event.previousContainer.data,
           event.container.data,
@@ -100,5 +133,36 @@ export class CreateEventComponent implements OnInit
   public onSubmit()
   {
     console.log(this.eventDetail.value);
+  }
+
+  public addEvent()
+  {
+    console.log(this.eventDetail.value['Adding New Event']);
+    this.eventInfo = new EventInfo(
+      this.eventDetail.value['eventName'],
+      this.eventDetail.value['eventDate'],
+      this.eventDetail.value['location'],
+      this.eventDetail.value['eventType'],
+      this.eventDetail.value['eventCategory'],
+      this.eventDetail.value['description'],
+      this.addedFriends
+      );
+
+
+      // insert the event
+      this.eventCollection.insert(this.eventInfo , this.photoInfos ).then( ()=> {
+        
+        // redirect to code
+        this.eventCollection.findAll().then( (value)=> {
+          console.log("List of user are ");
+          console.log(value);
+        })
+        .catch((err)=>{
+          console.log("Error: "+err);
+        });
+
+      });
+
+
   }
 }

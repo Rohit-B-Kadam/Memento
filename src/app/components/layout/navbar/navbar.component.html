@@ -8,33 +8,13 @@
 
     <span class="toolbar-title"> {{ 'PAGES.HOME.TITLE' | translate }} </span>
 
+<!-- 
+    TODO: add notification and switch user on navbar    
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
       <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-
-
-    <!-- Searching      
-        <mat-form-field class="example-form-field">
-
-          <input matInput type="text" placeholder="Search" [(ngModel)]="searchValue" [matAutocomplete]="auto">
-
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of options" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-
-
-        </mat-form-field>
-
-
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
-          <mat-icon>search</mat-icon>
-        </button> -->
-
       
-
-        <!--  Notification-->
+        
         <li fxHide.xs>
           <button mat-icon-button>
             <mat-icon>notifications</mat-icon>
@@ -45,14 +25,14 @@
 
         <li>
 
-          <!-- Profile -->
+          
           <button mat-icon-button [matMenuTriggerFor]="auth">
             <mat-icon>person_outline</mat-icon>
           </button>
 
           <mat-menu #auth="matMenu">
             <button mat-menu-item>
-              <!--(click)=logot-->
+              
               <mat-icon>exit_to_app</mat-icon>
               <span>Switch Account</span>
             </button>
@@ -62,7 +42,7 @@
 
       </ul>
 
-    </div>
+    </div> -->
 
   </mat-toolbar-row>
 

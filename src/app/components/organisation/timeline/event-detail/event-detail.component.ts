@@ -16,9 +16,14 @@ export class EventDetailComponent implements OnInit
   
   constructor() 
   { 
-    this.eventInfo = new EventInfo("Visapur Fort","Treking with full Mcs class friend"
+    
+    this.eventInfo = new EventInfo("Visapur Fort",
+                                    new Date(2019,1,21)
                                     ,"Lohagad, pune",
-                                    new Date(2019,1,21),["friends","trekking"] ,["fort","trekking"],["Sonam","Sanket","chandan"]);  
+                                    "trekking"
+                                    ,["friends","trekking"] ,
+                                    "Something is something",
+                                    ["Sonam","Sanket","chandan"]);  
     
   this.months = [
     'January', 'February', 'March', 'April', 'May',

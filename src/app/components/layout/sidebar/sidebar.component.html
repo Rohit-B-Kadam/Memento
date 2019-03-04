@@ -21,19 +21,21 @@
         Time Line
       </a>
 
+      <!-- TODO: add document and other photo-->
       <!-- Document -->
+      <!--       
       <a mat-list-item routerLinkActive routerLink="/document" #routerLinkActiveInstance2="routerLinkActive"
         [class.list-item-active]="routerLinkActiveInstance2.isActive">
         <mat-icon matListIcon class="app-nav-list-icon"> insert_drive_file </mat-icon>
         Document
-      </a>
+      </a> -->
 
       <!-- Other Photo -->
-      <a mat-list-item routerLinkActive routerLink="/login" #routerLinkActiveInstance3="routerLinkActive"
+      <!-- <a mat-list-item routerLinkActive routerLink="/login" #routerLinkActiveInstance3="routerLinkActive"
         [class.list-item-active]="routerLinkActiveInstance3.isActive">
         <mat-icon matListIcon class="app-nav-list-icon"> folder </mat-icon>
         Other Photos
-      </a>
+      </a> -->
 
       <!--
 
@@ -58,6 +60,14 @@
     <mat-nav-list>
       <h2 matSubheader> Features </h2>
 
+      <!-- Slideshow -->
+      <a mat-list-item routerLinkActive routerLink="/login" 
+                        #routerLinkActiveSearchInstance="routerLinkActive"
+                        [class.list-item-active]="routerLinkActiveSearchInstance.isActive"
+                        >
+        <mat-icon matListIcon class="app-nav-list-icon"> slideshow </mat-icon>
+        Slideshow
+      </a>
       <!-- Searching -->
       <a mat-list-item routerLinkActive routerLink="/profile" 
                         #routerLinkActiveSearchInstance="routerLinkActive"

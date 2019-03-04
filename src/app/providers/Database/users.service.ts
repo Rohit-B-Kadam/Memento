@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 // importing NeDB
 import * as Datastore from 'nedb';
+
+// Class
 import { User } from '../../classes/user';
 
 @Injectable({
