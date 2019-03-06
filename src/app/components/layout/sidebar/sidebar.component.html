@@ -15,8 +15,7 @@
       <h2 matSubheader> Organisation </h2>
 
       <!-- TimeLine -->
-      <a mat-list-item routerLinkActive routerLink="/timeline" #routerLinkActiveInstance1="routerLinkActive"
-        [class.list-item-active]="routerLinkActiveInstance1.isActive">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/timeline">
         <mat-icon matListIcon class="app-nav-list-icon"> timeline </mat-icon>
         Time Line
       </a>
@@ -61,44 +60,44 @@
       <h2 matSubheader> Features </h2>
 
       <!-- Slideshow -->
-      <a mat-list-item routerLinkActive routerLink="/login" 
-                        #routerLinkActiveSearchInstance="routerLinkActive"
-                        [class.list-item-active]="routerLinkActiveSearchInstance.isActive"
-                        >
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/slideshow" >
         <mat-icon matListIcon class="app-nav-list-icon"> slideshow </mat-icon>
         Slideshow
       </a>
       <!-- Searching -->
-      <a mat-list-item routerLinkActive routerLink="/profile" 
-                        #routerLinkActiveSearchInstance="routerLinkActive"
-                        [class.list-item-active]="routerLinkActiveSearchInstance.isActive"
-                        >
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/advance-search" >
         <mat-icon matListIcon class="app-nav-list-icon"> search </mat-icon>
         Advance Search
       </a>
 
       <!-- Duplicate -->
-      <a mat-list-item routerLinkActive routerLink="/duplicate" #routerLinkActiveInstance4="routerLinkActive"
-        [class.list-item-active]="routerLinkActiveInstance4.isActive">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/duplicate" >
         <mat-icon matListIcon class="app-nav-list-icon"> photo_library </mat-icon>
         Duplicate
       </a>
 
       <!-- People -->
-      <a mat-list-item routerLinkActive routerLink="/people-list" #routerLinkActiveInstance5="routerLinkActive"
-        [class.list-item-active]="routerLinkActiveInstance5.isActive">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/people-list">
         <mat-icon matListIcon class="app-nav-list-icon"> people </mat-icon>
         People
       </a>
 
       <!-- Profile -->
-      <a mat-list-item routerLinkActive routerLink="/profile" #routerLinkActiveInstance6="routerLinkActive"
-        [class.list-item-active]="routerLinkActiveInstance6.isActive">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/profile" >
         <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
         Profile
       </a>
 
+      <!-- Remove -->
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/login" >
+        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
+        Login
+      </a>
 
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/registration">
+        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
+        Registration
+      </a>
 
     </mat-nav-list>
 

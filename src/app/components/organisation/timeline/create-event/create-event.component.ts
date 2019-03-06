@@ -4,6 +4,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { EventsService } from '../../../../providers/Database/events.service';
 import { EventInfo } from '../../../../classes/event-info';
 import { PhotoInfo } from '../../../../classes/photo-info';
+import { ElectronService } from '../../../../providers/electron.service';
 //import { EXIF } from 'exif-js';
 
 @Component({
@@ -35,7 +36,7 @@ export class CreateEventComponent implements OnInit
   // Filling data
   categories: string[] = ["Family" , "Friend", "College Friends"];
   
-  eventType: string[] = ["Trekking","Marriage","Pinic"];
+  eventType: string[] = ["Trekking","Marriage","Pinic","Event"];
   
   friendLists:string[] = [
     'Sonam Karale',
@@ -63,7 +64,8 @@ export class CreateEventComponent implements OnInit
 
   public eventInfo: EventInfo;
 
-  constructor(private _formBuilder: FormBuilder, private eventCollection: EventsService) 
+  constructor(private _formBuilder: FormBuilder, private eventCollection: EventsService,
+              private electronService: ElectronService) 
   {
     
     // initialising the form control
@@ -137,7 +139,7 @@ export class CreateEventComponent implements OnInit
 
   public addEvent()
   {
-    console.log(this.eventDetail.value['Adding New Event']);
+
     this.eventInfo = new EventInfo(
       this.eventDetail.value['eventName'],
       this.eventDetail.value['eventDate'],
@@ -148,6 +150,9 @@ export class CreateEventComponent implements OnInit
       this.addedFriends
       );
 
+
+
+      this.moveAllPhotoToDest("/home/rohit/Desktop/Momento-Events");
 
       // insert the event
       this.eventCollection.insert(this.eventInfo , this.photoInfos ).then( ()=> {
@@ -163,6 +168,41 @@ export class CreateEventComponent implements OnInit
 
       });
 
+    console.log("Adding New Event");
+  }
+
+  public moveAllPhotoToDest( destFolder:string)
+  {
+    // getting nodejs fs module from electronService
+    let fs = this.electronService.fs;
+    let date = this.eventInfo.date;
+
+    let fullPath: string= destFolder;
+    if (!fs.existsSync(fullPath))
+    {
+      fs.mkdirSync(fullPath);
+    }
+
+    // check year folder is exist or not
+    fullPath += '/'+date.getFullYear();
+    if (!fs.existsSync(fullPath))
+    {
+      fs.mkdirSync(fullPath);
+    }
+   
+
+    fullPath += "/"+date.getDate()+'_'+date.getMonth()+'_'+this.eventInfo.title;
+    if (!fs.existsSync(fullPath))
+    {
+      fs.mkdirSync(fullPath);
+    }
+
+    for(let i = 0 ; i < this.photoInfos.length; i++)
+    {
+      let photoName = this.photoInfos[i].photoUrl.split('\\').pop().split('/').pop();
+      fs.copyFileSync(this.photoInfos[i].photoUrl, fullPath+'/'+photoName);
+      this.photoInfos[i].photoUrl = fullPath+'/'+photoName;
+    }
 
   }
 }

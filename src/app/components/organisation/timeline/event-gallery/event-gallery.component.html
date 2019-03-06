@@ -60,7 +60,7 @@
     <!-- loop over the products -->
     
     <mat-card fxFlex="0 1 calc(20% - 20px)" *ngFor="let image of images; let i = index" class="card-container">
-      <a routerLink="/photo-viewer">
+      <a routerLink="/timeline/photo-viewer">
         <img class="image-view" mat-card-image [src]="image" alt="photo">
       </a>
     </mat-card>

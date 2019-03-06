@@ -1,24 +1,28 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle >
     <button mat-icon-button disabled></button>
     
-    <a routerLink="" style="color:black; text-decoration: none">
+    <a [routerLink]="['/timeline', node.id]" routerLinkActive="link-active" class="child-node">
+    <button mat-button>
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-      {{ node.type === 'file' ? 'photo_library' : 'folder' }}
+      {{ node.type === 'event' ? 'photo' : 'folder' }}
     </mat-icon>
-    {{node.name}}</a>
+    {{node.name}}
+  </button>
+  </a>
   </mat-tree-node>
   
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-    <button mat-icon-button matTreeNodeToggle
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" >
+    <button mat-button matTreeNodeToggle class="parent-node"
             [attr.aria-label]="'toggle ' + node.name">
       <mat-icon class="mat-icon-rtl-mirror">
         {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
       </mat-icon>
-    </button>
+    
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-      {{ node.type ==='file' ? 'description' : 'folder' }}
+      {{ node.type ==='event' ? 'description' : 'folder' }}
     </mat-icon>
     {{node.name}}
+  </button>
   </mat-tree-node>
 </mat-tree>

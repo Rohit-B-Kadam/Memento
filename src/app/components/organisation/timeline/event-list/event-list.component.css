@@ -2,3 +2,22 @@
   color: #757575;
   margin-right: 5px;
 }
+
+.parent-node
+{
+  width: 100%;
+  text-align: left;
+}
+
+.child-node
+{
+  width: 100%;
+  color:black; 
+  text-decoration: none;
+  padding-left: 20px;
+}
+
+.link-active
+{
+  color: red; 
+}

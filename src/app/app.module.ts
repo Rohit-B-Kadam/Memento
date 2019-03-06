@@ -56,6 +56,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CheckingComponent } from './checking/checking.component';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatInputModule, MatSelectModule, MatRadioModule, MatCardModule } from '@angular/material';
 import { FormCheckingComponent } from './form-checking/form-checking.component';
+import { FourZeroFourPageComponent } from './component/four-zero-four-page/four-zero-four-page.component';
+import { SlideShowComponent } from './components/features/slide-show/slide-show.component';
+import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -85,7 +88,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     CreateEventComponent,
     DragDropComponent,
     CheckingComponent,
-    FormCheckingComponent
+    FormCheckingComponent,
+    FourZeroFourPageComponent,
+    SlideShowComponent,
+    AdvanceSearchComponent
     
   ],
   imports: [

@@ -11,10 +11,31 @@ import { ProfileComponent } from './components/features/profile/profile.componen
 import { EventGalleryComponent } from './components/organisation/timeline/event-gallery/event-gallery.component';
 import { PhotoViewerComponent } from './components/organisation/timeline/photo-viewer/photo-viewer.component';
 import { CreateEventComponent } from './components/organisation/timeline/create-event/create-event.component';
+import { FourZeroFourPageComponent } from './component/four-zero-four-page/four-zero-four-page.component';
+import { SlideShowComponent } from './components/features/slide-show/slide-show.component';
+import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
+import { RegistrationComponent } from './components/authentication/registration/registration.component';
 
 const routes: Routes = [
     {
-         path: 'timeline', component: TimelineComponent
+        path: 'timeline',
+        children: [
+            {
+                path: 'event-gallery', component: EventGalleryComponent
+            },
+            {
+                path: 'photo-viewer', component: PhotoViewerComponent
+            },
+            {
+                path: 'create-event', component: CreateEventComponent
+            },
+            {
+                path: ':id', component: TimelineComponent
+            },
+            {
+                path: '', component: TimelineComponent
+            },        
+        ]
     },
     {
         path: 'document', component: DocumentsComponent
@@ -26,6 +47,9 @@ const routes: Routes = [
         path: 'login', component: LoginComponent
     },
     {
+        path: 'registration' , component: RegistrationComponent
+    },
+    {
         path: 'duplicate', component: DuplicateComponent
     },
     {
@@ -35,23 +59,27 @@ const routes: Routes = [
         path: 'profile', component: ProfileComponent
     },
     {
-        path: 'event-gallery', component: EventGalleryComponent
+        path: 'slideshow', component: SlideShowComponent
     },
     {
-        path: 'photo-viewer', component: PhotoViewerComponent
-    },
-    {
-        path: 'create-event', component: CreateEventComponent
+        path: 'advance-search', component: AdvanceSearchComponent
     },
     { 
         path: '',
         redirectTo: '/timeline',
         pathMatch: 'full'
+    },
+    {
+        path: '**', //  <-- wild-card  
+        component: FourZeroFourPageComponent
     }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {useHash: true})],
+    imports: [RouterModule.forRoot(routes, {
+                                                useHash: true,
+                                                //enableTracing: true,  <-- for debugging purpose
+                                            })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

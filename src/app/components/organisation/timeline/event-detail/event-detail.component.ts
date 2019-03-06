@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { EventInfo } from '../../../../classes/event-info';
 import { GalleryItem, ImageItem } from '@ngx-gallery/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { mergeMap, switchMap, retry, 
+         map, catchError, filter, scan } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-event-detail',
@@ -14,27 +19,29 @@ export class EventDetailComponent implements OnInit
   public months;
   public images: GalleryItem[];
   
-  constructor() 
+  constructor(private route: ActivatedRoute,
+              private router: Router) 
   { 
     
-    this.eventInfo = new EventInfo("Visapur Fort",
-                                    new Date(2019,1,21)
-                                    ,"Lohagad, pune",
-                                    "trekking"
-                                    ,["friends","trekking"] ,
-                                    "Something is something",
-                                    ["Sonam","Sanket","chandan"]);  
-    
-  this.months = [
-    'January', 'February', 'March', 'April', 'May',
-    'June', 'July', 'August', 'September',
-    'October', 'November', 'December'
-    ];
-
   }
 
   ngOnInit() 
   {
+
+    this.eventInfo = new EventInfo("Visapur Fort",
+                                    new Date(2019,1,21),
+                                    "Lohagad, pune",
+                                    "trekking",
+                                    ["friends","trekking"],
+                                    "Something is something",
+                                    ["Sonam","Sanket","chandan"]);  
+    
+    this.months = [
+      'January', 'February', 'March', 'April', 'May',
+      'June', 'July', 'August', 'September',
+      'October', 'November', 'December'
+      ];
+
 
     // set the gallery image array
     this.images = [
@@ -52,6 +59,13 @@ export class EventDetailComponent implements OnInit
                       thumb: "../../../../../assets/Image/IMG_20190121_165611.jpg" })
     ]
 
+    // routing
+
+    this.route.paramMap.subscribe(
+      param => {
+        console.log(param);
+      }
+    )
 
   }
 
