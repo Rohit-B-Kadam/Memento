@@ -58,4 +58,24 @@ export class PhotoCollectionService {
     });
   }
 
+  // checking Get All Users
+  public findAll() 
+  {
+    return new Promise((resolve, reject) => {
+
+      return this.photoCollection.find({}, (err, items) => {
+        // items is match , in this case all the entries
+        if (err) 
+        {
+          reject(err);
+        }
+        else 
+        {
+          resolve(items);
+        }
+      })
+
+    });
+  }
+
 }

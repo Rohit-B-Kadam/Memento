@@ -32,11 +32,7 @@
 
         <!-- Event Decription -->
         <mat-card-content class="event-description">
-          &nbsp;&nbsp;&nbsp;&nbsp; {{ eventInfo.description }}. Lorem Ipsum is simply dummy text of the printing and
-          typesetting industry. Lorem Ipsum
-          has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-          type and
-          scrambled it to make a type specimen book.
+          &nbsp;&nbsp;&nbsp;&nbsp; {{ eventInfo.description }}
         </mat-card-content>
 
         <mat-divider></mat-divider> <!-- Divider -->
@@ -92,10 +88,11 @@
         <!-- gallery -->
         <mat-card-content class="gallery-container">
           <!-- Import component -->
-          <gallery [items]="images" [imageSize]="'cover'" [autoPlay]="'true'" [playerInterval]="'4000'"
+          
+          <gallery [items]="images"  [imageSize]="'cover'" [autoPlay]="'true'" [playerInterval]="'4000'"
             [loadingStrategy]="'preload'" [loadingMode]="'indeterminate'" [counter]="'false'" [thumbMode]="'free'">
           </gallery>
-
+        
         </mat-card-content>
       </mat-card>
 

@@ -6,6 +6,7 @@ import * as Datastore from 'nedb';
 import { EventInfo } from '../../classes/event-info';
 import { PhotoCollectionService } from './photo-collection.service';
 import { PhotoInfo } from '../../classes/photo-info';
+import { StoreTempData } from '../../classes/store-temp-data';
 
 
 
@@ -13,13 +14,19 @@ import { PhotoInfo } from '../../classes/photo-info';
   providedIn: 'root'
 })
 
+
+
 export class EventsService 
 {
 
-  // collection
+  // collection ie db
   public eventCollection: any;
 
   private collectionURI = "EventsInfo.db";
+
+
+  // store the data .. work like cache
+  public storeTempData: StoreTempData;
 
   constructor( public photoCollection : PhotoCollectionService ) 
   {
@@ -28,7 +35,8 @@ export class EventsService
       autoload: true
     });
 
-    console.log("Status:  Event Collection is Loaded");
+    this.storeTempData = new StoreTempData();
+    //console.log("Status:  Event Collection is Loaded");
   }
 
   //---------------------------------------------------------------
@@ -49,6 +57,8 @@ export class EventsService
         }
         else 
         {
+
+          // photo db
           this.photoCollection.connectedToCollection(newDoc['_id']);
           this.photoCollection.insertAll(photos);
           resolve(newDoc);
@@ -78,4 +88,31 @@ export class EventsService
     });
   }
 
+  public getEventDetail(eventId: string )
+  {
+    
+    return new Promise( (resolve, reject) =>
+    {
+      // find the doc where id = eventId return array of doc which the condition
+      return this.eventCollection.find( { _id: eventId } , { }, (err , item)=> 
+      {
+        if (err) 
+        {
+          reject(err);
+        }
+        else 
+        {
+          this.storeTempData.eventInfo = item;
+          this.storeTempData.id = eventId;
+          resolve(item);
+        }
+      })
+    });
+  }
+
+  public getAllPhoto( eventId: string)
+  {
+      this.photoCollection.connectedToCollection(eventId);
+      return this.photoCollection.findAll();
+  }
 }

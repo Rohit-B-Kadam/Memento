@@ -8,6 +8,7 @@ export class EventInfo
        public categories : string[],
        public description: string,
        public friends: string[],
-       public isHidden?:boolean
+       public isHidden?:boolean,
+       public _id?: string
     ){ }
 }
