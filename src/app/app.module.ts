@@ -51,12 +51,8 @@ import { PhotoViewerComponent } from './components/organisation/timeline/photo-v
 import { MainLayoutComponent } from './components/layout/main-layout/main-layout.component';
 import { SearchEventComponent } from './components/organisation/timeline/search-event/search-event.component';
 import { CreateEventComponent } from './components/organisation/timeline/create-event/create-event.component';
-import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { CheckingComponent } from './checking/checking.component';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatInputModule, MatSelectModule, MatRadioModule, MatCardModule } from '@angular/material';
-import { FormCheckingComponent } from './form-checking/form-checking.component';
-import { FourZeroFourPageComponent } from './component/four-zero-four-page/four-zero-four-page.component';
+import { FourZeroFourPageComponent } from './components/four-zero-four-page/four-zero-four-page.component';
 import { SlideShowComponent } from './components/features/slide-show/slide-show.component';
 import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
 import { PhotoThambnailComponent } from './components/organisation/timeline/photo-thambnail/photo-thambnail.component';
@@ -87,9 +83,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MainLayoutComponent,
     SearchEventComponent,
     CreateEventComponent,
-    DragDropComponent,
-    CheckingComponent,
-    FormCheckingComponent,
     FourZeroFourPageComponent,
     SlideShowComponent,
     AdvanceSearchComponent,
@@ -113,16 +106,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     GalleryModule,
     ReactiveFormsModule,
     DragDropModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatInputModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCardModule
+    LayoutModule
   ],
   providers: [ElectronService,
               FormBuilder],

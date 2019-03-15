@@ -11,7 +11,7 @@ import { ProfileComponent } from './components/features/profile/profile.componen
 import { EventGalleryComponent } from './components/organisation/timeline/event-gallery/event-gallery.component';
 import { PhotoViewerComponent } from './components/organisation/timeline/photo-viewer/photo-viewer.component';
 import { CreateEventComponent } from './components/organisation/timeline/create-event/create-event.component';
-import { FourZeroFourPageComponent } from './component/four-zero-four-page/four-zero-four-page.component';
+import { FourZeroFourPageComponent } from './components/four-zero-four-page/four-zero-four-page.component';
 import { SlideShowComponent } from './components/features/slide-show/slide-show.component';
 import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
 import { RegistrationComponent } from './components/authentication/registration/registration.component';
