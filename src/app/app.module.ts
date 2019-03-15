@@ -59,6 +59,7 @@ import { FormCheckingComponent } from './form-checking/form-checking.component';
 import { FourZeroFourPageComponent } from './component/four-zero-four-page/four-zero-four-page.component';
 import { SlideShowComponent } from './components/features/slide-show/slide-show.component';
 import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
+import { PhotoThambnailComponent } from './components/organisation/timeline/photo-thambnail/photo-thambnail.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -91,7 +92,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormCheckingComponent,
     FourZeroFourPageComponent,
     SlideShowComponent,
-    AdvanceSearchComponent
+    AdvanceSearchComponent,
+    PhotoThambnailComponent
     
   ],
   imports: [

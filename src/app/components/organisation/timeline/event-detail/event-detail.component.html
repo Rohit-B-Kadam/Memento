@@ -80,8 +80,9 @@
         <mat-card-header class="gallery-title"> 
           Gallery: 
           <div fxFlex fxLayout fxLayoutAlign="flex-end">
+            <!-- Explore -->
               <a mat-raised-button color="primary" matTooltip="see all image"
-                 routerLinkActive routerLink="/timeline/event-gallery"> Explore </a>
+                 routerLinkActive [routerLink]="['/timeline/event-gallery', eventInfo._id]" > Explore </a>
           </div>
         </mat-card-header>
 
@@ -89,10 +90,11 @@
         <mat-card-content class="gallery-container">
           <!-- Import component -->
           
-          <gallery [items]="images"  [imageSize]="'cover'" [autoPlay]="'true'" [playerInterval]="'4000'"
+          <!-- <gallery [items]="images"  [imageSize]="'cover'" [autoPlay]="'true'" [playerInterval]="'4000'"
             [loadingStrategy]="'preload'" [loadingMode]="'indeterminate'" [counter]="'false'" [thumbMode]="'free'">
           </gallery>
-        
+         -->
+         <img [src]="imageDisplay">
         </mat-card-content>
       </mat-card>
 

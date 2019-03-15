@@ -21,7 +21,17 @@ const routes: Routes = [
         path: 'timeline',
         children: [
             {
-                path: 'event-gallery', component: EventGalleryComponent
+                path: 'event-gallery',
+                children: 
+                [
+                    {
+                        path: ':id', component: EventGalleryComponent
+                    },
+                    {
+                        path: '', component: FourZeroFourPageComponent
+                    }
+                ]
+
             },
             {
                 path: 'photo-viewer', component: PhotoViewerComponent

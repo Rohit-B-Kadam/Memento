@@ -17,6 +17,8 @@ export class EventDetailComponent implements OnInit
   public eventInfo:EventInfo;
   public months: string[];
   public images: GalleryItem[];
+  public imageDisplay;
+  
   
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -72,7 +74,6 @@ export class EventDetailComponent implements OnInit
           this.eventCollection.getEventDetail(param.get('id'))
             .then(value => 
               {
-                  console.log(value);
                   this.eventInfo =  value[0];
                   this.getPhoto();
               })
@@ -87,6 +88,7 @@ export class EventDetailComponent implements OnInit
     )
   }
 
+  // remove it 
   public showDefault()
   {
 
@@ -105,7 +107,6 @@ export class EventDetailComponent implements OnInit
       this.eventCollection.getAllPhoto(this.eventInfo._id)
           .then( value => 
             {
-              console.log(value);
               this.displayFivePhoto(value as PhotoInfo[]);
             })
           .catch( err => console.log(err));
@@ -130,7 +131,6 @@ export class EventDetailComponent implements OnInit
     let fs = this._electronService.fs;
     let data = fs.readFileSync(file);
     let imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
-    console.log(imagebuffer);
     let imItem: ImageItem = new ImageItem({ src: imagebuffer , thumb:  imagebuffer} );
     this.images.push(imItem); 
   }
