@@ -1,9 +1,12 @@
+// Gallery and photoview interaction
+
 import { Injectable } from '@angular/core';
 import { EventInfo } from '../classes/event-info';
 import { PhotoInfo } from '../classes/photo-info';
 import { ElectronService } from './electron.service';
 import { EventsService } from './Database/events.service';
 import { Subject } from 'rxjs';
+import { DateAdapter } from '@angular/material';
 
 
 
@@ -17,16 +20,18 @@ export class EventPhotoInteractionService {
   public photosInfo: PhotoInfo[];
   public imagesBuffer: string[];
 
-  public imagesSubject: Subject<string>;
-  public imagesObs$;
-
   constructor( private eventCollection: EventsService,
               private _electronService: ElectronService ) 
   { 
+    //this.clearData();
+    console.log("created object");
+  }
+
+  public clearData()
+  {
+    this.eventInfo = new EventInfo("", new Date() ,"","",[],"",[],);
     this.imagesBuffer = [];
     this.photosInfo = [];
-    this.eventInfo =  new EventInfo('',new Date(),'','',[],'',[]);
-
   }
 
   public getEventinfo( eventId: string)
@@ -36,12 +41,9 @@ export class EventPhotoInteractionService {
     .then(value => 
       {
           this.eventInfo =  value[0];
-
-          console.log(this.eventInfo);
           this.getPhotoInfo();
       })
     .catch( err => console.log(err));
-
 
   }
 
@@ -51,7 +53,6 @@ export class EventPhotoInteractionService {
           .then( value => 
             {
               this.photosInfo = value as []; 
-              console.log(this.photosInfo);
               this.readImage();
             })
           .catch( err => console.log(err));
@@ -60,7 +61,6 @@ export class EventPhotoInteractionService {
 
   public readImage()
   {
-    console.log("start");
     this.photosInfo.forEach(
       photoInfo => 
       {
@@ -70,8 +70,6 @@ export class EventPhotoInteractionService {
         this.imagesBuffer.push(imagebuffer); 
       }
     );
-
-    console.log(this.photosInfo.length);
   }
 
 }

@@ -35,8 +35,8 @@
           </button>
         </div>
           <div fxFlex fxLayout fxLayoutAlign="center">
-              <button mat-icon-button class="icon-button"><mat-icon  color="accent">chevron_left</mat-icon></button>
-              <button mat-icon-button class="icon-button"><mat-icon color="accent">chevron_right </mat-icon></button>
+              <button mat-icon-button class="icon-button" (click)="loadImage(-1)"><mat-icon  color="accent">chevron_left</mat-icon></button>
+              <button mat-icon-button class="icon-button" (click)="loadImage(1)"><mat-icon color="accent">chevron_right </mat-icon></button>
           </div>
 
           <div fxFlex fxLayout fxLayoutAlign="flex-end">
@@ -74,7 +74,7 @@
       <mat-grid-tile>
         <div class="image-container">
           
-          <img class="image-view" src="/assets/Image/IMG_20190121_144905.jpg" alt="photo">
+          <img class="image-view" [src]="imagebuffer" alt="photo" [ngClass]="setClass">
           
         </div>
         

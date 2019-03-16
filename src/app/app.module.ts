@@ -56,6 +56,7 @@ import { FourZeroFourPageComponent } from './components/four-zero-four-page/four
 import { SlideShowComponent } from './components/features/slide-show/slide-show.component';
 import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
 import { PhotoThambnailComponent } from './components/organisation/timeline/photo-thambnail/photo-thambnail.component';
+import { ReDirectToLatestEventComponent } from './components/organisation/timeline/re-direct-to-latest-event/re-direct-to-latest-event.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -86,7 +87,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FourZeroFourPageComponent,
     SlideShowComponent,
     AdvanceSearchComponent,
-    PhotoThambnailComponent
+    PhotoThambnailComponent,
+    ReDirectToLatestEventComponent
     
   ],
   imports: [

@@ -5,7 +5,9 @@ import { EventsService } from '../../../../providers/Database/events.service';
 import { EventInfo } from '../../../../classes/event-info';
 import { PhotoInfo } from '../../../../classes/photo-info';
 import { ElectronService } from '../../../../providers/electron.service';
+import { Router } from '@angular/router';
 //import { EXIF } from 'exif-js';
+var EXIF = require('exif-js');
 
 @Component({
   selector: 'app-create-event',
@@ -38,6 +40,7 @@ export class CreateEventComponent implements OnInit
   
   eventType: string[] = ["Trekking","Marriage","Pinic","Event"];
   
+  // make dynamic
   friendLists:string[] = [
     'Sonam Karale',
     'Abhishek Zambre',
@@ -64,8 +67,10 @@ export class CreateEventComponent implements OnInit
 
   public eventInfo: EventInfo;
 
-  constructor(private _formBuilder: FormBuilder, private eventCollection: EventsService,
-              private electronService: ElectronService) 
+  constructor(private _formBuilder: FormBuilder, 
+              private eventCollection: EventsService,
+              private _electronService: ElectronService,
+              private router: Router) 
   {
     
     // initialising the form control
@@ -100,12 +105,9 @@ export class CreateEventComponent implements OnInit
   {
     for( let i = 0 ; i < event.target.files.length; i++)
     {
-        this.photoInfos.push(new PhotoInfo(event.target.files[i].path));     
-        //console.log(event.target.files[i])
+        this.photoInfos.push(new PhotoInfo(event.target.files[i].path));
         this.readTheImagedata(event.target.files[i]); 
     }
-
-    console.log(this.images);
   }
 
   public readTheImagedata(file)
@@ -140,6 +142,8 @@ export class CreateEventComponent implements OnInit
   public addEvent()
   {
 
+
+
     this.eventInfo = new EventInfo(
       this.eventDetail.value['eventName'],
       this.eventDetail.value['eventDate'],
@@ -150,31 +154,21 @@ export class CreateEventComponent implements OnInit
       this.addedFriends
       );
 
-
-
       this.moveAllPhotoToDest("/home/rohit/Desktop/Momento-Events");
-
+      this.fillPhotoInfo();
       // insert the event
-      this.eventCollection.insert(this.eventInfo , this.photoInfos ).then( ()=> {
-        
-        // redirect to code
-        this.eventCollection.findAll().then( (value)=> {
-          console.log("List of user are ");
-          console.log(value);
-        })
-        .catch((err)=>{
-          console.log("Error: "+err);
-        });
-
+      this.eventCollection.insert(this.eventInfo , this.photoInfos ).then( (value : EventInfo)=> {
+      
+        console.log(value)
+       this.router.navigate(['/timeline', value._id]);
       });
 
-    console.log("Adding New Event");
   }
 
   public moveAllPhotoToDest( destFolder:string)
   {
     // getting nodejs fs module from electronService
-    let fs = this.electronService.fs;
+    let fs = this._electronService.fs;
     let date = this.eventInfo.date;
 
     let fullPath: string= destFolder;
@@ -205,4 +199,31 @@ export class CreateEventComponent implements OnInit
     }
 
   }
+
+  public fillPhotoInfo()
+  {
+    let fs = this._electronService.fs;
+
+    for(let i = 0 ; i < this.photoInfos.length; i++)
+    {
+      let data = fs.readFileSync(this.photoInfos[i].photoUrl);
+
+      var exifData = EXIF.readFromBinaryFile(this.toArrayBuffer(data));
+      this.photoInfos[i].model = exifData.Model;
+      this.photoInfos[i].dataTime = exifData.DateTime;
+      this.photoInfos[i].orientation = exifData.Orientation;
+    }
+  }
+
+  public toArrayBuffer(buf) 
+  {
+    var ab = new ArrayBuffer(buf.length);
+    var view = new Uint8Array(ab);
+    for (var i = 0; i < buf.length; ++i) 
+    {
+        view[i] = buf[i];
+    }
+    return ab;
+  }
+
 }

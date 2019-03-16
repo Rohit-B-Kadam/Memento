@@ -1,3 +1,5 @@
+// All functionality on events database
+
 import { Injectable } from '@angular/core';
 
 // importing NeDB
@@ -36,7 +38,6 @@ export class EventsService
     });
 
     this.storeTempData = new StoreTempData();
-    //console.log("Status:  Event Collection is Loaded");
   }
 
   //---------------------------------------------------------------

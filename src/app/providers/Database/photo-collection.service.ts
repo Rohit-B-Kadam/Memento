@@ -1,3 +1,5 @@
+// All functionality on photo database
+
 import { Injectable } from '@angular/core';
 
 // importing NeDB
@@ -28,7 +30,6 @@ export class PhotoCollectionService {
       autoload: true
     });
 
-    console.log("collection is open");
   }
 
   public insertAll(items: PhotoInfo[])

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { EventPhotoInteractionService } from '../../../../providers/event-photo-interaction.service';
 
 @Component({
   selector: 'app-photo-viewer',
@@ -16,10 +17,60 @@ export class PhotoViewerComponent implements OnInit {
     map(result => result.matches)
   );
 
+  public imagebuffer: string;
+  public index;
+  public setClass;
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver,
+              private route: ActivatedRoute,
+              private photoInteraction: EventPhotoInteractionService) 
+  {
+    this.index = 0;
+    this.initialisedComponent();
+  }
 
   ngOnInit() {
+  }
+
+
+  public initialisedComponent() {
+    this.route.paramMap.subscribe(
+        param => {
+            let id: string = param.get('id');
+            this.loadImage(id);
+        });
+  }
+
+  public loadImage(id)
+  {
+
+    this.index += +id;
+    if(this.index >= 0 && this.index < this.photoInteraction.imagesBuffer.length )
+    {  
+      this.imagebuffer = this.photoInteraction.imagesBuffer[this.index];
+      this.setClassToImage(this.photoInteraction.photosInfo[this.index].orientation);
+    }
+  }
+
+
+  public setClassToImage( id : number)
+  {
+      if(id == 1 || id == 2)
+      {
+        this.setClass = 'orientation_1';
+      }
+      else if(id == 8 || id == 7)
+      {
+        this.setClass = 'orientation_8';
+      }
+      else if(id == 3 || id == 4)
+      {
+        this.setClass = 'orientation_3';
+      }
+      else if(id == 6 || id == 5)
+      {
+        this.setClass = 'orientation_6';
+      }
   }
 
 }

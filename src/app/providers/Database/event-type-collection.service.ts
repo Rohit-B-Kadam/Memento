@@ -1,3 +1,4 @@
+// To store Event Type
 import { Injectable } from '@angular/core';
 
 @Injectable({

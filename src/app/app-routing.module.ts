@@ -15,6 +15,7 @@ import { FourZeroFourPageComponent } from './components/four-zero-four-page/four
 import { SlideShowComponent } from './components/features/slide-show/slide-show.component';
 import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
 import { RegistrationComponent } from './components/authentication/registration/registration.component';
+import { ReDirectToLatestEventComponent } from './components/organisation/timeline/re-direct-to-latest-event/re-direct-to-latest-event.component';
 
 const routes: Routes = [
     {
@@ -28,13 +29,22 @@ const routes: Routes = [
                         path: ':id', component: EventGalleryComponent
                     },
                     {
-                        path: '', component: FourZeroFourPageComponent
+                        path: '**', component: FourZeroFourPageComponent
                     }
                 ]
 
             },
             {
-                path: 'photo-viewer', component: PhotoViewerComponent
+                path: 'photo-viewer',
+                children: 
+                [
+                    {
+                        path: ':id', component: PhotoViewerComponent
+                    },
+                    {
+                        path: '**', component: FourZeroFourPageComponent
+                    }
+                ]
             },
             {
                 path: 'create-event', component: CreateEventComponent
@@ -43,8 +53,8 @@ const routes: Routes = [
                 path: ':id', component: TimelineComponent
             },
             {
-                path: '', component: TimelineComponent
-            },        
+                path: '', component: ReDirectToLatestEventComponent
+            },       
         ]
     },
     {

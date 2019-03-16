@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from '../../../../providers/Database/events.service';
 import { EventInfo } from '../../../../classes/event-info';
@@ -8,119 +8,79 @@ import { ElectronService } from '../../../../providers/electron.service';
 import { interval, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-event-gallery',
-  templateUrl: './event-gallery.component.html',
-  styleUrls: ['./event-gallery.component.scss']
+    selector: 'app-event-gallery',
+    templateUrl: './event-gallery.component.html',
+    styleUrls: ['./event-gallery.component.scss']
 })
-export class EventGalleryComponent implements OnInit {
+export class EventGalleryComponent implements OnInit , OnDestroy {
+    
 
-  public images = [];
-  public eventInfo: EventInfo;
-  public photosInfo: PhotoInfo[];
-  public imagesBuffer: string[];
-  private subject = new Subject<any>();
+    public images = [];
+    public eventInfo: EventInfo;
+    public imagesBuffer: string[];
+    public intTimmer;
+    public index;
 
-  constructor(
-                private route: ActivatedRoute,
-                private router: Router,
-                private eventCollection: EventsService,
-                private _electronService: ElectronService
-  ) 
-  {
-      this.imagesBuffer = [];
-      this.photosInfo = [];
-      this.eventInfo =  new EventInfo('',new Date(),'','',[],'',[]);
-      this.initialisedComponent();
-
-      let observable$ = this.subject.asObservable();
-      observable$.subscribe( buffer => { this.imagesBuffer.push(buffer) });
-
-  }
-
-  ngOnInit() {
-  
-     //this.eventInfo = this.photoInteraction.eventInfo;
-  }
-
-  public initialisedComponent()
-  {
-    this.route.paramMap.subscribe(
-      param => 
-      {
-        let id: string = param.get('id');
-        this.loadImage(id);
-      }
-    )
-  }
-
-
-  public loadImage( eventId: string)
-  {
-    // get means read
-    this.getEventinfo(eventId);
-  }
-
-
-  public getEventinfo( eventId: string)
-  {
-
-    this.eventCollection.getEventDetail(eventId)
-    .then(value => 
-      {
-          this.eventInfo =  value[0];
-
-          console.log(this.eventInfo);
-          this.getPhotoInfo();
-      })
-    .catch( err => console.log(err));
-
-
-  }
-
-  public getPhotoInfo()
-  {
-    this.eventCollection.getAllPhoto(this.eventInfo._id)
-          .then( value => 
-            {
-              this.photosInfo = value as []; 
-              console.log(this.photosInfo);
-              this.readImage();
-            })
-          .catch( err => console.log(err));
-  }
-
-
-  async readImage()
-  {
-    console.log("start");
-    // this.photosInfo.forEach(
-    //   photoInfo => 
-    //   {
-    //     let fs = this._electronService.fs;
-    //     let data = fs.readFileSync(photoInfo.photoUrl);
-    //     let imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
-    //     this.imagesBuffer.push(imagebuffer); 
-    //   }
-    // );
-
-    for (let index  = 0; index < this.photosInfo.length; index++) 
-    {
-      setTimeout(() =>{
-        let fs = this._electronService.fs;
-        let data = fs.readFileSync(this.photosInfo[index].photoUrl);
-        let imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
-        //this.subject.next({ buffer: imagebuffer });
-        this.imagesBuffer.push(imagebuffer);
-        
-      }, 1000);
-
-        
-        
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private photoInteraction: EventPhotoInteractionService
+    ) {
+        this.imagesBuffer = [];
+        this.eventInfo = new EventInfo('', new Date(), '', '', [], '', []);
+        this.initialisedComponent();
 
     }
-    console.log(this.photosInfo.length+ "Image readed");
-  }
 
+    ngOnInit() {
+
+        this.eventInfo = this.photoInteraction.eventInfo;
+    }
+
+    ngOnDestroy(): void 
+    {
+        clearInterval(this.intTimmer);
+    }
+
+    public initialisedComponent() {
+        this.route.paramMap.subscribe(
+            param => {
+                let id: string = param.get('id');
+                this.loadImage(id);
+            }
+        )
+    }
+
+
+    public loadImage(eventId: string) 
+    {
+        this.photoInteraction.clearData();
+        this.photoInteraction.getEventinfo(eventId)
+        this.eventInfo = this.photoInteraction.eventInfo;
+
+        this.loadTheImage();
+        
+    }
+
+    public async  loadTheImage() 
+    {
+        this.index = 0;
+        console.log("started reading")
+        this.intTimmer = setInterval(
+            () => 
+            {
+                if(this.index < this.photoInteraction.imagesBuffer.length)
+                {
+                    this.imagesBuffer.push(this.photoInteraction.imagesBuffer[this.index])
+                    this.index++;
+                }
+                else
+                {
+                    clearInterval( this.intTimmer);
+                }
+            },1000
+        );//endFunc
+    }
 
 
 }

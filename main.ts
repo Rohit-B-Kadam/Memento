@@ -20,7 +20,8 @@ function createWindow() {
     width: size.width,
     height: size.height,
     minWidth: 900,
-    minHeight: 700
+    minHeight: 700,
+    icon: __dirname + '/icons/linux.png'
   });
 
   win.setMenu(null);

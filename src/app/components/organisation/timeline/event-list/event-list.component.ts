@@ -100,9 +100,6 @@ export class EventListComponent {
     // getting data from database
     this.eventCollection.findAll().then( (events : any[])=> 
     {
-      // events is the return value from database
-      console.log(events);
-
       // iterating each events
       events.forEach( event => 
       {

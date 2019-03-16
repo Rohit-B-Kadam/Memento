@@ -8,7 +8,7 @@
         </button>
       
         
-      <!-- <span class="event-title"> {{ eventInfo.title }} </span> -->
+      <span class="event-title"> {{ eventInfo.title }} </span>
 
       <!-- This fills the remaining space of the current row -->
       <span class="example-fill-remaining-space"></span>
@@ -57,8 +57,8 @@
   <div  class="gallery-container" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">  
 
 
-    <mat-card fxFlex="0 1 calc(20% - 20px)" *ngFor="let image of imagesBuffer"  class="card-container">
-      <a routerLink="/timeline/photo-viewer">
+    <mat-card fxFlex="0 1 calc(20% - 20px)" *ngFor="let image of imagesBuffer; index as i"  class="card-container">
+      <a [routerLink]="['/timeline/photo-viewer' , i]">
         <img class="image-view" mat-card-image [src]="image" alt="photo">
       </a>
     </mat-card>
