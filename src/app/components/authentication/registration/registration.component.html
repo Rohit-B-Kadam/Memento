@@ -1,3 +1,149 @@
-<p>
-  registration works!
-</p>
+<mat-card class="example-card">
+    <mat-card-header>
+    <mat-card-title>Registration</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+    
+    <mat-horizontal-stepper [linear]="'false'" #stepper>
+      
+        <mat-step [stepControl]="registrationForm">
+            <form [formGroup]="registrationForm" novalidate (ngSubmit)="onSubmit()">
+              <ng-template matStepLabel>User Detail</ng-template>
+              
+              <div class="step-container">
+                
+                <!-- Start -->
+                <mat-card class="second-step">
+                    
+                    <mat-card-content>
+                      <div class="row">
+                        <div class="col">
+                          <mat-form-field class="full-width">
+                            <input matInput placeholder="UserName" formControlName="username"
+                                  style="font-size: 35px;">
+                              <mat-error *ngIf="registrationForm.controls['username'].hasError('required')">
+                                required*
+                              </mat-error>
+                              <mat-error *ngIf="registrationForm.controls['username'].hasError('email')">
+                                  given proper email
+                              </mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col">
+                            <mat-form-field class="full-width">
+                              <input matInput placeholder="Email" formControlName="email"
+                                    style="font-size: 35px;">
+                                <mat-error *ngIf="registrationForm.controls['email'].hasError('required')">
+                                  required*
+                                </mat-error>
+                                
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                              <mat-form-field class="full-width">
+                                <input matInput type="password" placeholder="Password" formControlName="password"
+                                      style="font-size: 35px;">
+                                  <mat-error *ngIf="registrationForm.controls['password'].hasError('required')">
+                                    required*
+                                  </mat-error>
+                                  <mat-error *ngIf="registrationForm.controls['password'].hasError('minLength')">
+                                      required*
+                                  </mat-error>
+                              </mat-form-field>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col">
+                                <mat-form-field class="full-width">
+                                  <input matInput placeholder="Confirm Password"
+                                          type="password"
+                                          formControlName="confirmPassword"
+                                          style="font-size: 35px;">
+                                    <mat-error *ngIf="registrationForm.controls['confirmPassword'].hasError('required')">
+                                      required*
+                                    </mat-error>
+                                </mat-form-field>
+                              </div>
+                            </div>
+      
+                     
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-raised-button matStepperNext color="primary" type="submit">Next</button>
+                    </mat-card-actions>
+                  </mat-card> 
+                <!-- End -->
+      
+                
+              </div>
+              
+              
+              <div>
+                <button mat-button matStepperPrevious color="primary">Back</button>
+                <button mat-button matStepperNext color="primary">Next</button>
+              </div>
+            
+            
+            </form>
+          </mat-step>
+     
+          <mat-step [stepControl]="uploadControl">
+    
+              <form [formGroup]="uploadControl">
+            
+                <ng-template matStepLabel>Upload Photo</ng-template>
+            
+                <div class="step-container">
+        
+                  <button (click)="fileInput.click()" mat-raised-button color="primary">
+                    <mat-icon>add</mat-icon><span> Add Profile Pic</span>
+                    <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;"
+                      formControlName="addPhoto" />
+                  </button>
+                  <mat-error *ngIf="uploadControl.controls['addPhoto'].hasError('required')">
+                    Photo's is required*
+                  </mat-error>
+            
+                  <!-- TODO: Drag and drop -->
+        
+                  <mat-card style="margin: 20px;">
+                    <mat-card-header>Image Selected:</mat-card-header>
+            
+                    <mat-card-content class="selected-image-container">
+                      <img  [src]="profilePic" class="image-box">
+                    </mat-card-content>
+                  </mat-card>
+            
+                </div>
+            
+                <div>
+                  <button type="submit" mat-button matStepperNext color="primary">Next</button>
+                </div>
+            
+              </form>
+            
+            </mat-step>
+    
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+            
+        <div style="padding: 20px 0px 40px 20px; ">
+          <button mat-raised-button color="primary" (click)="addUser()" > Register </button>
+        </div>
+        <div>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    
+    </mat-horizontal-stepper>
+    
+    </mat-card-content>
+    </mat-card>
