@@ -109,3 +109,40 @@ mat-grid-list
   max-height: 100%;
   transform: rotate(90deg);
 }
+
+// Firend List
+.friend-container {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  display: block;
+  overflow: hidden;
+  scroll-behavior: auto;
+  overflow-y: auto;
+  height: 180px; 
+}
+
+.list-item {
+  padding: 14px 5px;
+  border-bottom: solid 1px #ccc;
+  box-sizing: border-box;
+  background: white;
+  color: black;
+  font-size: 14px;
+}
+
+.list-item:last-child {
+  border: none;
+}
+
+/// Rating
+.rating
+{
+  padding: 50px;
+}

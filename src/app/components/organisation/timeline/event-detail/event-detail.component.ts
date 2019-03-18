@@ -18,7 +18,8 @@ export class EventDetailComponent implements OnInit , OnDestroy
   public months: string[];
   public imageDisplay: string;
   public imageIndex: number;
-  public setTimer ;
+  public setTimer;
+  public setClass;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -88,28 +89,49 @@ export class EventDetailComponent implements OnInit , OnDestroy
 
     // Loaded First Image
     let photoUrl = photoInfo[this.imageIndex % 5].photoUrl;
-    this.imageIndex++;
+    
 
     let fs = this._electronService.fs;
     let data = fs.readFileSync(photoUrl);
     let imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
+    this.setClassToImage(photoInfo[this.imageIndex % 5].orientation);
     this.imageDisplay = imagebuffer;
-
-
+    this.imageIndex++;
     // repeated loaded image ie image loop
     this.setTimer = setInterval( ()=> 
     {
       //TODO: Handle if event photo less than 5 
       let photoUrl = photoInfo[this.imageIndex % 5].photoUrl;
-      this.imageIndex++;
+      
 
 
       fs = this._electronService.fs;
       data = fs.readFileSync(photoUrl);
       imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
       this.imageDisplay = imagebuffer;
-      
+      this.setClassToImage(photoInfo[this.imageIndex % 5].orientation);
+      this.imageIndex++;
     }, 2000);
+  }
+
+  public setClassToImage( id : number)
+  {
+      if(id == 1 || id == 2)
+      {
+        this.setClass = 'orientation_1';
+      }
+      else if(id == 8 || id == 7)
+      {
+        this.setClass = 'orientation_8';
+      }
+      else if(id == 3 || id == 4)
+      {
+        this.setClass = 'orientation_3';
+      }
+      else if(id == 6 || id == 5)
+      {
+        this.setClass = 'orientation_6';
+      }
   }
 
 }

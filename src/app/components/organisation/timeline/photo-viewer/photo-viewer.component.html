@@ -11,15 +11,50 @@
     <!-- Sidebar Title -->
     <mat-toolbar>
       <mat-toolbar-row>
-        <h1 class="toolbar-title">Setting</h1>
+        <h1 class="toolbar-title">Photo Information</h1> 
       </mat-toolbar-row>
     </mat-toolbar>
 
     <mat-divider></mat-divider>
-    <!-- Event List Component -->
+    <!-- Photo Metadata -->
       
+    <div style="padding: 4px  4px 4px 8px"><strong>Model:</strong> {{photoInfo.model}}</div>
+    <div style="padding: 4px  4px 4px 8px"><strong>DateTime:</strong> {{photoInfo.dataTime}}</div>
+    <div style="padding: 4px  4px 4px 8px"><strong>Orientation:</strong> {{photoInfo.orientation}}</div>
     <mat-divider></mat-divider>
     
+    <!-- Friend List -->
+    <mat-card class="friend-container">
+      <mat-card-header> <h3>Friends List</h3> </mat-card-header>
+      <mat-card-content>
+       <div class="list">
+         <div class="list-item" *ngFor="let item of friendLists">{{item}}</div>
+       </div>
+     </mat-card-content>
+   </mat-card>
+
+   <mat-divider></mat-divider>
+   <!-- Tagged List -->
+   <mat-card class="friend-container">
+    <mat-card-header> <h3>Tags List</h3> </mat-card-header>
+    <mat-card-content>
+     <div class="list">
+       <div class="list-item" *ngFor="let item of TagList">{{item}}</div>
+     </div>
+   </mat-card-content>
+
+   <mat-divider></mat-divider>
+   <!-- Rating -->
+   <div class="rating">
+   </div>
+
+   <mat-divider></mat-divider>
+   <div>
+    <button mat-raised-button color="primary" > Save </button>
+   </div>
+
+ </mat-card>
+
   </mat-sidenav>
 
   <!-- Main Content  -->
@@ -31,7 +66,7 @@
         
         <div  fxFlex fxLayout >
           <button mat-icon-button matTooltip="Back" class="icon-button">
-              <mat-icon color="accent" >arrow_back</mat-icon>
+              <mat-icon color="accent" (click)="goBack()">arrow_back</mat-icon>
           </button>
         </div>
           <div fxFlex fxLayout fxLayoutAlign="center">

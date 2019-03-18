@@ -6,6 +6,7 @@ import { EventPhotoInteractionService } from '../../../../providers/event-photo-
 import { PhotoInfo } from '../../../../classes/photo-info';
 import { ElectronService } from '../../../../providers/electron.service';
 import { interval, Subject } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-event-gallery',
@@ -18,15 +19,18 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     public images = [];
     public eventInfo: EventInfo;
     public imagesBuffer: string[];
+    public setClass: string[];
     public intTimmer;
     public index;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private photoInteraction: EventPhotoInteractionService
+        private photoInteraction: EventPhotoInteractionService,
+        private _location : Location
     ) {
         this.imagesBuffer = [];
+        this.setClass= [];
         this.eventInfo = new EventInfo('', new Date(), '', '', [], '', []);
         this.initialisedComponent();
 
@@ -71,7 +75,8 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
             {
                 if(this.index < this.photoInteraction.imagesBuffer.length)
                 {
-                    this.imagesBuffer.push(this.photoInteraction.imagesBuffer[this.index])
+                    this.imagesBuffer.push(this.photoInteraction.imagesBuffer[this.index]);
+                    this.setClassToImage(this.photoInteraction.photosInfo[this.index].orientation , this.index);
                     this.index++;
                 }
                 else
@@ -82,5 +87,25 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
         );//endFunc
     }
 
+    public setClassToImage(id: number,index: number) 
+    {
+        if (id == 1 || id == 2) {
+            this.setClass[index] = 'orientation_1';
+        }
+        else if (id == 8 || id == 7) {
+            this.setClass[index] = 'orientation_8';
+        }
+        else if (id == 3 || id == 4) {
+            this.setClass[index] = 'orientation_3';
+        }
+        else if (id == 6 || id == 5) {
+            this.setClass[index] = 'orientation_6';
+        }
+    }
 
+
+  public goBack()
+  {
+    this._location.back();
+  }
 }

@@ -1,6 +1,19 @@
-<div class="searchbar">
+<!-- <div class="searchbar">
   <input class="search_input" type="text" name="" placeholder="Search...">
   <button mat-icon-button class="search_icon">
     <mat-icon color="primary">search</mat-icon>
   </button>
+</div> -->
+<div class="searchbar">  
+<form >
+    <input class="search_input" type="text" name="" placeholder="Search..." [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <button mat-icon-button class="search_icon" type="submit">
+        <mat-icon color="primary" (click)="SearchTheEvent()">search</mat-icon>
+      </button>
+</form>
 </div>

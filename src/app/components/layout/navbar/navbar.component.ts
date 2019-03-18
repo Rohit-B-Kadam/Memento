@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +10,18 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   @Output() toggleSidenav = new EventEmitter<void>();
-  public searchValue;
-  options: string[] = ['One', 'Two', 'Three'];
+
+  public Title = "notSet";
   
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.router.events.subscribe(( event) => {
+      //this.Title = this.router.url;
+      let url:string = this.router.url;
+      this.Title = url.split('/')[1];
+      this.Title = this.Title.replace("-"," ");
+      this.Title = this.Title.toUpperCase();
+    })
+   }
 
   ngOnInit() {
   }

@@ -3,7 +3,7 @@
   <!-- Toolbar -->
   <mat-toolbar>
     <mat-toolbar-row>
-        <button mat-icon-button class="example-icon" matTooltip="Back">
+        <button mat-icon-button class="example-icon" matTooltip="Back" (click)="goBack()" >
             <mat-icon >arrow_back</mat-icon>
         </button>
       
@@ -54,14 +54,14 @@
 
   <!-- Gallery -->
 
-  <div  class="gallery-container" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">  
+  <div  class="gallery-container">  
 
 
-    <mat-card fxFlex="0 1 calc(20% - 20px)" *ngFor="let image of imagesBuffer; index as i"  class="card-container">
+    <div  *ngFor="let image of imagesBuffer; index as i"  class="card-container" [ngClass]="setClass[i]">
       <a [routerLink]="['/timeline/photo-viewer' , i]">
-        <img class="image-view" mat-card-image [src]="image" alt="photo">
+        <img class="image-view" mat-card-image [src]="image" alt="photo"  >
       </a>
-    </mat-card>
+    </div>
 
     <!-- <div *ngFor="let image of imagesBuffer">
         <app-photo-thambnail>
@@ -69,10 +69,12 @@
       </app-photo-thambnail>
     </div> -->
    
+    <!-- <mat-card  *ngFor="let image of imagesBuffer; index as i"  class="card-container" >
+      <a [routerLink]="['/timeline/photo-viewer' , i]">
+        <img class="image-view" mat-card-image [src]="image" alt="photo" [ngClass]="setClass[i]" >
+      </a>
+    </mat-card> -->
 
-    <!-- <cdk-virtual-scroll-viewport itemSize="500">
-          <img *cdkVirtualFor="let item of imagesBuffer" [src]="item" class="image-view"/>
-    </cdk-virtual-scroll-viewport> -->
 
 </div>
 

@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventPhotoInteractionService } from '../../../../providers/event-photo-interaction.service';
+import { PhotoInfo } from '../../../../classes/photo-info';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-photo-viewer',
@@ -18,12 +20,28 @@ export class PhotoViewerComponent implements OnInit {
   );
 
   public imagebuffer: string;
+  public photoInfo: PhotoInfo;
   public index;
   public setClass;
 
+  public friendLists:string[] = [
+    'Sonam Karale',
+    'Abhishek Zambre',
+    'Sanket Hebbal',
+    'Shubham Bangar'
+  ];
+
+  public TagList:string[] = [
+    'car',
+    'beach',
+    'sunlight'
+  ];
+
+
   constructor(private breakpointObserver: BreakpointObserver,
               private route: ActivatedRoute,
-              private photoInteraction: EventPhotoInteractionService) 
+              private photoInteraction: EventPhotoInteractionService,
+              private _location: Location) 
   {
     this.index = 0;
     this.initialisedComponent();
@@ -45,11 +63,14 @@ export class PhotoViewerComponent implements OnInit {
   {
 
     this.index += +id;
-    if(this.index >= 0 && this.index < this.photoInteraction.imagesBuffer.length )
-    {  
-      this.imagebuffer = this.photoInteraction.imagesBuffer[this.index];
-      this.setClassToImage(this.photoInteraction.photosInfo[this.index].orientation);
-    }
+    if(this.index < 0 )
+      this.index = 0;
+    else  
+      this.index %= this.photoInteraction.imagesBuffer.length;
+    
+    this.photoInfo = this.photoInteraction.photosInfo[this.index];
+    this.imagebuffer = this.photoInteraction.imagesBuffer[this.index];
+    this.setClassToImage(this.photoInteraction.photosInfo[this.index].orientation);
   }
 
 
@@ -71,6 +92,12 @@ export class PhotoViewerComponent implements OnInit {
       {
         this.setClass = 'orientation_6';
       }
+  }
+
+
+  public goBack()
+  {
+    this._location.back();
   }
 
 }
