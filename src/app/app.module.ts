@@ -57,6 +57,8 @@ import { SlideShowComponent } from './components/features/slide-show/slide-show.
 import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
 import { PhotoThambnailComponent } from './components/organisation/timeline/photo-thambnail/photo-thambnail.component';
 import { ReDirectToLatestEventComponent } from './components/organisation/timeline/re-direct-to-latest-event/re-direct-to-latest-event.component';
+import { FriendListComponent } from './components/features/friend-list/friend-list.component';
+import { AddFriendComponent } from './components/features/friend-list/add-friend/add-friend.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -88,7 +90,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SlideShowComponent,
     AdvanceSearchComponent,
     PhotoThambnailComponent,
-    ReDirectToLatestEventComponent
+    ReDirectToLatestEventComponent,
+    FriendListComponent,
+    AddFriendComponent
     
   ],
   imports: [

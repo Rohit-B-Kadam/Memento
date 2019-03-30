@@ -16,6 +16,7 @@ import { SlideShowComponent } from './components/features/slide-show/slide-show.
 import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
 import { RegistrationComponent } from './components/authentication/registration/registration.component';
 import { ReDirectToLatestEventComponent } from './components/organisation/timeline/re-direct-to-latest-event/re-direct-to-latest-event.component';
+import { FriendListComponent } from './components/features/friend-list/friend-list.component';
 
 const routes: Routes = [
     {
@@ -73,7 +74,7 @@ const routes: Routes = [
         path: 'duplicate', component: DuplicateComponent
     },
     {
-        path: 'people-list', component: PeopleListComponent
+        path: 'friend-list', component: FriendListComponent
     },
     {
         path: 'profile', component: ProfileComponent
