@@ -1,0 +1,46 @@
+.example-card {
+    width: 500px;
+    margin: auto; 
+  }
+
+
+  .list {
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    display: block;
+    overflow: hidden;
+    scroll-behavior: auto;
+    overflow-y: auto;
+    height: 450px;
+    user-select: none; 
+  } 
+
+.list-style
+{
+    padding: 10px 10px;
+    border-bottom: solid 1px #ccc;
+    box-sizing: border-box;
+    background: white;
+    color: black;
+    font-size: 14px;
+    margin: 0px;
+    list-style-type: none;
+    cursor: pointer;
+    
+}
+
+
+.group-list
+{
+    width: 150px;
+    padding: 5px 20px 0 20px; 
+}
+
+.action-list
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between; 
+}

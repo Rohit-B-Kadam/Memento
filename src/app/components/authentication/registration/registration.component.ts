@@ -1,6 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { Profile } from 'selenium-webdriver/firefox';
+import { User } from '../../../classes/user';
+import { ElectronService } from '../../../providers/electron.service';
+import { FaceRecognitionService } from '../../../providers/face-recognition.service';
+
+// import 
+import * as faceapi from 'face-api.js';
+//import '@tensorflow/tfjs-node';
+import { isNullOrUndefined } from 'util';
+
+import * as canvas from 'canvas';
+import { TNetInput } from 'face-api.js';
 
 @Component({
   selector: 'app-registration',
@@ -9,6 +20,7 @@ import { Profile } from 'selenium-webdriver/firefox';
 })
 export class RegistrationComponent implements OnInit {
 
+  
   public registrationForm: FormGroup;
   public uploadControl: FormGroup;
 
@@ -17,7 +29,18 @@ export class RegistrationComponent implements OnInit {
   public message: string;
   public profilePic;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  public imageBlog;
+
+  // User Object
+  public userInfo: User;
+  MODEL_URL="/assets/models";
+
+  constructor(private _formBuilder: FormBuilder,
+              private _electronService: ElectronService,
+              private _faceRecognition: FaceRecognitionService) 
+  { 
+    
+  }
 
   ngOnInit() 
   {
@@ -36,22 +59,6 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  preview(files) {
-    if (files.length === 0)
-      return;
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
-    var reader = new FileReader();
-    this.imagePath = files;
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-      this.imgURL = reader.result;
-    }
-  }
-
   public onSubmit()
   {
 
@@ -60,11 +67,10 @@ export class RegistrationComponent implements OnInit {
   // Image Reader
   public onFileInput(event: any)
   {
-    for( let i = 0 ; i < event.target.files.length; i++)
-    {
-        // this.photoInfos.push(new PhotoInfo(event.target.files[i].path));
-        this.readTheImagedata(event.target.files[i]); 
-    }
+    this.imageBlog = event.target.files[0]
+    this.readTheImagedata(event.target.files[0]);
+    this.imagePath = event.target.files[0].path;
+    
   }
 
   public readTheImagedata(file)
@@ -72,7 +78,6 @@ export class RegistrationComponent implements OnInit {
     let reader = new FileReader();
     reader.onload = (event: any) => 
     {  
-      // this.images.push(event.target.result);
       this.profilePic = event.target.result;
     }
     reader.readAsDataURL(file);
@@ -80,6 +85,78 @@ export class RegistrationComponent implements OnInit {
 
   public addUser()
   {
+    let email = this.registrationForm.value['email']
+    let name = this.registrationForm.value['username']
+    let password = this.registrationForm.value['password']
+    
+    this.saveProfilePic("/home/rohit/Desktop/Momento-Events");
+    this.userInfo = new User(email,name,password,this.imagePath);
+
+    // Face detection
+    //console.log(this.profilePic)
+    
+    this.loadModel().then(async loaded =>
+      {
+        console.log("loaded")
+				// For First Image
+
+				// Refer the Image
+        let refImage  = <HTMLImageElement> document.getElementById("my_picture");
+        console.log(refImage);
+
+
+				// Detecting Face
+        const fullFaceDescriptions = await faceapi.detectAllFaces(this.profilePic)
+
+        console.log(fullFaceDescriptions);
+        
+      });
+    
+    console.log(this.userInfo)
+    
+  }
+
+  public saveProfilePic( destFolder:string)
+  {
+    // getting nodejs fs module from electronService
+    let fs = this._electronService.fs;
+
+    let fullPath: string= destFolder;
+    if (!fs.existsSync(fullPath))
+    {
+      fs.mkdirSync(fullPath);
+    }
+
+    // check metadata folder is exist or not
+    fullPath += '/.metadata';
+    if (!fs.existsSync(fullPath))
+    {
+      fs.mkdirSync(fullPath);
+    }
+   
+
+    fullPath += "/profile_pic";
+    if (!fs.existsSync(fullPath))
+    {
+      fs.mkdirSync(fullPath);
+    }
+
+    let photoName = this.imagePath.split('\\').pop().split('/').pop();
+    fs.copyFileSync(this.imagePath, fullPath + '/' + photoName);
+    this.imagePath = fullPath + '/' + photoName;
 
   }
+
+  async loadModel()
+  {
+    await faceapi.loadSsdMobilenetv1Model(this.MODEL_URL);
+    await faceapi.loadFaceDetectionModel(this.MODEL_URL);
+    await faceapi.loadFaceLandmarkModel(this.MODEL_URL);
+    await faceapi.loadFaceRecognitionModel(this.MODEL_URL);
+    console.log("model is loaded...");
+    //console.log(faceapi.nets);
+  }
+
+  
+
 }

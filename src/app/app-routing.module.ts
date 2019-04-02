@@ -17,6 +17,8 @@ import { AdvanceSearchComponent } from './components/features/advance-search/adv
 import { RegistrationComponent } from './components/authentication/registration/registration.component';
 import { ReDirectToLatestEventComponent } from './components/organisation/timeline/re-direct-to-latest-event/re-direct-to-latest-event.component';
 import { FriendListComponent } from './components/features/friend-list/friend-list.component';
+import { AddFriendComponent } from './components/features/friend-list/add-friend/add-friend.component';
+import { FaceDetectComponent } from './face-detect/face-detect.component';
 
 const routes: Routes = [
     {
@@ -77,6 +79,9 @@ const routes: Routes = [
         path: 'friend-list', component: FriendListComponent
     },
     {
+        path: 'add-friend', component: AddFriendComponent
+    },
+    {
         path: 'profile', component: ProfileComponent
     },
     {
@@ -84,6 +89,9 @@ const routes: Routes = [
     },
     {
         path: 'advance-search', component: AdvanceSearchComponent
+    },
+    {
+        path: 'face-detect', component: FaceDetectComponent
     },
     { 
         path: '',

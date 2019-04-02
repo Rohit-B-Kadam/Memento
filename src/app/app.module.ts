@@ -59,6 +59,8 @@ import { PhotoThambnailComponent } from './components/organisation/timeline/phot
 import { ReDirectToLatestEventComponent } from './components/organisation/timeline/re-direct-to-latest-event/re-direct-to-latest-event.component';
 import { FriendListComponent } from './components/features/friend-list/friend-list.component';
 import { AddFriendComponent } from './components/features/friend-list/add-friend/add-friend.component';
+import { FaceRecognitionService } from './providers/face-recognition.service';
+import { FaceDetectComponent } from './face-detect/face-detect.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -92,7 +94,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PhotoThambnailComponent,
     ReDirectToLatestEventComponent,
     FriendListComponent,
-    AddFriendComponent
+    AddFriendComponent,
+    FaceDetectComponent
     
   ],
   imports: [
@@ -115,7 +118,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LayoutModule
   ],
   providers: [ElectronService,
-              FormBuilder],
+              FormBuilder,
+              FaceRecognitionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

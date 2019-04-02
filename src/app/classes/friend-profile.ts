@@ -4,8 +4,8 @@ export class FriendProfile
         
         public name:string,
         public email:string,
-        public profilePhoto:any,
-        public group:any[] 
+        public profilePhoto?:any,
+        public group?:any[] 
         
     ) { }
 }

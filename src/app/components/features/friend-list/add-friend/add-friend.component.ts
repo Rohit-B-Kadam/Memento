@@ -5,8 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './add-friend.component.html',
   styleUrls: ['./add-friend.component.scss']
 })
-export class AddFriendComponent implements OnInit {
-
+export class AddFriendComponent implements OnInit 
+{
+  username: string;
+  password: string;
   constructor() { }
 
   ngOnInit() {

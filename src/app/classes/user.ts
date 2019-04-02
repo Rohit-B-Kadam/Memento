@@ -2,6 +2,7 @@ export class User {
     
     constructor(public userName:string,
                 public password:string,
-                public email:string )
+                public email:string,
+                public profileURL?:string)
     { }
 }
