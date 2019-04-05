@@ -72,4 +72,38 @@ export class EventPhotoInteractionService {
     );
   }
 
+  public InsertNewPhoto(newPhoto:PhotoInfo[])
+  {
+    this.eventCollection.addNewPhoto(this.eventInfo._id , newPhoto)
+    let lastIndex = this.photosInfo.length - 1;
+
+    newPhoto.forEach(
+      photoI =>
+      {
+        this.photosInfo.push(photoI)
+        let fs = this._electronService.fs;
+        if(fs.existsSync(photoI.photoUrl))
+        {
+          let data = fs.readFileSync(photoI.photoUrl);
+          let imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
+          this.imagesBuffer.push(imagebuffer);
+        } 
+      }
+    )
+
+    return lastIndex;
+  }
+
+  public DeletePhoto(index: number)
+  {
+    let photoInfo = this.photosInfo[index];
+    this.eventCollection.DeletePhotoFormDataBase(this.eventInfo._id, photoInfo);
+
+    // delete from disk and this.photoInfo, this.imagebuffer
+    let fs = this._electronService.fs;
+    fs.unlinkSync(photoInfo.photoUrl)
+    
+    this.photosInfo.splice(index,1)
+    this.imagesBuffer.splice(index,1)
+  }
 }

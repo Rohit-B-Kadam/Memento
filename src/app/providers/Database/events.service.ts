@@ -116,4 +116,17 @@ export class EventsService
       this.photoCollection.connectedToCollection(eventId);
       return this.photoCollection.findAll();
   }
+
+  public addNewPhoto(eventId: string, photos)
+  {
+    this.photoCollection.connectedToCollection(eventId);
+    this.photoCollection.insertAll(photos);
+
+  }
+
+  public DeletePhotoFormDataBase(eventId: string, photoInfo:PhotoInfo)
+  {
+    this.photoCollection.connectedToCollection(eventId);
+    this.photoCollection.remove(photoInfo._id)
+  }
 }

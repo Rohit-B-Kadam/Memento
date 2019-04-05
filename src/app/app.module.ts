@@ -25,8 +25,6 @@ import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 
 
-// ngx-gallery
-import { GalleryModule } from '@ngx-gallery/core';
 
 // Reactive form
 import { ReactiveFormsModule } from '@angular/forms';
@@ -112,7 +110,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     AngularMaterialModule,
-    GalleryModule,
     ReactiveFormsModule,
     DragDropModule,
     LayoutModule

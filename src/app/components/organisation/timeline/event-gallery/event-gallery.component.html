@@ -1,7 +1,7 @@
 <div class="main-container">
 
   <!-- Toolbar -->
-  <mat-toolbar>
+  <mat-toolbar class="crm-navigation-bar">
     <mat-toolbar-row>
         <button mat-icon-button class="example-icon" matTooltip="Back" (click)="goBack()" >
             <mat-icon >arrow_back</mat-icon>
@@ -17,14 +17,17 @@
 
 
       <!--Tools-->
-      <button  mat-icon-button class="example-icon" matTooltip="Edit Event">
+      <button  mat-icon-button class="example-icon" matTooltip="Edit Event" >
           <mat-icon>create</mat-icon>
       </button>
-
-      <button mat-icon-button class="example-icon" matTooltip="Add photo to Event">
-          <mat-icon >add_circle</mat-icon>
-      </button>
     
+      
+      <button (click)="fileInput.click()"  mat-icon-button matTooltip="Add photo to Event" class="example-icon">
+        <mat-icon >add_circle</mat-icon>
+        <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" multiple />
+      </button>
+
+
       <button mat-icon-button class="example-icon" matTooltip="Comment">
           <mat-icon >chat_bubble</mat-icon>
       </button>
@@ -41,9 +44,6 @@
         <!-- item2 -->
         <button mat-menu-item>
           <span>Hide event</span>
-        </button>
-        <button mat-menu-item>
-          <span>Import Event</span>
         </button>
       </mat-menu>
 

@@ -79,4 +79,22 @@ export class PhotoCollectionService {
     });
   }
 
+
+  remove(id:any) 
+  {
+    return new Promise((resolve, reject) => {
+        return this.photoCollection.remove({ _id: id }, {}, ((err:any, numRemoved:any) => {
+            if ( err )
+            {
+                reject(err);
+            }
+            else
+            {
+                resolve(numRemoved);
+            }
+        }));
+    })
+}
+
+
 }

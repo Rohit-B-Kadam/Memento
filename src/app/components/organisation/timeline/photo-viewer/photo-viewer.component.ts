@@ -59,9 +59,11 @@ export class PhotoViewerComponent implements OnInit {
         });
   }
 
+   
   public loadImage(id)
   {
 
+    // index + id
     this.index += +id;
     if(this.index < 0 )
       this.index = 0;
@@ -98,6 +100,15 @@ export class PhotoViewerComponent implements OnInit {
   public goBack()
   {
     this._location.back();
+  }
+
+  public DeletePhoto()
+  {
+    // delete this.Index
+    this.photoInteraction.DeletePhoto(this.index)
+
+    //check for last and first
+    this.loadImage(0)
   }
 
 }

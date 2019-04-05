@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 // import
-import '@tensorflow/tfjs-node';
 import * as faceapi from 'face-api.js';
 import { isNullOrUndefined } from 'util';
 import * as canvas from 'canvas';
@@ -64,6 +63,15 @@ export class FaceDetectComponent implements OnInit
     //await faceapi.loadFaceDetectionModel(this.MODEL_URL);
     await faceapi.loadFaceLandmarkModel(this.MODEL_URL);
     await faceapi.loadFaceRecognitionModel(this.MODEL_URL);
+
+
+    await faceapi.loadTinyFaceDetectorModel(this.MODEL_URL)
+    // await faceapi.loadMtcnnModel('/models')
+    // await faceapi.loadFaceLandmarkModel('/models')
+    await faceapi.loadFaceLandmarkTinyModel(this.MODEL_URL)
+    await faceapi.loadFaceExpressionModel(this.MODEL_URL)
+
+
     console.log("model is loaded...");
     console.log(faceapi.nets);
   }
@@ -83,8 +91,8 @@ export class FaceDetectComponent implements OnInit
 
     // Detecting single Face with face landmarks and with face description
     const fullFaceDescriptions = await faceapi
-                      .detectSingleFace(img,new faceapi.SsdMobilenetv1Options({ minConfidence: 0.5 }))
-                      .withFaceLandmarks().withFaceDescriptor()
+                      .detectAllFaces(img)
+                      .withFaceLandmarks().withFaceDescriptors()
 
     // Check if image contain face or not
     if (!isNullOrUndefined(fullFaceDescriptions)) 
@@ -104,10 +112,10 @@ export class FaceDetectComponent implements OnInit
       canvas.height = profileImgRef.height;
 
       // Draw the rectangle round the detected face
-      const detectionsArray = detectionsForSize.detection
+      const detectionsArray = detectionsForSize.map(fd => fd.detection)
       
       // Giving Label to detected face                                  [label]        [descriptor list]
-      this.singleLabelDiscription = new  faceapi.LabeledFaceDescriptors("Me", [fullFaceDescriptions.descriptor])
+      //  this.singleLabelDiscription = new  faceapi.LabeledFaceDescriptors("Me", [fullFaceDescriptions.descriptor])
       
       // const boxesWithText = [
       //   new faceapi.BoxWithText( detectionsArray.box, "Me")
@@ -135,7 +143,7 @@ export class FaceDetectComponent implements OnInit
 
     // Detecting Face
     const fullFaceDescriptions = await faceapi
-                      .detectAllFaces(img,new faceapi.SsdMobilenetv1Options({ minConfidence: 0.5 }))
+                      .detectAllFaces(img)
                       .withFaceLandmarks().withFaceDescriptors()
 
 

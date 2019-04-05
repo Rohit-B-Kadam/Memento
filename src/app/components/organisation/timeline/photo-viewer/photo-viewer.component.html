@@ -4,7 +4,7 @@
   <mat-sidenav #drawer class="sidenav"
                 [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                 [mode]="(isHandset$ | async) ? 'over' : 'side'"
-                [opened]="!(isHandset$ | async)"
+                [opened]="'false'"
                 position= "end">
 
 
@@ -65,29 +65,28 @@
       <mat-toolbar-row>
         
         <div  fxFlex fxLayout >
-          <button mat-icon-button matTooltip="Back" class="icon-button">
+          <button mat-stroked-button matTooltip="Back" color="accent">
               <mat-icon color="accent" (click)="goBack()">arrow_back</mat-icon>
           </button>
         </div>
           <div fxFlex fxLayout fxLayoutAlign="center">
-              <button mat-icon-button class="icon-button" (click)="loadImage(-1)"><mat-icon  color="accent">chevron_left</mat-icon></button>
-              <button mat-icon-button class="icon-button" (click)="loadImage(1)"><mat-icon color="accent">chevron_right </mat-icon></button>
+              <button mat-stroked-button (click)="loadImage(-1)"  color="accent" matTooltip="Prev">
+                <mat-icon  color="accent">chevron_left</mat-icon>
+              </button>
+              <button mat-stroked-button (click)="loadImage(1)"  color="accent" matTooltip="Next">
+                <mat-icon color="accent">chevron_right </mat-icon>
+              </button>
           </div>
 
           <div fxFlex fxLayout fxLayoutAlign="flex-end">
               <ul fxLayout fxLayoutGap="25px" class="navigation-items" >
                 <li>
-                  <!-- <button mat-stroked-button color="accent" matTooltip="create new event">
-                    Create Event
-                  </button> -->
+                  <button mat-stroked-button color="accent" matTooltip="Delete Photo" (click)="DeletePhoto()">
+                    <mat-icon>delete</mat-icon>
+                  </button>
                 </li>
-                <!-- <li>
-                  <button mat-stroked-button color="accent"
-                          matTooltip="import extrenal event">Import Event</button>
-                </li> -->
                 <li>
-                  <button (click)="drawer.toggle()" mat-icon-button matTooltip="toggle event list"
-                  color="accent" class="icon-button">
+                  <button (click)="drawer.toggle()" mat-stroked-button color="accent" matTooltip="Image Info">
                     <mat-icon>format_list_bulleted</mat-icon>
                 </button>
                 </li>
