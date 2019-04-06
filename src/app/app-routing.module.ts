@@ -19,6 +19,7 @@ import { ReDirectToLatestEventComponent } from './components/organisation/timeli
 import { FriendListComponent } from './components/features/friend-list/friend-list.component';
 import { AddFriendComponent } from './components/features/friend-list/add-friend/add-friend.component';
 import { FaceDetectComponent } from './face-detect/face-detect.component';
+import { EditEventComponent } from './components/organisation/timeline/edit-event/edit-event.component';
 
 const routes: Routes = [
     {
@@ -51,6 +52,18 @@ const routes: Routes = [
             },
             {
                 path: 'create-event', component: CreateEventComponent
+            },
+            {
+                path: 'edit-event',
+                children: 
+                [
+                    {
+                        path: ':id', component: EditEventComponent
+                    },
+                    {
+                        path: '**', component: FourZeroFourPageComponent
+                    }
+                ]
             },
             {
                 path: ':id', component: TimelineComponent

@@ -8,6 +8,11 @@
         <!-- Title-->
         <mat-card-header class="event-title">
           {{ eventInfo.title }}
+          <button  mat-icon-button class="example-icon" matTooltip="Edit Event" 
+              routerLinkActive [routerLink]="['/timeline/edit-event', eventInfo._id]">
+          <mat-icon>create</mat-icon>
+      </button>
+    
         </mat-card-header>
 
         <!-- location and date  -->

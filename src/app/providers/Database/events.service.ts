@@ -89,6 +89,24 @@ export class EventsService
     });
   }
 
+  update(eventId: string, item: EventInfo) 
+  {
+    return new Promise((resolve, reject) => 
+    {
+      return this.eventCollection.update({ _id: eventId }, 
+            { $set: { title: item.title , date: item.date, eventType:item.eventType, categories:item.categories, location:item.location , description:item.description } }, 
+            ((err: any, NumReplaced: any) => 
+      {
+        if (err) {
+          reject(err);
+        }
+        else {
+          resolve(NumReplaced);
+        }
+      }));
+    })
+  }
+
   public getEventDetail(eventId: string )
   {
     
@@ -129,4 +147,6 @@ export class EventsService
     this.photoCollection.connectedToCollection(eventId);
     this.photoCollection.remove(photoInfo._id)
   }
+
+
 }

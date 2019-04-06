@@ -59,6 +59,7 @@ import { FriendListComponent } from './components/features/friend-list/friend-li
 import { AddFriendComponent } from './components/features/friend-list/add-friend/add-friend.component';
 import { FaceRecognitionService } from './providers/face-recognition.service';
 import { FaceDetectComponent } from './face-detect/face-detect.component';
+import { EditEventComponent } from './components/organisation/timeline/edit-event/edit-event.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -93,7 +94,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReDirectToLatestEventComponent,
     FriendListComponent,
     AddFriendComponent,
-    FaceDetectComponent
+    FaceDetectComponent,
+    EditEventComponent
     
   ],
   imports: [

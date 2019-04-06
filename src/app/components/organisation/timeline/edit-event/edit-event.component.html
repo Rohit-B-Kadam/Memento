@@ -1,0 +1,96 @@
+<div class="main-component">
+  <form [formGroup]="eventDetail" novalidate (ngSubmit)="onSubmit()">
+    <h1>Event Details</h1>
+
+    <div class="step-container ">
+
+      <!-- Start -->
+      <mat-card class="second-step">
+
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Event Name" formControlName="eventName" style="font-size: 35px;">
+                <mat-error *ngIf="eventDetail.controls['eventName'].hasError('required')">
+                  required*
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput [matDatepickerFilter]="dateFilter" [matDatepicker]="picker" placeholder="Choose a date"
+                  formControlName="eventDate">
+                <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="eventDetail.controls['eventDate'].hasError('required')">
+                  required*
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <span matPrefix>
+                  <mat-icon>location_on</mat-icon>
+                </span>
+                <input matInput placeholder="Location" formControlName="location">
+                <mat-error *ngIf="eventDetail.controls['location'].hasError('required')">
+                  required*
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-select placeholder="Event Type" formControlName="eventType">
+                  <mat-option *ngFor="let type of eventType" [value]="type">{{type}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="eventDetail.controls['eventType'].hasError('required')">
+                  required*
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-select placeholder="Categories" multiple formControlName="eventCategory">
+                  <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="eventDetail.controls['eventCategory'].hasError('required')">
+                  required*
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <textarea matInput placeholder="Description" formControlName="description" value="">
+                    </textarea>
+                <mat-error *ngIf="eventDetail.controls['description'].hasError('required')">
+                  required*
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit">Update</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </form>
+</div>

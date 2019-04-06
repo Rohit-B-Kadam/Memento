@@ -2,12 +2,11 @@
 {
     height: 100%;
     width: 100%;
+    vertical-align: top;
 }
 
 .crm-navigation-bar
 {
-    //position: static;
-    //z-index: 3;
 
 }
 
@@ -28,6 +27,13 @@
 }
 
 
+.inner-container
+{
+  display: block;
+  scroll-behavior: auto;
+  overflow-y: auto;
+  height: 90%;
+}
 
 .gallery-container
 {
