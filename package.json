@@ -59,6 +59,7 @@
     "nedb": "^1.8.0",
     "popper": "^1.0.1",
     "popper.js": "^1.14.7",
+    "trash": "^5.2.0",
     "typeface-roboto": "0.0.54"
   },
   "devDependencies": {

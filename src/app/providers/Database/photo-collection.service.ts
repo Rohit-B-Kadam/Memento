@@ -34,12 +34,17 @@ export class PhotoCollectionService {
 
   public insertAll(items: PhotoInfo[])
   {
-    items.forEach( item =>
-      {
-        this.insert(item).then( () => {
-          console.log(item);
-        })
-      })
+    return new Promise( (resolve , reject) => {
+      items.forEach( item =>
+        {
+          this.insert(item).then( () => {
+            console.log(item);
+          })
+        });
+
+        resolve()
+      });
+
   }
 
   public insert(item: PhotoInfo)
@@ -94,7 +99,32 @@ export class PhotoCollectionService {
             }
         }));
     })
-}
+  }
+
+
+  public removeAll( evenId:string) 
+  {
+    return new Promise((resolve, reject) => {
+
+      let db = new Datastore({
+        filename: evenId,
+        autoload: true
+      });
+
+      return db.remove({ }, {multi : true}, ((err:any, numRemoved:any) => {
+        if ( err )
+        {
+            reject(err);
+        }
+        else
+        {
+          resolve(numRemoved);
+        }
+    }));
+    })
+  }
+
+  
 
 
 }

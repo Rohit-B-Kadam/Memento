@@ -10,7 +10,7 @@ export class ReDirectToLatestEventComponent implements OnInit {
   constructor(private router: Router) 
   {
     // TODO: Making it dynamic
-    this.router.navigate(['/timeline', 'rEg6Q0bNguylIBhq']);
+    this.router.navigate(['/timeline', 'OkPpHUV9cAg2z83j']);
   }
 
   ngOnInit() {

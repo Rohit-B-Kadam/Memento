@@ -119,8 +119,6 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     this._location.back();
   }
 
-
-
   /// Adding photo
 
   public AddPhoto()
@@ -176,16 +174,6 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
 
     this.AddPhoto()
   }
-
-//   public readTheImagedata(file)
-//   {
-//     //let reader = new FileReader();
-//     //reader.onload = (event: any) => 
-//     //{  
-//     //  this.images.push(event.target.result);
-//     //}
-//     //reader.readAsDataURL(file);
-//   }
 
   
   public moveAllPhotoToDest( destFolder:string)
@@ -249,4 +237,25 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     return ab;
   }
 
+
+  // Delete this event
+  public DeleteEvent()
+  {
+      //Stop loading image
+      clearInterval(this.intTimmer);
+      this.photoInteraction.DeleteLoadedEvent().then(
+          () =>
+          {
+            this.router.navigate(['/timeline', 'OkPpHUV9cAg2z83j']);
+          }
+      )
+
+      
+  }
+
+  // Export the event
+  public ExportTheEvent()
+  {
+
+  }
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from '../../../../providers/Database/events.service';
 import { EventInfo } from '../../../../classes/event-info';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-event',
@@ -33,8 +34,9 @@ export class EditEventComponent implements OnInit
 
   constructor(private _formBuilder: FormBuilder,
               private route: ActivatedRoute,
-            private eventCollection: EventsService,
-            private router: Router) 
+              private eventCollection: EventsService,
+              private router: Router,
+              private _location : Location) 
   {
     this.initialisedComponent();
     this.eventDetail = this._formBuilder.group(
@@ -109,7 +111,13 @@ export class EditEventComponent implements OnInit
 
   public redirectToEventDetail()
   {
+    console.log("inside")
     this.router.navigate(['/timeline', this.eventInfo._id]);
+  }
+
+  public goBack()
+  {
+    this._location.back();
   }
 
 }

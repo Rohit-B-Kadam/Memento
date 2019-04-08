@@ -160,7 +160,11 @@ export class CreateEventComponent implements OnInit
       this.eventCollection.insert(this.eventInfo , this.photoInfos ).then( (value : EventInfo)=> {
       
         console.log(value)
-       this.router.navigate(['/timeline', value._id]);
+        setTimeout(() => {
+          this.router.navigate(['/timeline', value._id]);
+        },
+          1000);
+       
       });
 
   }

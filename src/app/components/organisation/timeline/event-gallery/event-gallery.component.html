@@ -33,16 +33,22 @@
           <mat-icon >chat_bubble</mat-icon>
       </button>
 
-      <!-- more -->
+      <!-- more menu  -->
       <button mat-icon-button class="example-icon" [matMenuTriggerFor]="auth">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #auth="matMenu">
         <!-- item1 -->
-        <button mat-menu-item>
+        <button mat-menu-item (click)="DeleteEvent()">
           <span>Delete event</span>
         </button>
+
         <!-- item2 -->
+        <button mat-menu-item (click)="ExportTheEvent()">
+          <span>Export</span> 
+        </button>
+
+        <!-- item3 -->
         <button mat-menu-item>
           <span>Hide event</span>
         </button>

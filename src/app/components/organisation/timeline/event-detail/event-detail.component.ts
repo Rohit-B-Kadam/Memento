@@ -86,31 +86,47 @@ export class EventDetailComponent implements OnInit , OnDestroy
     this.imageIndex = 0;
     let timer = 0;
 
+    let fs = this._electronService.fs;
+    let data:Buffer;
+    let imagebuffer:string;
+
+    console.log(photoInfo)
+    try
+    {
 
     // Loaded First Image
-    let photoUrl = photoInfo[this.imageIndex % 5].photoUrl;
-    
+      let photoUrl = photoInfo[this.imageIndex % 5].photoUrl;
+      data = fs.readFileSync(photoUrl);
+      imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
+      this.setClassToImage(photoInfo[this.imageIndex % 5].orientation);
+      this.imageDisplay = imagebuffer;
+      this.imageIndex++;
 
-    let fs = this._electronService.fs;
-    let data = fs.readFileSync(photoUrl);
-    let imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
-    this.setClassToImage(photoInfo[this.imageIndex % 5].orientation);
-    this.imageDisplay = imagebuffer;
-    this.imageIndex++;
+    }catch(e)
+    {
+      this.imageIndex++;
+      console.log("catch")
+    }
+
     // repeated loaded image ie image loop
     this.setTimer = setInterval( ()=> 
     {
+      try
+      {
       //TODO: Handle if event photo less than 5 
-      let photoUrl = photoInfo[this.imageIndex % 5].photoUrl;
-      
+        let photoUrl = photoInfo[this.imageIndex % 5].photoUrl;
 
-
-      fs = this._electronService.fs;
-      data = fs.readFileSync(photoUrl);
-      imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
-      this.imageDisplay = imagebuffer;
-      this.setClassToImage(photoInfo[this.imageIndex % 5].orientation);
-      this.imageIndex++;
+        fs = this._electronService.fs;
+        data = fs.readFileSync(photoUrl);
+        imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
+        this.imageDisplay = imagebuffer;
+        this.setClassToImage(photoInfo[this.imageIndex % 5].orientation);
+        this.imageIndex++;
+      }catch(e)
+      {
+        this.imageIndex++;
+        console.log("catch")
+      }
     }, 2000);
   }
 

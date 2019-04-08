@@ -61,14 +61,40 @@ export class EventsService
 
           // photo db
           this.photoCollection.connectedToCollection(newDoc['_id']);
-          this.photoCollection.insertAll(photos);
-          resolve(newDoc);
+          this.photoCollection.insertAll(photos).then(
+            () =>
+            {
+              resolve(newDoc);
+            }
+          )
+          
         }
       })
 
     });
   }
 
+  public remove(id:any) 
+  {
+    return new Promise((resolve, reject) => {
+        return this.eventCollection.remove({ _id: id }, {}, ((err:any, numRemoved:any) => {
+            if ( err )
+            {
+                reject(err);
+            }
+            else
+            {
+              this.photoCollection.connectedToCollection(id);
+              this.photoCollection.removeAll( id  ).then( () =>
+                {
+                  console.log("Event and it's photo description is delete")
+                  resolve(numRemoved);
+                }
+              )
+            }
+        }));
+    })
+  }
 
   // checking Get All Users
   public findAll() {
@@ -148,5 +174,6 @@ export class EventsService
     this.photoCollection.remove(photoInfo._id)
   }
 
+  
 
 }

@@ -1,6 +1,11 @@
 <div class="main-component">
   <form [formGroup]="eventDetail" novalidate (ngSubmit)="onSubmit()">
-    <h1>Event Details</h1>
+     <div>
+        <button mat-icon-button matTooltip="Back" (click)="goBack()" >
+            <mat-icon >arrow_back</mat-icon>
+        </button>
+        <span style="font-size: 18px">Event Details</span>
+      </div>
 
     <div class="step-container ">
 
@@ -89,6 +94,7 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="primary" type="submit">Update</button>
+          
         </mat-card-actions>
       </mat-card>
     </div>

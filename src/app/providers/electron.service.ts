@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { ipcRenderer, webFrame, remote } from 'electron';
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
+import * as trash from 'trash';
 
 @Injectable()
 export class ElectronService {
@@ -14,8 +15,10 @@ export class ElectronService {
   remote: typeof remote;
   childProcess: typeof childProcess;
   fs: typeof fs;
+  trash: typeof trash;
 
-  constructor() {
+  constructor() 
+  {
     // Conditional imports
     if (this.isElectron()) {
       this.ipcRenderer = window.require('electron').ipcRenderer;
@@ -24,6 +27,8 @@ export class ElectronService {
 
       this.childProcess = window.require('child_process');
       this.fs = window.require('fs');
+      this.trash = window.require('trash')
+          
     }
   }
 

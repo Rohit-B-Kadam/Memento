@@ -106,4 +106,40 @@ export class EventPhotoInteractionService {
     this.photosInfo.splice(index,1)
     this.imagesBuffer.splice(index,1)
   }
+
+  public DeleteLoadedEvent()
+  {
+    return new Promise((resolve, reject) => {
+
+    this.eventCollection.remove(this.eventInfo._id).then(
+      () =>
+      {
+        let trash = this._electronService.trash;
+        let fs = this._electronService.fs;
+
+
+        let fullPath = "/home/rohit/Desktop/Momento-Events"
+        let date = this.eventInfo.date;
+
+        fullPath += '/' + date.getFullYear();
+        fullPath += "/" + date.getDate() + '_' + date.getMonth() + '_' + this.eventInfo.title;
+
+        console.log(fullPath)
+
+        if (fs.existsSync(fullPath)) {
+          (async () => {
+            await trash(fullPath);
+          })();
+        }
+        else 
+        {
+          console.log("delete folder path not found")
+        }    
+      }
+    );
+      
+    resolve()
+
+    });
+  }
 }
