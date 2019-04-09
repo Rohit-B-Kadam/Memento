@@ -33,7 +33,7 @@ export class CreateEventComponent implements OnInit
 
   public isHidden: boolean;
 
-
+  dropzoneActive:boolean = false;
 
   // Filling data
   categories: string[] = ["Family" , "Friend", "College Friends"];
@@ -101,6 +101,33 @@ export class CreateEventComponent implements OnInit
 
 
   // Image Reader
+
+  public dropzoneState($event: boolean) 
+  {
+    this.dropzoneActive = $event;
+  }
+
+  public handleDrop(fileList: FileList) 
+  {
+    //console.log(fileList)
+    let imageFile:File[] = [];
+    
+    for(let i = 0; i < fileList.length; i++)
+    {
+      let file = fileList[i];
+      if(file.type == "image/jpeg")
+      {
+        imageFile.push(file)
+        console.log(file)
+        this.photoInfos.push(new PhotoInfo(file.path));
+        this.readTheImagedata(file); 
+      }
+    }
+    
+    //console.log(imageFile)
+
+  }
+
   public onFileInput(event: any)
   {
     for( let i = 0 ; i < event.target.files.length; i++)

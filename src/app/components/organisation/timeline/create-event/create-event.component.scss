@@ -69,6 +69,18 @@
     image-orientation: from-image;
   }
 
+  .drag-drop-zone
+  {
+    border: 2px dashed;
+    padding: 20px 100px; 
+    margin-left: 100px;
+  }
+
+  .image-on-drop
+  {
+    border: 2px solid cadetblue;
+  }
+
   // Drag and Drop
   .drag-drop
   {

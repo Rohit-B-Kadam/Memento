@@ -18,17 +18,26 @@
         <ng-template matStepLabel>Upload Photo</ng-template>
     
         <div class="step-container">
-
-          <button (click)="fileInput.click()" mat-raised-button color="primary">
-            <mat-icon>add</mat-icon><span> Add Photo</span>
-            <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" multiple
-              formControlName="addPhoto" />
-          </button>
-          <mat-error *ngIf="uploadControl.controls['addPhoto'].hasError('required')">
-            Photo's is required*
-          </mat-error>
-    
+        <div style="display: flex">
+          <div>
+            <button (click)="fileInput.click()" mat-raised-button color="primary">
+              <mat-icon>add</mat-icon><span> Add Photo</span>
+              <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" multiple
+                formControlName="addPhoto" />
+            </button>
+            <mat-error *ngIf="uploadControl.controls['addPhoto'].hasError('required')">
+              Photo's is required*
+            </mat-error>
+          </div>
           <!-- TODO: Drag and drop -->
+          <div class="drag-drop-zone"
+                fileDrop
+                (filesDropped)="handleDrop($event)"
+                (filesHovered)="dropzoneState($event)"
+                [ngClass]="{'image-on-drop': dropzoneActive}">
+            <span>Drop Image Here</span>
+          </div>
+        </div>
 
           <mat-card style="margin: 20px;">
             <mat-card-header>Image Selected:</mat-card-header>

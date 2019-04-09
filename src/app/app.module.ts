@@ -60,6 +60,7 @@ import { AddFriendComponent } from './components/features/friend-list/add-friend
 import { FaceRecognitionService } from './providers/face-recognition.service';
 import { FaceDetectComponent } from './face-detect/face-detect.component';
 import { EditEventComponent } from './components/organisation/timeline/edit-event/edit-event.component';
+import { FileDropDirective } from './directives/file-drop.directive';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,7 +96,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FriendListComponent,
     AddFriendComponent,
     FaceDetectComponent,
-    EditEventComponent
+    EditEventComponent,
+    FileDropDirective
     
   ],
   imports: [
