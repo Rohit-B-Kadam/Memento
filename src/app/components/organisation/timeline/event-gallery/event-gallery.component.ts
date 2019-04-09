@@ -256,6 +256,32 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
   // Export the event
   public ExportTheEvent()
   {
+    // required
+    let fs = this._electronService.fs;
+    let compressing = this._electronService.compressing;
+
+    // To Get Event Folder path
+    let fullPath = "/home/rohit/Desktop/Momento-Events";
+    let date = this.eventInfo.date;
+
+    fullPath += "/"+date.getFullYear();
+    fullPath += "/" + date.getDate() + '_' + date.getMonth() + '_' + this.eventInfo.title;
+
+    // Get Destination name
+    let zipFileName = date.getDate() + '_' + date.getMonth() + '_' + this.eventInfo.title;
+
+    // Add the event Detail in folder
+    var data = JSON.stringify(this.eventInfo,null,2);
+    fs.writeFileSync(fullPath+"/event_description.json", data);
+
+    var data = JSON.stringify(this.photoInteraction.photosInfo,null,2);
+    fs.writeFileSync(fullPath+"/photo_description.json", data);
+
+
+    // compress the file(zip)
+    compressing.zip.compressDir(fullPath,"/home/rohit/Desktop/"+zipFileName+".zip")
+                    .then(() => { console.log("Compression done") })
+                    .catch((err)=> { console.log("Error: "+err)})
 
   }
 }

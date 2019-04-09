@@ -44,8 +44,11 @@
                     </button>
                   </li>
                   <li>
-                    <button mat-stroked-button color="primary"
-                            matTooltip="import extrenal event">Import Event</button>
+                    <button (click)="fileInput.click()" mat-stroked-button color="primary" matTooltip="import external event"
+                      color="primary">
+                      <span>Import Event</span>
+                      <input #fileInput type="file" accept=".zip" (change)="onFileInput($event)" style="display:none;" />
+                    </button>
                   </li>
                   <li>
                     <button (click)="drawer.toggle()" mat-icon-button matTooltip="toggle event list"

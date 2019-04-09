@@ -6,6 +6,8 @@ import { ipcRenderer, webFrame, remote } from 'electron';
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
 import * as trash from 'trash';
+import * as compressing from 'compressing';
+import * as targz from 'targz';
 
 @Injectable()
 export class ElectronService {
@@ -16,6 +18,8 @@ export class ElectronService {
   childProcess: typeof childProcess;
   fs: typeof fs;
   trash: typeof trash;
+  compressing: typeof compressing;
+  targz: typeof targz;
 
   constructor() 
   {
@@ -28,7 +32,8 @@ export class ElectronService {
       this.childProcess = window.require('child_process');
       this.fs = window.require('fs');
       this.trash = window.require('trash')
-          
+      this.compressing = require('compressing');
+      this.targz = require('targz');
     }
   }
 

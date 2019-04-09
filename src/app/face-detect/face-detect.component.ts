@@ -25,11 +25,10 @@ export class FaceDetectComponent implements OnInit
   public singleFaceDiscription;
   public groupFaceDiscription;
 
-  public singleLabelDiscription: faceapi.LabeledFaceDescriptors;
-  public groupLabelDiscription;
-
   public groupPic;
   public profilepic;
+
+  public faceMatcher;
   
   // To draw box round the detected face
   @ViewChild('canvas1') canvas1:any;
@@ -90,20 +89,17 @@ export class FaceDetectComponent implements OnInit
     profileImgRef.src = img.src
 
     // Detecting single Face with face landmarks and with face description
-    const fullFaceDescriptions = await faceapi
-                      .detectAllFaces(img)
-                      .withFaceLandmarks().withFaceDescriptors()
+    const firstFaceDescription = await faceapi
+                      .detectSingleFace(img)
+                      .withFaceLandmarks().withFaceDescriptor()
 
     // Check if image contain face or not
-    if (!isNullOrUndefined(fullFaceDescriptions)) 
+    if (!isNullOrUndefined(firstFaceDescription)) 
     {
-      console.log(fullFaceDescriptions);
-      this.singleFaceDiscription = fullFaceDescriptions;
-      
+      console.log(firstFaceDescription);
 
       // resize the detected boxes in case your displayed image has a different size then the original
-      // const detectionsForSize = faceapi.resizeResults(fullFaceDescriptions, { width: img.width, height: img.height })
-      const detectionsForSize = faceapi.resizeResults(fullFaceDescriptions, 
+      const detectionsForSize = faceapi.resizeResults(firstFaceDescription, 
                                       { width: profileImgRef.width, height: profileImgRef.height })
 
       // draw them into a canvas
@@ -112,26 +108,29 @@ export class FaceDetectComponent implements OnInit
       canvas.height = profileImgRef.height;
 
       // Draw the rectangle round the detected face
-      const detectionsArray = detectionsForSize.map(fd => fd.detection)
+      const detectionsArray = detectionsForSize.detection
       
       // Giving Label to detected face                                  [label]        [descriptor list]
-      //  this.singleLabelDiscription = new  faceapi.LabeledFaceDescriptors("Me", [fullFaceDescriptions.descriptor])
-      
+      const singleLabelDiscription = new  faceapi.LabeledFaceDescriptors("person1", [firstFaceDescription.descriptor])      
+      this.faceMatcher = new faceapi.FaceMatcher(singleLabelDiscription)
+
       // const boxesWithText = [
       //   new faceapi.BoxWithText( detectionsArray.box, "Me")
       // ]
       
       faceapi.drawDetection(canvas, detectionsArray, { withScore: true , withClassName: true })
-      // faceapi.drawDetection(canvas, boxesWithText, {withScore:true})
+      //faceapi.drawDetection(canvas, boxesWithText, {withScore:true})
     }
     else
     {
       console.log("Face is not detected")
     }
-  
+
   }
 
-  public async uploadSecondImage(event: any) {
+  public async uploadSecondImage(event: any) 
+  {
+
     const imgFile = event.target.files[0]
     // create an HTMLImageElement from a Blob
     const img: HTMLImageElement = await faceapi.bufferToImage(imgFile)
@@ -140,24 +139,18 @@ export class FaceDetectComponent implements OnInit
     groupImgRef.src = img.src;
     
 
-
     // Detecting Face
     const fullFaceDescriptions = await faceapi
                       .detectAllFaces(img)
                       .withFaceLandmarks().withFaceDescriptors()
 
-
-
-
     // Check if image contain face or not
     if (!isNullOrUndefined(fullFaceDescriptions)) 
     {
-      
       console.log(fullFaceDescriptions);
 
       this.groupFaceDiscription = fullFaceDescriptions;
       // resize the detected boxes in case your displayed image has a different size then the original
-      // const detectionsForSize = faceapi.resizeResults(fullFaceDescriptions, { width: img.width, height: img.height })
       const detectionsForSize = faceapi.resizeResults(fullFaceDescriptions, 
         { width: groupImgRef.width, height: groupImgRef.height })
 
@@ -168,24 +161,17 @@ export class FaceDetectComponent implements OnInit
 
       // Draw the rectangle round the detected face
       const detectionsArray = detectionsForSize.map(fd => fd.detection)
-      //faceapi.drawDetection(canvas, detectionsArray, { withScore: true })
-
 
 
       // Face recognition
 
-
-
-      // 	const labels = ['rohit', 'raj', 'leonard', 'howard','shubham'];
-
-
-
       // 0.6 is a good distance threshold value to judge
       // whether the descriptors match or not
       const maxDescriptorDistance = 0.6
-      const faceMatcher = new faceapi.FaceMatcher(this.singleFaceDiscription)
-
-      const results = fullFaceDescriptions.map(fd => faceMatcher.findBestMatch(fd.descriptor))
+      const results = fullFaceDescriptions.map(fd => 
+      {
+        return this.faceMatcher.findBestMatch(fd.descriptor,maxDescriptorDistance)
+      })
 
       console.log(results)
 
@@ -199,7 +185,6 @@ export class FaceDetectComponent implements OnInit
       faceapi.drawDetection(canvas, boxesWithText)
 
     }
-
 
   }
 }
