@@ -6,6 +6,8 @@ import { EventInfo } from '../../../../classes/event-info';
 import { PhotoInfo } from '../../../../classes/photo-info';
 import { ElectronService } from '../../../../providers/electron.service';
 import { Router } from '@angular/router';
+import { FriendsService } from '../../../../providers/Database/friends.service';
+import { FriendProfile } from '../../../../classes/friend-profile';
 //import { EXIF } from 'exif-js';
 var EXIF = require('exif-js');
 
@@ -31,6 +33,8 @@ export class CreateEventComponent implements OnInit
 
   public eventDetail: FormGroup;
 
+  public isImageUpload:boolean;
+
   public isHidden: boolean;
 
   dropzoneActive:boolean = false;
@@ -41,24 +45,26 @@ export class CreateEventComponent implements OnInit
   eventType: string[] = ["Trekking","Marriage","Pinic","Event"];
   
   // make dynamic
-  friendLists:string[] = [
-    'Sonam Karale',
-    'Abhishek Zambre',
-    'Sanket Hebbal',
-    'Shubham Bangar',
-    'Harshal Ghule',
-    'Shreyas Bhujbal',
-    'Shubham Hajare',
-    'Shubham Kanade',
-    'Chandan Patil',
-    'Anuja Jadhav',
-    'Sailee Jagtap',
-    'SudhirKumar Chobhey',
-    'Vaibhav Magar'
-  ];
+  friendLists:string[];
+  // = [
+  //   'Sonam Karale',
+  //   'Abhishek Zambre',
+  //   'Sanket Hebbal',
+  //   'Shubham Bangar',
+  //   'Harshal Ghule',
+  //   'Shreyas Bhujbal',
+  //   'Shubham Hajare',
+  //   'Shubham Kanade',
+  //   'Chandan Patil',
+  //   'Anuja Jadhav',
+  //   'Sailee Jagtap',
+  //   'SudhirKumar Chobhey',
+  //   'Vaibhav Magar'
+  // ];
 
   
   // storing info
+  
   public images = [];
 
   addedFriends: string[] = [];
@@ -70,14 +76,25 @@ export class CreateEventComponent implements OnInit
   constructor(private _formBuilder: FormBuilder, 
               private eventCollection: EventsService,
               private _electronService: ElectronService,
-              private router: Router) 
+              private router: Router,
+              private _friendCollection: FriendsService) 
   {
     
+    this.isImageUpload = false;
+
+    this.friendLists = [];
+    _friendCollection.findAll().then( (value : FriendProfile[])=>
+    {
+        value.forEach( (friend)=>{
+          this.friendLists.push(friend.name)
+        })
+    })
+
     // initialising the form control
     this.uploadControl = this._formBuilder.group(
       {
-        addPhoto : [null,Validators.required] 
-      }
+        addPhoto : [null] 
+      },{validator: this.checkUploaded }
     )
 
     this.eventDetail = this._formBuilder.group(
@@ -88,15 +105,23 @@ export class CreateEventComponent implements OnInit
         eventType: [null, Validators.required],
         eventCategory: [null, Validators.required],
         description: [null, Validators.required],
-  
       }
     );
-
     this.isHidden = false;
   }
 
+   // Custom Validator
+   public checkUploaded(group: FormGroup) 
+   { 
+     console.log(this.isImageUpload)
+
+     return true ? null : { notSame: true }     
+   }
+ 
+
   ngOnInit() 
   {
+    //this.isImageUpload = false;
   }
 
 
@@ -104,11 +129,13 @@ export class CreateEventComponent implements OnInit
 
   public dropzoneState($event: boolean) 
   {
+
     this.dropzoneActive = $event;
   }
 
   public handleDrop(fileList: FileList) 
   {
+    // this.isImageUpload = true;
     //console.log(fileList)
     let imageFile:File[] = [];
     
@@ -130,6 +157,7 @@ export class CreateEventComponent implements OnInit
 
   public onFileInput(event: any)
   {
+    //this.isImageUpload = true;
     for( let i = 0 ; i < event.target.files.length; i++)
     {
         this.photoInfos.push(new PhotoInfo(event.target.files[i].path));

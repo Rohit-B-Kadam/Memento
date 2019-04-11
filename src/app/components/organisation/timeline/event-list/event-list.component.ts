@@ -3,6 +3,9 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { of as observableOf } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { EventsService } from '../../../../providers/Database/events.service';
+import { EventInfo } from '../../../../classes/event-info';
+import { MatDialog } from '@angular/material';
+import { PasswordCheckingComponent } from './password-checking/password-checking.component';
 
 /** File node data with possible child nodes. */
 export class FileNode {
@@ -40,9 +43,17 @@ export class EventListComponent {
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<FileNode, FlatTreeNode>;
 
+
+  /// My code //////////////////////////////
   eventList: FileNode[];
-  constructor( private eventCollection: EventsService ) 
+  fullEventDetail: EventInfo[];
+  groups:string[];
+  public isHidden:boolean;
+
+  constructor( private eventCollection: EventsService,
+              public dialog: MatDialog) 
   {
+    
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       this.getLevel,
@@ -52,11 +63,14 @@ export class EventListComponent {
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     
+    this.groups = ["All", "Family" , "Friend", "College Friends"];
+    this.isHidden = true;
     
     this.getEventList();
     
 
   }
+
 
   /** Transform the data to something the tree can read. */
   transformer(node: FileNode, level: number) 
@@ -100,55 +114,8 @@ export class EventListComponent {
     // getting data from database
     this.eventCollection.findAll().then( (events : any[])=> 
     {
-      // iterating each events
-      events.forEach( event => 
-      {
-        let date: Date = event.date;
-        let yy = date.getFullYear();
-
-        // setting value
-        let node: FileNode = new FileNode();
-        node.name = event.title;
-        node.id = event._id;
-        node.type = "event";
-        
-
-        // checking if parent node is already exist
-        let flag: boolean = false;
-        for(let i = 0 ; i < this.eventList.length; i++)
-        {
-          // if yes
-          if( +this.eventList[i].name == yy)
-          {
-            this.eventList[i].children.push(node);
-            flag = true;
-            break;
-          }
-        }
-
-        // if no
-        if(flag == false)
-        {
-          // create parent node
-          let folderNode: FileNode = new FileNode();
-          folderNode.name = ""+yy;
-          folderNode.type = "folder";
-          folderNode.children = [];
-          folderNode.children.push(node);
-          this.eventList.push(folderNode);
-        }
-
-      });
-
-      // joint the data to tree <-- IMP
-      //console.log(this.eventList);
-      // TODO: Sort the array
-      this.eventList.sort((event1,event2) =>{
-        return +event1.name - +event2.name; 
-      });
-
-      
-      this.dataSource.data = this.eventList;
+      this.fullEventDetail = events;
+      this.DisplayEventList(events)
     })
     .catch((err)=>{
       console.log("Error: "+err);
@@ -156,5 +123,104 @@ export class EventListComponent {
 
   }
 
+  public EventFilter(value)
+  {
+    console.log(value);
 
+    let displayEvent:EventInfo[];
+
+    if(value == "All")
+    {
+      displayEvent = this.fullEventDetail;
+    }
+    else
+    {
+      displayEvent = this.fullEventDetail.filter((detail) => {
+        if (detail.categories.includes(value)) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      })
+    }
+
+    this.DisplayEventList(displayEvent);
+  }
+
+  public HiddingAction()
+  {
+    if(this.isHidden)
+    {
+      const dialogRef = this.dialog.open(PasswordCheckingComponent, {
+        width: '250px'
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+        
+        // this.animal = result;
+      });
+
+      this.isHidden = false;
+    }
+    else
+    {
+      this.isHidden = true;
+    }
+  }
+
+  public DisplayEventList(events:any[])
+  {
+      this.eventList = []
+      // iterating each events
+      events.forEach( event => 
+        {
+          let date: Date = event.date;
+          let yy = date.getFullYear();
+  
+          // setting value
+          let node: FileNode = new FileNode();
+          node.name = event.title;
+          node.id = event._id;
+          node.type = "event";
+          
+  
+          // checking if parent node is already exist
+          let flag: boolean = false;
+          for(let i = 0 ; i < this.eventList.length; i++)
+          {
+            // if yes
+            if( +this.eventList[i].name == yy)
+            {
+              this.eventList[i].children.push(node);
+              flag = true;
+              break;
+            }
+          }
+  
+          // if no
+          if(flag == false)
+          {
+            // create parent node
+            let folderNode: FileNode = new FileNode();
+            folderNode.name = ""+yy;
+            folderNode.type = "folder";
+            folderNode.children = [];
+            folderNode.children.push(node);
+            this.eventList.push(folderNode);
+          }
+  
+        });
+  
+        // joint the data to tree <-- IMP
+        //console.log(this.eventList);
+        // TODO: Sort the array
+        this.eventList.sort((event1,event2) =>{
+          return +event1.name - +event2.name; 
+        });
+  
+        
+        this.dataSource.data = this.eventList;
+  }
 }

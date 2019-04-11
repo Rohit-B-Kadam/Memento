@@ -5,10 +5,12 @@
   <mat-card-content class="list-header">
     <h2>Friend list:</h2>
 
+
     <div class="action-list">
-      <mat-select class="group-list" placeholder="Select group">
+      
+      <!-- <mat-select class="group-list" placeholder="Select group">
         <mat-option *ngFor="let type of groups" [value]="type">{{type}}</mat-option>
-      </mat-select>
+      </mat-select> -->
     
       <a mat-raised-button color="primary" routerLink="/add-friend" >Add Friend</a>
     </div>
@@ -18,12 +20,16 @@
   <mat-card-content>
     <ul style="margin:0px; padding:0px;" class="list">
 
-      <li *ngFor="let friend of friends" class="list-style">
+      <li *ngFor="let friend of friends; let i = index" class="list-style">
+        <div class="list-content">
+          
         <mat-card-header>
-          <img mat-card-avatar [src]="friend.profilePhoto" height="200">
           <mat-card-title>{{friend.name}}</mat-card-title>
-          <mat-card-subtitle>{{friend.group[0]}}</mat-card-subtitle>
+          <mat-card-subtitle>{{friend.email}}</mat-card-subtitle>
         </mat-card-header>
+        <div><button mat-icon-button (click)="DeleteFriend(i)" >
+          <mat-icon style="color:darkred">delete</mat-icon></button></div>
+      </div>
       </li>
     </ul>
   </mat-card-content>

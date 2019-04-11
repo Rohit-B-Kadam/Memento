@@ -1,5 +1,121 @@
-.example-card 
+.main-component
 {
-    max-width: 400px;
+    padding: 20px;
+
+    background-color: inherit;
 }
+
+.step-container
+{
+    height:600px;
+    padding: 20px; 
+}
+
+
+.second-step
+{
+    min-width: 120px;
+    margin: 20px 200px;
+}
+
+.form-field
+{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.full-width {
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .mat-radio-button {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .col {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .col:last-child {
+    margin-right: 0;
+  }
+
+  // Image
+  .selected-image-container
+  {
+    height: 500px;
+    scroll-behavior: auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .image-box
+  {
+    max-width: 400px;
+    max-height: 400px;
+    padding: 10px;
+    object-fit: cover;
+    image-orientation: from-image;
+  }
+
+  // Drag and Drop
+  .drag-drop
+  {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .container {
+    width: 400px;
+    max-width: 100%;
+    width: 500px;
+    margin: 0 20px;
+    vertical-align: top;
+  }
+  
+  .list {
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    display: block;
+    overflow: hidden;
+    scroll-behavior: auto;
+    overflow-y: auto;
+    height: 450px; 
+  }
+  
+  .list-item {
+    padding: 20px 10px;
+    border-bottom: solid 1px #ccc;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    color: black;
+    font-size: 14px;
+  }
+  
+  .list-item:last-child {
+    border: none;
+  }
+  
+  // Done step
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
   

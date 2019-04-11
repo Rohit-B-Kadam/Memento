@@ -61,6 +61,7 @@ import { FaceRecognitionService } from './providers/face-recognition.service';
 import { FaceDetectComponent } from './face-detect/face-detect.component';
 import { EditEventComponent } from './components/organisation/timeline/edit-event/edit-event.component';
 import { FileDropDirective } from './directives/file-drop.directive';
+import { PasswordCheckingComponent } from './components/organisation/timeline/event-list/password-checking/password-checking.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -97,7 +98,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddFriendComponent,
     FaceDetectComponent,
     EditEventComponent,
-    FileDropDirective
+    FileDropDirective,
+    PasswordCheckingComponent
     
   ],
   imports: [
@@ -118,6 +120,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     DragDropModule,
     LayoutModule
   ],
+  entryComponents: [
+    PasswordCheckingComponent
+  ]
+  ,
   providers: [ElectronService,
               FormBuilder,
               FaceRecognitionService],

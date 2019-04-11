@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FriendProfile } from '../../../classes/friend-profile';
 import { group } from '@angular/animations';
+import { FriendsService } from '../../../providers/Database/friends.service';
 
 
 @Component({
@@ -12,68 +13,28 @@ export class FriendListComponent implements OnInit {
 
   friends: FriendProfile[];
   groups: string[];
-  constructor() { }
+  
+  constructor( private _friendCollection: FriendsService) 
+  {
+    _friendCollection.findAll().then( (value : FriendProfile[])=>
+    {
+        this.friends = value;
+        console.log(this.friends)
+    })
+  }
 
   ngOnInit() {
 
     this.groups = ["Family","College Friend", "Friend"]
-
-    this.friends=[
-      {
-        name:'Sonam Karale',
-        group:['friends'],
-        email:'sonam',
-        profilePhoto: '../../../../assets/image/sonam.jpg'
-      },
-      {
-        name:'Rohit Kadam',
-        group:['friends'],
-        email:'rohit',
-        profilePhoto: '../../../../assets/image/sonam.jpg'
-      },
-      {
-        name:'Sonam Karale',
-        group:['friends'],
-        email:'sonam',
-        profilePhoto: '../../../../assets/image/sonam.jpg'
-      },
-      {
-        name:'Sonam Karale',
-        group:['friends'],
-        email:'sonam',
-        profilePhoto: '../../../../assets/image/sonam.jpg'
-      },
-      {
-        name:'Sonam Karale',
-        group:['friends'],
-        email:'sonam',
-        profilePhoto: '../../../../assets/image/sonam.jpg'
-      },
-      {
-        name:'Sonam Karale',
-        group:['friends'],
-        email:'sonam',
-        profilePhoto: '../../../../assets/image/sonam.jpg'
-      },
-      {
-        name:'Sonam Karale',
-        group:['friends'],
-        email:'sonam',
-        profilePhoto: '../../../../assets/image/sonam.jpg'
-      },
-      {
-        name:'Sonam Karale',
-        group:['friends'],
-        email:'sonam',
-        profilePhoto: '../../../../assets/image/sonam.jpg'
-      },
-      {
-        name:'Sonam Karale',
-        group:['friends'],
-        email:'sonam',
-        profilePhoto: '../../../../assets/image/sonam.jpg'
-      },
-    ]
+    
   }
 
+  public DeleteFriend(index)
+  {
+    //console.log(index)
+    this._friendCollection.remove(this.friends[index]._id)
+        .then( () => {console.log("User is delete")})
+
+    this.friends.splice(index,1);
+  }
 }

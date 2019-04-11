@@ -8,19 +8,25 @@ import { AppConfig } from '../environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent 
+{
+  // Which component to show
+  public showComponent:string;
+
   constructor(public electronService: ElectronService,
-    private translate: TranslateService) {
+              private translate: TranslateService)
+    {
+      this.showComponent = "mainlayout"; 
+      translate.setDefaultLang('en');
+      console.log('AppConfig', AppConfig);
 
-    translate.setDefaultLang('en');
-    console.log('AppConfig', AppConfig);
-
-    if (electronService.isElectron()) {
-      console.log('Mode electron');
-      console.log('Electron ipcRenderer', electronService.ipcRenderer);
-      console.log('NodeJS childProcess', electronService.childProcess);
-    } else {
-      console.log('Mode web');
-    }
+      if (electronService.isElectron()) 
+      {
+        console.log('Mode electron');
+        console.log('Electron ipcRenderer', electronService.ipcRenderer);
+        console.log('NodeJS childProcess', electronService.childProcess);
+      } else {
+        console.log('Mode web');
+      }
   }
 }

@@ -41,6 +41,11 @@
 .action-list
 {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between; 
+    flex-direction: row-reverse;
+}
+
+.list-content
+{
+  display: flex;
+  justify-content: space-between;
 }

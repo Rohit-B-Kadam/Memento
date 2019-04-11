@@ -1,0 +1,390 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>memento documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">memento documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>SidebarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/layout/sidebar/sidebar.component.ts</code>
+</p>
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>sidebar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./sidebar.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./sidebar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/components/layout/sidebar/sidebar.component.ts:9</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;sidebar&#x27;,
+  templateUrl: &#x27;./sidebar.component.html&#x27;,
+  styleUrls: [&#x27;./sidebar.component.scss&#x27;]
+})
+export class SidebarComponent 
+{
+
+  constructor() {}
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">
+    &lt;!-- Project Title --&gt;
+    &lt;mat-toolbar&gt;
+      &lt;mat-toolbar-row&gt;
+        &lt;mat-icon style&#x3D;&quot;margin:0%&quot; matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt;monochrome_photos&lt;/mat-icon&gt;
+        &lt;h1 class&#x3D;&quot;toolbar-title&quot;&gt; {{ &#x27;PAGES.HOME.TITLE&#x27; | translate }} &lt;/h1&gt;
+      &lt;/mat-toolbar-row&gt;
+    &lt;/mat-toolbar&gt;
+
+
+    &lt;mat-divider&gt;&lt;/mat-divider&gt;
+
+    &lt;!-- Organisation Section --&gt;
+    &lt;mat-nav-list&gt;
+      &lt;h2 matSubheader&gt; Organisation &lt;/h2&gt;
+
+      &lt;!-- TimeLine --&gt;
+      &lt;a mat-list-item routerLinkActive&#x3D;&quot;list-item-active&quot; routerLink&#x3D;&quot;/timeline&quot;&gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; timeline &lt;/mat-icon&gt;
+        Time Line
+      &lt;/a&gt;
+
+      &lt;!-- TODO: add document and other photo--&gt;
+      &lt;!-- Document --&gt;
+      &lt;!--       
+      &lt;a mat-list-item routerLinkActive routerLink&#x3D;&quot;/document&quot; #routerLinkActiveInstance2&#x3D;&quot;routerLinkActive&quot;
+        [class.list-item-active]&#x3D;&quot;routerLinkActiveInstance2.isActive&quot;&gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; insert_drive_file &lt;/mat-icon&gt;
+        Document
+      &lt;/a&gt; --&gt;
+
+      &lt;!-- Other Photo --&gt;
+      &lt;!-- &lt;a mat-list-item routerLinkActive routerLink&#x3D;&quot;/login&quot; #routerLinkActiveInstance3&#x3D;&quot;routerLinkActive&quot;
+        [class.list-item-active]&#x3D;&quot;routerLinkActiveInstance3.isActive&quot;&gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; folder &lt;/mat-icon&gt;
+        Other Photos
+      &lt;/a&gt; --&gt;
+
+      &lt;!--
+
+        &lt;a *ngFor&#x3D;&quot;let item of myWorkRoutes&quot;
+         mat-list-item
+         (click)&#x3D;&quot;sidenav.close()&quot;
+         routerLinkActive
+         #routerLinkActiveInstance&#x3D;&quot;routerLinkActive&quot;
+         [class.list-item-active]&#x3D;&quot;routerLinkActiveInstance.isActive&quot;
+         [routerLink]&#x3D;&quot;[item.route]&quot;&gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; {{ item.icon }} &lt;/mat-icon&gt;
+        {{item.title}}
+      &lt;/a&gt;
+
+      --&gt;
+    &lt;/mat-nav-list&gt;
+
+    &lt;!-- Divider --&gt;
+    &lt;mat-divider&gt;&lt;/mat-divider&gt;
+
+    &lt;!-- Feature Section --&gt;
+    &lt;mat-nav-list&gt;
+      &lt;h2 matSubheader&gt; Features &lt;/h2&gt;
+
+      &lt;!-- Slideshow --&gt;
+      &lt;a mat-list-item routerLinkActive&#x3D;&quot;list-item-active&quot; routerLink&#x3D;&quot;/slideshow&quot; &gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; slideshow &lt;/mat-icon&gt;
+        Slideshow
+      &lt;/a&gt;
+      &lt;!-- Searching --&gt;
+      &lt;a mat-list-item routerLinkActive&#x3D;&quot;list-item-active&quot; routerLink&#x3D;&quot;/advance-search&quot; &gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; search &lt;/mat-icon&gt;
+        Advance Search
+      &lt;/a&gt;
+
+      &lt;!-- Duplicate --&gt;
+      &lt;a mat-list-item routerLinkActive&#x3D;&quot;list-item-active&quot; routerLink&#x3D;&quot;/duplicate&quot; &gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; photo_library &lt;/mat-icon&gt;
+        Duplicate
+      &lt;/a&gt;
+
+      &lt;!-- People --&gt;
+      &lt;a mat-list-item routerLinkActive&#x3D;&quot;list-item-active&quot; routerLink&#x3D;&quot;/friend-list&quot;&gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; people &lt;/mat-icon&gt;
+        Friend List
+      &lt;/a&gt;
+
+      &lt;!-- Profile --&gt;
+      &lt;a mat-list-item routerLinkActive&#x3D;&quot;list-item-active&quot; routerLink&#x3D;&quot;/profile&quot; &gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; person &lt;/mat-icon&gt;
+        Profile
+      &lt;/a&gt;
+
+      &lt;!-- Remove --&gt;
+      &lt;a mat-list-item routerLinkActive&#x3D;&quot;list-item-active&quot; routerLink&#x3D;&quot;/login&quot; &gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; person &lt;/mat-icon&gt;
+        Switch Account
+      &lt;/a&gt;
+
+      &lt;a mat-list-item routerLinkActive&#x3D;&quot;list-item-active&quot; routerLink&#x3D;&quot;/registration&quot;&gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; person &lt;/mat-icon&gt;
+        Create NewAccount
+      &lt;/a&gt;
+
+      &lt;a mat-list-item routerLinkActive&#x3D;&quot;list-item-active&quot; routerLink&#x3D;&quot;/face-detect&quot;&gt;
+        &lt;mat-icon matListIcon class&#x3D;&quot;app-nav-list-icon&quot;&gt; person &lt;/mat-icon&gt;
+        Face-Detection
+      &lt;/a&gt;
+
+    &lt;/mat-nav-list&gt;
+
+    &lt;mat-divider&gt;&lt;/mat-divider&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./sidebar.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.toolbar-title 
+{
+  margin: 0 16px 0 16px;
+  font-size: 35px;
+}
+
+.mat-subheader {
+   font-size: 14px;
+}
+
+.app-nav-list-icon {
+  margin: 0 12px 0 12px;
+}
+
+.list-item-active{
+  color: red;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>    <!-- Project Title -->    <mat-toolbar>      <mat-toolbar-row>        <mat-icon style="margin:0%" matListIcon class="app-nav-list-icon">monochrome_photos</mat-icon>        <h1 class="toolbar-title"> {{ \'PAGES.HOME.TITLE\' | translate }} </h1>      </mat-toolbar-row>    </mat-toolbar>    <mat-divider></mat-divider>    <!-- Organisation Section -->    <mat-nav-list>      <h2 matSubheader> Organisation </h2>      <!-- TimeLine -->      <a mat-list-item routerLinkActive="list-item-active" routerLink="/timeline">        <mat-icon matListIcon class="app-nav-list-icon"> timeline </mat-icon>        Time Line      </a>      <!-- TODO: add document and other photo-->      <!-- Document -->      <!--             <a mat-list-item routerLinkActive routerLink="/document" #routerLinkActiveInstance2="routerLinkActive"        [class.list-item-active]="routerLinkActiveInstance2.isActive">        <mat-icon matListIcon class="app-nav-list-icon"> insert_drive_file </mat-icon>        Document      </a> -->      <!-- Other Photo -->      <!-- <a mat-list-item routerLinkActive routerLink="/login" #routerLinkActiveInstance3="routerLinkActive"        [class.list-item-active]="routerLinkActiveInstance3.isActive">        <mat-icon matListIcon class="app-nav-list-icon"> folder </mat-icon>        Other Photos      </a> -->      <!--        <a *ngFor="let item of myWorkRoutes"         mat-list-item         (click)="sidenav.close()"         routerLinkActive         #routerLinkActiveInstance="routerLinkActive"         [class.list-item-active]="routerLinkActiveInstance.isActive"         [routerLink]="[item.route]">        <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>        {{item.title}}      </a>      -->    </mat-nav-list>    <!-- Divider -->    <mat-divider></mat-divider>    <!-- Feature Section -->    <mat-nav-list>      <h2 matSubheader> Features </h2>      <!-- Slideshow -->      <a mat-list-item routerLinkActive="list-item-active" routerLink="/slideshow" >        <mat-icon matListIcon class="app-nav-list-icon"> slideshow </mat-icon>        Slideshow      </a>      <!-- Searching -->      <a mat-list-item routerLinkActive="list-item-active" routerLink="/advance-search" >        <mat-icon matListIcon class="app-nav-list-icon"> search </mat-icon>        Advance Search      </a>      <!-- Duplicate -->      <a mat-list-item routerLinkActive="list-item-active" routerLink="/duplicate" >        <mat-icon matListIcon class="app-nav-list-icon"> photo_library </mat-icon>        Duplicate      </a>      <!-- People -->      <a mat-list-item routerLinkActive="list-item-active" routerLink="/friend-list">        <mat-icon matListIcon class="app-nav-list-icon"> people </mat-icon>        Friend List      </a>      <!-- Profile -->      <a mat-list-item routerLinkActive="list-item-active" routerLink="/profile" >        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>        Profile      </a>      <!-- Remove -->      <a mat-list-item routerLinkActive="list-item-active" routerLink="/login" >        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>        Switch Account      </a>      <a mat-list-item routerLinkActive="list-item-active" routerLink="/registration">        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>        Create NewAccount      </a>      <a mat-list-item routerLinkActive="list-item-active" routerLink="/face-detect">        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>        Face-Detection      </a>    </mat-nav-list>    <mat-divider></mat-divider></div>'
+    var COMPONENTS = [{'name': 'AddFriendComponent', 'selector': 'app-add-friend'},{'name': 'AdvanceSearchComponent', 'selector': 'app-advance-search'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'DuplicateComponent', 'selector': 'app-duplicate'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'EventGalleryComponent', 'selector': 'app-event-gallery'},{'name': 'EventListComponent', 'selector': 'event-list'},{'name': 'FaceDetectComponent', 'selector': 'app-face-detect'},{'name': 'FourZeroFourPageComponent', 'selector': 'app-four-zero-four-page'},{'name': 'FriendListComponent', 'selector': 'app-friend-list'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OtherPhotosComponent', 'selector': 'app-other-photos'},{'name': 'PasswordCheckingComponent', 'selector': 'app-password-checking'},{'name': 'PeopleListComponent', 'selector': 'app-people-list'},{'name': 'PhotoThambnailComponent', 'selector': 'app-photo-thambnail'},{'name': 'PhotoViewerComponent', 'selector': 'app-photo-viewer'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReDirectToLatestEventComponent', 'selector': 'app-re-direct-to-latest-event'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SearchEventComponent', 'selector': 'app-search-event'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'SlideShowComponent', 'selector': 'app-slide-show'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
+    var DIRECTIVES = [{'name': 'FileDropDirective', 'selector': '[fileDrop]'},{'name': 'WebviewDirective', 'selector': 'webview'}];
+    var ACTUAL_COMPONENT = {'name': 'SidebarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SidebarComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

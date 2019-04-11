@@ -1,28 +1,59 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle >
-    <button mat-icon-button disabled></button>
+<mat-toolbar>
+    <mat-toolbar-row >
+      <div class="toolbar-title">
+        Event List
+      </div>    
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-divider></mat-divider>
+  <!-- Event List Component -->
+
+  <div class="action-container">
+      <div>
+        <mat-select class="group-list" placeholder="Select group" (selectionChange)="EventFilter($event.value)">
+          <mat-option *ngFor="let type of groups" [value]="type">{{type}}</mat-option>
+        </mat-select>
+      </div>
+      <button mat-stroked-button color="primary" (click)="HiddingAction()">
+        <span *ngIf="isHidden">unhide</span>
+        <span *ngIf="!isHidden">hide</span>
+      </button>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle >
+        <button mat-icon-button disabled></button>
+        
+        <a [routerLink]="['/timeline', node.id]" routerLinkActive="link-active" class="child-node">
+        <button mat-button>
+        <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
+          {{ node.type === 'event' ? 'photo' : 'folder' }}
+        </mat-icon>
+        {{node.name}}
+      </button>
+      </a>
+      </mat-tree-node>
+      
+      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" >
+        <button mat-button matTreeNodeToggle class="parent-node"
+                [attr.aria-label]="'toggle ' + node.name">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        
+        <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
+          {{ node.type ==='event' ? 'description' : 'folder' }}
+        </mat-icon>
+        {{node.name}}
+      </button>
+      </mat-tree-node>
+    </mat-tree>
     
-    <a [routerLink]="['/timeline', node.id]" routerLinkActive="link-active" class="child-node">
-    <button mat-button>
-    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-      {{ node.type === 'event' ? 'photo' : 'folder' }}
-    </mat-icon>
-    {{node.name}}
-  </button>
-  </a>
-  </mat-tree-node>
+  <mat-divider></mat-divider>
   
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" >
-    <button mat-button matTreeNodeToggle class="parent-node"
-            [attr.aria-label]="'toggle ' + node.name">
-      <mat-icon class="mat-icon-rtl-mirror">
-        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-      </mat-icon>
-    
-    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-      {{ node.type ==='event' ? 'description' : 'folder' }}
-    </mat-icon>
-    {{node.name}}
-  </button>
-  </mat-tree-node>
-</mat-tree>
+
+
+

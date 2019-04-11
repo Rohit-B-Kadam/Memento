@@ -21,3 +21,22 @@
 {
   color: red; 
 }
+
+.toolbar-title {
+  margin: 0 16px 0 16px;
+  font-size: 25px;
+}
+
+.group-list
+{
+    width: 150px;
+    padding-top: 10px;
+}
+
+.action-container
+{
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px;
+}

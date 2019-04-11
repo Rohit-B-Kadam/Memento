@@ -1,3 +1,5 @@
+//not needed
+
 export class LoginUserInfo 
 {
     constructor(
@@ -6,7 +8,7 @@ export class LoginUserInfo
         public password:string,
         public email:string,
         public profilePhoto:any,
-        public faceDescriptor:any[] 
+        public faceDescriptor?:any[] 
         
         ) { }
 }

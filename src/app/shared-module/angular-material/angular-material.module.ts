@@ -25,6 +25,7 @@ import {MatButtonModule,
   import { MatDatepickerModule } from '@angular/material/datepicker';
   import {MatSelectModule} from '@angular/material/select';
   import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+  import {MatDialogModule} from '@angular/material/dialog';
 
   // FlexLayout
   import { FlexLayoutModule } from '@angular/flex-layout';
@@ -55,7 +56,8 @@ import {MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    MatDialogModule
   ],
   exports:[
     MatToolbarModule,
@@ -79,7 +81,8 @@ import {MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    MatDialogModule
   ]
 })
 export class AngularMaterialModule { }
