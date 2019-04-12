@@ -24,6 +24,7 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     public intTimmer;
     public intTimmerNewPhoto;
     public index;
+    public showHidden;
 
     public Loaded = false
     public newImagePath: PhotoInfo[];  // new added path will be save
@@ -36,9 +37,10 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
         private _electronService: ElectronService
     ) 
     {
+        this.showHidden = false;
         this.imagesBuffer = [];
         this.setClass= [];
-        this.eventInfo = new EventInfo('', new Date(), '', '', [], '', []);
+        this.eventInfo = new EventInfo('', new Date(), '', [], '', [],false);
         this.initialisedComponent();
         this.newImagePath = [];
     }
@@ -180,23 +182,25 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
   {
     // getting nodejs fs module from electronService
     let fs = this._electronService.fs;
-    let date = this.eventInfo.date;
+    // let date = this.eventInfo.date;
 
-    let fullPath: string= destFolder;
-    if (!fs.existsSync(fullPath))
-    {
-      fs.mkdirSync(fullPath);
-    }
+    // let fullPath: string= destFolder;
+    // if (!fs.existsSync(fullPath))
+    // {
+    //   fs.mkdirSync(fullPath);
+    // }
 
-    // check year folder is exist or not
-    fullPath += '/'+date.getFullYear();
-    if (!fs.existsSync(fullPath))
-    {
-      fs.mkdirSync(fullPath);
-    }
+    // // check year folder is exist or not
+    // fullPath += '/'+date.getFullYear();
+    // if (!fs.existsSync(fullPath))
+    // {
+    //   fs.mkdirSync(fullPath);
+    // }
    
 
-    fullPath += "/"+date.getDate()+'_'+date.getMonth()+'_'+this.eventInfo.title;
+    //fullPath += "/"+date.getDate()+'_'+date.getMonth()+'_'+this.eventInfo.title;
+    let fullPath = this.eventInfo.eventPath;
+
     if (!fs.existsSync(fullPath))
     {
       fs.mkdirSync(fullPath);
@@ -246,7 +250,7 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
       this.photoInteraction.DeleteLoadedEvent().then(
           () =>
           {
-            this.router.navigate(['/timeline', 'OkPpHUV9cAg2z83j']);
+            this.router.navigate(['/timeline']);
           }
       )
 
@@ -261,14 +265,12 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     let compressing = this._electronService.compressing;
 
     // To Get Event Folder path
-    let fullPath = "/home/rohit/Desktop/Momento-Events";
+    let fullPath = this.eventInfo.eventPath;
     let date = this.eventInfo.date;
 
-    fullPath += "/"+date.getFullYear();
-    fullPath += "/" + date.getDate() + '_' + date.getMonth() + '_' + this.eventInfo.title;
-
     // Get Destination name
-    let zipFileName = date.getDate() + '_' + date.getMonth() + '_' + this.eventInfo.title;
+    let filename = this.eventInfo.eventPath.split('\\').pop().split('/').pop();
+    let zipFileName = filename;
 
     // Add the event Detail in folder
     var data = JSON.stringify(this.eventInfo,null,2);
@@ -277,11 +279,42 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     var data = JSON.stringify(this.photoInteraction.photosInfo,null,2);
     fs.writeFileSync(fullPath+"/photo_description.json", data);
 
+    if(!fs.existsSync("/home/rohit/Desktop/ImportFolder"))
+    {
+        fs.mkdirSync("/home/rohit/Desktop/ImportFolder");
+    }
 
     // compress the file(zip)
-    compressing.zip.compressDir(fullPath,"/home/rohit/Desktop/"+zipFileName+".zip")
+    compressing.zip.compressDir(fullPath,"/home/rohit/Desktop/ImportFolder/"+zipFileName+".zip")
                     .then(() => { console.log("Compression done") })
                     .catch((err)=> { console.log("Error: "+err)})
 
+  }
+
+
+  public HideEvent()
+  {
+    if(this.eventInfo.isHidden)
+    {
+        // unhide the event
+       this.photoInteraction.UnHideTheEvent()
+
+    }  
+    else
+    {
+        // hide the event
+        clearInterval(this.intTimmer);
+        this.photoInteraction.HideThisEvent().then(
+        () =>
+        {
+          console.log("Done");
+          this.router.navigate(['/timeline']);
+        }
+    )
+    }
+
+    // this.photoInteraction.refreshEventInfo();
+    // this.eventInfo = this.photoInteraction.eventInfo;
+    
   }
 }

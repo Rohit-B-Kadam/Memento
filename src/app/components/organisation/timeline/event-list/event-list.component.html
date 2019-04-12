@@ -12,7 +12,7 @@
   <div class="action-container">
       <div>
         <mat-select class="group-list" placeholder="Select group" (selectionChange)="EventFilter($event.value)">
-          <mat-option *ngFor="let type of groups" [value]="type">{{type}}</mat-option>
+          <mat-option *ngFor="let type of groups" [value]="type.value">{{type.value}}</mat-option>
         </mat-select>
       </div>
       <button mat-stroked-button color="primary" (click)="HiddingAction()">

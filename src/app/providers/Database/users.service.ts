@@ -69,4 +69,22 @@ export class UsersService {
     });
   }
 
+  public find(userId:string) {
+    return new Promise((resolve, reject) => {
+
+      return this.db.find({ _id: userId}, (err, items) => {
+        // items is match , in this case all the entries
+        if (err) 
+        {
+          reject(err);
+        }
+        else 
+        {
+          resolve(items);
+        }
+      })
+
+    });
+  }
+
 }

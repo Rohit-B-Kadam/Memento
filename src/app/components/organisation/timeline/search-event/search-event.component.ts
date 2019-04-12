@@ -5,6 +5,7 @@ import {map, startWith} from 'rxjs/operators';
 import { EventsService } from '../../../../providers/Database/events.service';
 import { EventInfo } from '../../../../classes/event-info';
 import { Router } from '@angular/router';
+import { CurrentUserService } from '../../../../providers/current-user.service';
 
 @Component({
   selector: 'app-search-event',
@@ -19,16 +20,21 @@ export class SearchEventComponent implements OnInit {
   eventId :string[];
 
   constructor(private eventCollection: EventsService,
-              private router: Router) 
+              private router: Router,
+              private currentUser: CurrentUserService) 
   { 
     this.eventList = [];
     this.eventId = []
     // getting data from database
-    this.eventCollection.findAll().then( (events : EventInfo[])=> 
+    this.eventCollection.find(currentUser.UserInfo._id).then( (events : EventInfo[])=> 
     {
-        events.forEach( (item) => {
-          this.eventList.push(item.title)
-          this.eventId.push(item._id)
+        events.forEach( (item) => 
+        {
+          if(!item.isHidden)
+          {
+            this.eventList.push(item.title)
+            this.eventId.push(item._id)
+          }
         })
         this.autoComplete();
     })

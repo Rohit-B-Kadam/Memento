@@ -66,6 +66,25 @@ export class FriendsService
     });
   }
 
+  public find(Id:string) 
+  {
+    return new Promise((resolve, reject) => {
+
+      return this.db.find({userId: Id}, (err, items) => {
+        // items is match , in this case all the entries
+        if (err) 
+        {
+          reject(err);
+        }
+        else 
+        {
+          resolve(items);
+        }
+      })
+
+    });
+  }
+
   // Remove
   public remove(id:any) 
   {

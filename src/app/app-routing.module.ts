@@ -108,7 +108,7 @@ const routes: Routes = [
     },
     { 
         path: '',
-        redirectTo: '/timeline',
+        redirectTo: '/login',
         pathMatch: 'full'
     },
     {

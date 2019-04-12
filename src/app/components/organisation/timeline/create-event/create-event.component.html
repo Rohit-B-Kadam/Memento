@@ -1,3 +1,4 @@
+
 <div class="main-component">
 
   <div>
@@ -107,23 +108,20 @@
                   </div>
 
                   <div class="row">
-                      <div class="col">
-                        <mat-form-field class="full-width"> 
-                            <mat-select placeholder="Event Type" formControlName="eventType">
-                            <mat-option *ngFor="let type of eventType" [value]="type">{{type}}</mat-option>
-                          </mat-select>
-                          <mat-error *ngIf="eventDetail.controls['eventType'].hasError('required')">
-                              required*
-                          </mat-error>
-                        </mat-form-field>
-                      </div>
-                  </div>
+                    <div class="col" style="display: flex; flex-direction: row-reverse">
+                      
+                          <button mat-stroked-button (click)="AddCategory()" color="primary">
+                            Add Categoery
+                          </button>
+                      
+                    </div>
+                  </div> 
 
                 <div class="row">
                   <div class="col">
                     <mat-form-field class="full-width"> 
                         <mat-select placeholder="Categories"  multiple  formControlName="eventCategory">
-                        <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+                        <mat-option *ngFor="let category of categories" [value]="category.value">{{category.value}}</mat-option>
                       </mat-select>
                       <mat-error *ngIf="eventDetail.controls['eventCategory'].hasError('required')">
                           required*
@@ -207,10 +205,6 @@
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
       <div class="step-container">
-          <section class="example-section">
-              <mat-checkbox class="example-margin" color="primary"
-                            [(ngModel)]="isHidden">Hide Event</mat-checkbox>
-          </section>
         <button mat-raised-button color="primary" (click)="addEvent()" > Add the Event </button>
       </div>
       <div>

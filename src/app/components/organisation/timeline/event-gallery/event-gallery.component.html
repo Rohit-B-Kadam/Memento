@@ -49,8 +49,10 @@
         </button>
 
         <!-- item3 -->
-        <button mat-menu-item>
-          <span>Hide event</span>
+        <button mat-menu-item (click)="HideEvent()">
+          <span *ngIf="eventInfo.isHidden">UnHide event</span>
+          <span *ngIf="!eventInfo.isHidden">Hide event</span>
+          
         </button>
       </mat-menu>
 

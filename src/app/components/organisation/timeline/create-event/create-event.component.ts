@@ -8,6 +8,11 @@ import { ElectronService } from '../../../../providers/electron.service';
 import { Router } from '@angular/router';
 import { FriendsService } from '../../../../providers/Database/friends.service';
 import { FriendProfile } from '../../../../classes/friend-profile';
+import { MatDialog } from '@angular/material';
+import { AddCategoryDialogComponent } from './add-category-dialog/add-category-dialog.component';
+import { CurrentUserService } from '../../../../providers/current-user.service';
+import { Category } from '../../../../classes/category';
+import { CatergoryCollectionService } from '../../../../providers/Database/catergory-collection.service';
 //import { EXIF } from 'exif-js';
 var EXIF = require('exif-js');
 
@@ -33,16 +38,12 @@ export class CreateEventComponent implements OnInit
 
   public eventDetail: FormGroup;
 
-  public isImageUpload:boolean;
-
   public isHidden: boolean;
 
   dropzoneActive:boolean = false;
 
   // Filling data
-  categories: string[] = ["Family" , "Friend", "College Friends"];
-  
-  eventType: string[] = ["Trekking","Marriage","Pinic","Event"];
+  categories: Category[];
   
   // make dynamic
   friendLists:string[];
@@ -77,18 +78,24 @@ export class CreateEventComponent implements OnInit
               private eventCollection: EventsService,
               private _electronService: ElectronService,
               private router: Router,
-              private _friendCollection: FriendsService) 
+              private _friendCollection: FriendsService,
+              private _currentUser: CurrentUserService,
+              public dialog: MatDialog,
+              public categoryCollection: CatergoryCollectionService) 
   {
     
-    this.isImageUpload = false;
+     this.categories = _currentUser.Categories;
 
     this.friendLists = [];
-    _friendCollection.findAll().then( (value : FriendProfile[])=>
+
+    _friendCollection.find(this._currentUser.UserInfo._id).then( (value : FriendProfile[])=>
     {
         value.forEach( (friend)=>{
           this.friendLists.push(friend.name)
         })
     })
+
+   
 
     // initialising the form control
     this.uploadControl = this._formBuilder.group(
@@ -102,7 +109,6 @@ export class CreateEventComponent implements OnInit
         eventName: [null, Validators.required],
         eventDate: [null, Validators.required],
         location: [null, Validators.required],
-        eventType: [null, Validators.required],
         eventCategory: [null, Validators.required],
         description: [null, Validators.required],
       }
@@ -113,8 +119,6 @@ export class CreateEventComponent implements OnInit
    // Custom Validator
    public checkUploaded(group: FormGroup) 
    { 
-     console.log(this.isImageUpload)
-
      return true ? null : { notSame: true }     
    }
  
@@ -196,22 +200,23 @@ export class CreateEventComponent implements OnInit
 
   public addEvent()
   {
-
-
-
+    this.isHidden = false;
     this.eventInfo = new EventInfo(
-      this.eventDetail.value['eventName'],
-      this.eventDetail.value['eventDate'],
-      this.eventDetail.value['location'],
-      this.eventDetail.value['eventType'],
-      this.eventDetail.value['eventCategory'],
-      this.eventDetail.value['description'],
-      this.addedFriends
+        this.eventDetail.value['eventName'],
+        this.eventDetail.value['eventDate'],
+        this.eventDetail.value['location'],
+        this.eventDetail.value['eventCategory'],
+        this.eventDetail.value['description'],
+        this.addedFriends,
+        this.isHidden,
+        this._currentUser.UserInfo._id
       );
+      
 
       this.moveAllPhotoToDest("/home/rohit/Desktop/Momento-Events");
       this.fillPhotoInfo();
-      // insert the event
+      //insert the event
+      console.log(this.eventInfo)
       this.eventCollection.insert(this.eventInfo , this.photoInfos ).then( (value : EventInfo)=> {
       
         console.log(value)
@@ -252,6 +257,8 @@ export class CreateEventComponent implements OnInit
 
     for(let i = 0 ; i < this.photoInfos.length; i++)
     {
+      this.eventInfo.eventPath = fullPath;
+      // to get filename
       let photoName = this.photoInfos[i].photoUrl.split('\\').pop().split('/').pop();
       fs.copyFileSync(this.photoInfos[i].photoUrl, fullPath+'/'+photoName);
       this.photoInfos[i].photoUrl = fullPath+'/'+photoName;
@@ -285,4 +292,14 @@ export class CreateEventComponent implements OnInit
     return ab;
   }
 
+  public AddCategory()
+  {
+    const dialogRef = this.dialog.open(AddCategoryDialogComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.categories = this._currentUser.Categories;
+    });
+  }
 }

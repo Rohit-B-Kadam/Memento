@@ -55,21 +55,8 @@
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <mat-select placeholder="Event Type" formControlName="eventType">
-                  <mat-option *ngFor="let type of eventType" [value]="type">{{type}}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="eventDetail.controls['eventType'].hasError('required')">
-                  required*
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <mat-form-field class="full-width">
                 <mat-select placeholder="Categories" multiple formControlName="eventCategory">
-                  <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+                  <mat-option *ngFor="let category of categories" [value]="category.value">{{category.value}}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="eventDetail.controls['eventCategory'].hasError('required')">
                   required*

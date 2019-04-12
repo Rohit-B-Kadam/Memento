@@ -4,6 +4,8 @@ import { EventsService } from '../../../../providers/Database/events.service';
 import { EventInfo } from '../../../../classes/event-info';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { CurrentUserService } from '../../../../providers/current-user.service';
+import { Category } from '../../../../classes/category';
 
 @Component({
   selector: 'app-edit-event',
@@ -27,18 +29,17 @@ export class EditEventComponent implements OnInit
 
 
   // Filling data
-  categories: string[] = ["Family" , "Friend", "College Friends"];
-  
-  eventType: string[] = ["Trekking","Marriage","Pinic","Event"];
-  
+  categories: Category[];
 
   constructor(private _formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private eventCollection: EventsService,
               private router: Router,
-              private _location : Location) 
+              private _location : Location,
+              private _currentUser: CurrentUserService) 
   {
     this.initialisedComponent();
+    
     this.eventDetail = this._formBuilder.group(
       {
         eventName: [null, Validators.required],
@@ -69,6 +70,8 @@ export class EditEventComponent implements OnInit
           .catch(err => console.log(err));
         }
     )
+
+    this.categories = this._currentUser.Categories;
   }
 
 
@@ -79,7 +82,6 @@ export class EditEventComponent implements OnInit
         eventName: [this.eventInfo.title, Validators.required],
         eventDate: [this.eventInfo.date, Validators.required],
         location: [this.eventInfo.location, Validators.required],
-        eventType: [this.eventInfo.eventType, Validators.required],
         eventCategory: [this.eventInfo.categories, Validators.required],
         description: [this.eventInfo.description, Validators.required],
   
@@ -93,7 +95,6 @@ export class EditEventComponent implements OnInit
       this.eventInfo.title= this.eventDetail.value['eventName']
       this.eventInfo.date = this.eventDetail.value['eventDate']
       this.eventInfo.location = this.eventDetail.value['location']
-      this.eventInfo.eventType = this.eventDetail.value['eventType']
       this.eventInfo.categories = this.eventDetail.value['eventCategory']
       this.eventInfo.description = this.eventDetail.value['description']
 

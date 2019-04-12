@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UsersService } from '../../../../../providers/Database/users.service';
 import { User } from '../../../../../classes/user';
+import { CurrentUserService } from '../../../../../providers/current-user.service';
 
 
 
@@ -19,12 +20,13 @@ export class PasswordCheckingComponent {
   constructor(
     public dialogRef: MatDialogRef<PasswordCheckingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _userCollection: UsersService
+    private _userCollection: UsersService,
+    private _currentUser: CurrentUserService
    ) 
    {
       this.displayError = "";
       this.password = "";
-      this._userCollection.findAll().then((values: any)=>
+      this._userCollection.find(_currentUser.UserInfo._id).then((values: any)=>
       {
           this.userInfo = values[0];
           console.log(this.userInfo)

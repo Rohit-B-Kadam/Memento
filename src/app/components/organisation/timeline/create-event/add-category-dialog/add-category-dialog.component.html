@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Authentication</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Add Category Here" [(ngModel)]="newCategory">
+    
+  </mat-form-field>
+  <mat-error *ngIf="displayError">
+    {{displayError}}
+  </mat-error>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button  cdkFocusInitial (click)="Add()" >Ok</button>
+</div>
+

@@ -8,6 +8,9 @@ import { EventInfo } from '../../../classes/event-info';
 import { PhotoInfo } from '../../../classes/photo-info';
 import { Router } from '@angular/router';
 import { EventsService } from '../../../providers/Database/events.service';
+import { CurrentUserService } from '../../../providers/current-user.service';
+import { UsersService } from '../../../providers/Database/users.service';
+import { User } from '../../../classes/user';
 
 
 @Component({
@@ -25,7 +28,9 @@ export class TimelineComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver,
               private eventCollection: EventsService,
               private _electronService: ElectronService,
-              private router: Router) {}
+              private router: Router,
+              private _currentUser: CurrentUserService) 
+  { }
 
   ngOnInit() {
   }
@@ -50,9 +55,9 @@ export class TimelineComponent implements OnInit {
     // compress the file(zip) in temp folder
     compressing.zip.uncompress(zipFilePath,fullPath+"/.temp")
       .catch((err)=> { console.log("Error: "+err)})
-      .then(() => 
+      .then((value) => 
         { 
-          console.log("unCompression done") 
+          console.log("unCompression done"+value) 
           
           // To check if zip file is  created by us or not
           let tempFolderPath = fullPath+"/.temp/"+zipFile.name.slice(0, zipFile.name.length-4);
@@ -69,6 +74,11 @@ export class TimelineComponent implements OnInit {
           let eventInfo:EventInfo = JSON.parse(data.toString())
           //convert the date string into date object
           eventInfo.date = new Date(eventInfo.date)
+          if( eventInfo.userId != this._currentUser.UserInfo._id )
+          {
+            eventInfo.userId = this._currentUser.UserInfo._id;
+            this._currentUser.UserInfo._id = undefined;
+          }
 
           data = fs.readFileSync(photoDesFile);
           let photoInfo: PhotoInfo[] = JSON.parse(data.toString())
@@ -91,21 +101,7 @@ export class TimelineComponent implements OnInit {
     console.log(date)
 
     // Creating Folder
-    let fullPath: string= "/home/rohit/Desktop/Momento-Events";
-    if (!fs.existsSync(fullPath))
-    {
-      fs.mkdirSync(fullPath);
-    }
-
-    // check year folder is exist or not
-    fullPath += "/"+date.getFullYear();
-    if (!fs.existsSync(fullPath))
-    {
-      fs.mkdirSync(fullPath);
-    }
-   
-
-    fullPath += "/"+date.getDate()+'_'+date.getMonth()+'_'+eventInfo.title;
+    let fullPath: string= eventInfo.eventPath;
     if (!fs.existsSync(fullPath))
     {
       fs.mkdirSync(fullPath);

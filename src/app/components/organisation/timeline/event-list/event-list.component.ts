@@ -6,6 +6,9 @@ import { EventsService } from '../../../../providers/Database/events.service';
 import { EventInfo } from '../../../../classes/event-info';
 import { MatDialog } from '@angular/material';
 import { PasswordCheckingComponent } from './password-checking/password-checking.component';
+import { CurrentUserService } from '../../../../providers/current-user.service';
+import { Category } from '../../../../classes/category';
+import { ElectronService } from '../../../../providers/electron.service';
 
 /** File node data with possible child nodes. */
 export class FileNode {
@@ -47,11 +50,13 @@ export class EventListComponent {
   /// My code //////////////////////////////
   eventList: FileNode[];
   fullEventDetail: EventInfo[];
-  groups:string[];
+  groups:Category[];
   public isHidden:boolean;
 
   constructor( private eventCollection: EventsService,
-              public dialog: MatDialog) 
+              public dialog: MatDialog,
+              public _currentUserCollection: CurrentUserService,
+              public _electronService: ElectronService) 
   {
     
     this.treeFlattener = new MatTreeFlattener(
@@ -63,7 +68,11 @@ export class EventListComponent {
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     
-    this.groups = ["All", "Family" , "Friend", "College Friends"];
+    this.groups = [];
+    let allCategory = new Category("All","temp")
+    this.groups.push(allCategory)
+    this.groups = _currentUserCollection.Categories;
+    
     this.isHidden = true;
     
     this.getEventList();
@@ -112,10 +121,14 @@ export class EventListComponent {
     this.eventList = [];
 
     // getting data from database
-    this.eventCollection.findAll().then( (events : any[])=> 
+    this.eventCollection.find(this._currentUserCollection.UserInfo._id).then( (events : any[])=> 
     {
       this.fullEventDetail = events;
-      this.DisplayEventList(events)
+      let filterValue = this.fullEventDetail.filter((value)=>
+      {
+        return !value.isHidden
+      })
+      this.DisplayEventList(filterValue)
     })
     .catch((err)=>{
       console.log("Error: "+err);
@@ -131,7 +144,16 @@ export class EventListComponent {
 
     if(value == "All")
     {
-      displayEvent = this.fullEventDetail;
+      this.eventCollection.find(this._currentUserCollection.UserInfo._id).then( (events : any[])=> 
+      {
+        this.fullEventDetail = events;
+        
+        displayEvent = events;
+        this.DisplayEventList(displayEvent);
+      })
+      .catch((err)=>{
+        console.log("Error: "+err);
+      });
     }
     else
     {
@@ -143,31 +165,100 @@ export class EventListComponent {
           return false;
         }
       })
+
+
+      this.DisplayEventList(displayEvent);
     }
 
-    this.DisplayEventList(displayEvent);
   }
 
   public HiddingAction()
   {
+
+    
+
+    // Decrypt the data
+    let hiddenEvent = this.fullEventDetail.filter( (values)=>
+    {
+        return values.isHidden
+    })
+
     if(this.isHidden)
     {
+      // Dialog box to accept password
       const dialogRef = this.dialog.open(PasswordCheckingComponent, {
         width: '250px'
       });
   
-      dialogRef.afterClosed().subscribe(result => {
+      // Dialog box output
+      dialogRef.afterClosed().subscribe(result => 
+      {
         console.log(result);
-        
-        // this.animal = result;
+        if (result == "Successful") 
+        { 
+          
+          console.log(hiddenEvent)
+          this.DecryptThisEvent(hiddenEvent)
+
+          this.DisplayEventList(this.fullEventDetail)
+        }
+
       });
 
       this.isHidden = false;
     }
     else
     {
+      
+      // display only no hidden event
+      let filterValue = this.fullEventDetail.filter((value)=>
+      {
+        return !value.isHidden
+      })
+      this.DisplayEventList(filterValue)
+
+      // Delete the extract event
+      let trash = this._electronService.trash;
+      let fs = this._electronService.fs;
+      
+      hiddenEvent.forEach( (value) =>
+      {
+          let path = value.eventPath;
+          if(fs.existsSync(path))
+          {
+            trash(path)
+          }
+      })
       this.isHidden = true;
     }
+  }
+
+  public DecryptThisEvent( events : EventInfo[] )
+  {
+    // requirement
+    let fstream = this._electronService.fstream;
+    let tar = this._electronService.tar;
+    let crypto = this._electronService.crypto;
+    
+     // Generating the key
+     const KEY = 'mySup3rC00lP4ssWord'
+
+    events.forEach( (event) =>
+    {
+      let data = fstream.Reader("/home/rohit/Desktop/Momento-Events/.Encrypt/"+event._id+".tar");
+      let decrypt = crypto.createDecipher("aes-256-cbc",KEY)
+
+      let urlstr = event.eventPath;
+      let r = /[^\/]*$/;
+      let path = urlstr.replace(r, '');
+      console.log(path) 
+      let extract = tar.Extract(path);
+      
+      data.pipe(decrypt).pipe(extract);
+
+
+    })
+      
   }
 
   public DisplayEventList(events:any[])

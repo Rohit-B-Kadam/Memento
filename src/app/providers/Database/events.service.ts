@@ -28,7 +28,7 @@ export class EventsService
 
 
   // store the data .. work like cache
-  public storeTempData: StoreTempData;
+  // public storeTempData: StoreTempData;
 
   constructor( public photoCollection : PhotoCollectionService ) 
   {
@@ -37,7 +37,7 @@ export class EventsService
       autoload: true
     });
 
-    this.storeTempData = new StoreTempData();
+    //this.storeTempData = new StoreTempData();
   }
 
   //---------------------------------------------------------------
@@ -115,12 +115,49 @@ export class EventsService
     });
   }
 
+  public find( Id: string) {
+    return new Promise((resolve, reject) => {
+
+      return this.eventCollection.find({ userId: Id}, (err, items) => {
+        // items is match , in this case all the entries
+        if (err) 
+        {
+          reject(err);
+        }
+        else 
+        {
+          resolve(items);
+        }
+      })
+
+    });
+  }
+
   update(eventId: string, item: EventInfo) 
   {
     return new Promise((resolve, reject) => 
     {
       return this.eventCollection.update({ _id: eventId }, 
-            { $set: { title: item.title , date: item.date, eventType:item.eventType, categories:item.categories, location:item.location , description:item.description } }, 
+            { $set: { title: item.title , date: item.date, categories:item.categories, location:item.location , description:item.description } }, 
+            ((err: any, NumReplaced: any) => 
+      {
+        if (err) {
+          reject(err);
+        }
+        else {
+          resolve(NumReplaced);
+        }
+      }));
+    })
+  }
+
+
+  updateHideStatus(eventId: string, status:boolean) 
+  {
+    return new Promise((resolve, reject) => 
+    {
+      return this.eventCollection.update({ _id: eventId }, 
+            { $set: { isHidden: status } }, 
             ((err: any, NumReplaced: any) => 
       {
         if (err) {
@@ -147,8 +184,8 @@ export class EventsService
         }
         else 
         {
-          this.storeTempData.eventInfo = item;
-          this.storeTempData.id = eventId;
+          //this.storeTempData.eventInfo = item;
+          //this.storeTempData.id = eventId;
           resolve(item);
         }
       })

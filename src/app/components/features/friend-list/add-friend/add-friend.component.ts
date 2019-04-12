@@ -9,6 +9,7 @@ import * as faceapi from 'face-api.js';
 import { isNullOrUndefined } from 'util';
 import { FriendsService } from '../../../../providers/Database/friends.service';
 import { Router } from '@angular/router';
+import { CurrentUserService } from '../../../../providers/current-user.service';
 
 @Component({
   selector: 'app-add-friend',
@@ -40,7 +41,8 @@ export class AddFriendComponent implements OnInit
               private _electronService: ElectronService,
               private _faceRecognition: FaceRecognitionService,
               private _friendCollection: FriendsService,
-              private router: Router
+              private router: Router,
+              private _currentUser: CurrentUserService
               ) 
   { 
     
@@ -91,7 +93,7 @@ export class AddFriendComponent implements OnInit
     let email = this.registrationForm.value['email']
     let name = this.registrationForm.value['name']
     
-    this.friendInfo = new FriendProfile(name,email);
+    this.friendInfo = new FriendProfile(name,email,this._currentUser.UserInfo._id);
 
     /* 
     // Face detection
@@ -115,7 +117,6 @@ export class AddFriendComponent implements OnInit
       });
     */
     console.log(this.friendInfo)
-    
     // save in database
     this._friendCollection.insert(this.friendInfo)
     setTimeout(() => {

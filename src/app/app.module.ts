@@ -62,6 +62,7 @@ import { FaceDetectComponent } from './face-detect/face-detect.component';
 import { EditEventComponent } from './components/organisation/timeline/edit-event/edit-event.component';
 import { FileDropDirective } from './directives/file-drop.directive';
 import { PasswordCheckingComponent } from './components/organisation/timeline/event-list/password-checking/password-checking.component';
+import { AddCategoryDialogComponent } from './components/organisation/timeline/create-event/add-category-dialog/add-category-dialog.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -99,7 +100,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FaceDetectComponent,
     EditEventComponent,
     FileDropDirective,
-    PasswordCheckingComponent
+    PasswordCheckingComponent,
+    AddCategoryDialogComponent
     
   ],
   imports: [
@@ -121,7 +123,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LayoutModule
   ],
   entryComponents: [
-    PasswordCheckingComponent
+    PasswordCheckingComponent,
+    AddCategoryDialogComponent
   ]
   ,
   providers: [ElectronService,

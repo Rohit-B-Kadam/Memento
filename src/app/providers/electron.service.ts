@@ -8,6 +8,9 @@ import * as fs from 'fs';
 import * as trash from 'trash';
 import * as compressing from 'compressing';
 import * as targz from 'targz';
+import * as fstream from 'fstream';
+import * as tar from 'tar';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class ElectronService {
@@ -20,6 +23,9 @@ export class ElectronService {
   trash: typeof trash;
   compressing: typeof compressing;
   targz: typeof targz;
+  fstream: typeof fstream;
+  tar: typeof tar;
+  crypto: typeof crypto;
 
   constructor() 
   {
@@ -34,6 +40,11 @@ export class ElectronService {
       this.trash = window.require('trash')
       this.compressing = require('compressing');
       this.targz = require('targz');
+
+      this.fstream = require('fstream');
+      this.tar = require('tar');
+      this.crypto = require('crypto');
+
     }
   }
 

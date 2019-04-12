@@ -26,7 +26,7 @@ export class EventDetailComponent implements OnInit , OnDestroy
               private eventCollection: EventsService,
               private _electronService: ElectronService) 
   { 
-      this.eventInfo = new EventInfo('',new Date(),'','',[],'',[]);
+      this.eventInfo = new EventInfo('',new Date(),'',[],'',[]);
       this.initialiseEventDetail();
       
   }
