@@ -172,12 +172,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(_friendCollection: <a href="../injectables/FriendsService.html">FriendsService</a>)</code>
+<code>constructor(_friendCollection: <a href="../injectables/FriendsService.html">FriendsService</a>, _currentUser: <a href="../injectables/CurrentUserService.html">CurrentUserService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -199,6 +199,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/FriendsService.html" target="_self" >FriendsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_currentUser</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CurrentUserService.html" target="_self" >CurrentUserService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -248,8 +260,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:35</a></div>
                 </td>
             </tr>
 
@@ -314,8 +326,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:29</a></div>
                 </td>
             </tr>
 
@@ -357,7 +369,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -384,7 +396,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/features/friend-list/friend-list.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -401,6 +413,7 @@
 import { FriendProfile } from &#x27;../../../classes/friend-profile&#x27;;
 import { group } from &#x27;@angular/animations&#x27;;
 import { FriendsService } from &#x27;../../../providers/Database/friends.service&#x27;;
+import { CurrentUserService } from &#x27;../../../providers/current-user.service&#x27;;
 
 
 @Component({
@@ -413,13 +426,15 @@ export class FriendListComponent implements OnInit {
   friends: FriendProfile[];
   groups: string[];
   
-  constructor( private _friendCollection: FriendsService) 
+  constructor( private _friendCollection: FriendsService,
+                private _currentUser: CurrentUserService) 
   {
-    _friendCollection.findAll().then( (value : FriendProfile[])&#x3D;&gt;
+    _friendCollection.find(this._currentUser.UserInfo._id).then( (value : FriendProfile[])&#x3D;&gt;
     {
         this.friends &#x3D; value;
         console.log(this.friends)
     })
+
   }
 
   ngOnInit() {
@@ -563,7 +578,7 @@ export class FriendListComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div style="padding: 50px;"></div><mat-card class="example-card">  <mat-card-content class="list-header">    <h2>Friend list:</h2>    <div class="action-list">            <!-- <mat-select class="group-list" placeholder="Select group">        <mat-option *ngFor="let type of groups" [value]="type">{{type}}</mat-option>      </mat-select> -->          <a mat-raised-button color="primary" routerLink="/add-friend" >Add Friend</a>    </div>  </mat-card-content>    <mat-card-content>    <ul style="margin:0px; padding:0px;" class="list">      <li *ngFor="let friend of friends; let i = index" class="list-style">        <div class="list-content">                  <mat-card-header>          <mat-card-title>{{friend.name}}</mat-card-title>          <mat-card-subtitle>{{friend.email}}</mat-card-subtitle>        </mat-card-header>        <div><button mat-icon-button (click)="DeleteFriend(i)" >          <mat-icon style="color:darkred">delete</mat-icon></button></div>      </div>      </li>    </ul>  </mat-card-content></mat-card></div>'
-    var COMPONENTS = [{'name': 'AddFriendComponent', 'selector': 'app-add-friend'},{'name': 'AdvanceSearchComponent', 'selector': 'app-advance-search'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'DuplicateComponent', 'selector': 'app-duplicate'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'EventGalleryComponent', 'selector': 'app-event-gallery'},{'name': 'EventListComponent', 'selector': 'event-list'},{'name': 'FaceDetectComponent', 'selector': 'app-face-detect'},{'name': 'FourZeroFourPageComponent', 'selector': 'app-four-zero-four-page'},{'name': 'FriendListComponent', 'selector': 'app-friend-list'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OtherPhotosComponent', 'selector': 'app-other-photos'},{'name': 'PasswordCheckingComponent', 'selector': 'app-password-checking'},{'name': 'PeopleListComponent', 'selector': 'app-people-list'},{'name': 'PhotoThambnailComponent', 'selector': 'app-photo-thambnail'},{'name': 'PhotoViewerComponent', 'selector': 'app-photo-viewer'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReDirectToLatestEventComponent', 'selector': 'app-re-direct-to-latest-event'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SearchEventComponent', 'selector': 'app-search-event'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'SlideShowComponent', 'selector': 'app-slide-show'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
+    var COMPONENTS = [{'name': 'AddCategoryDialogComponent', 'selector': 'app-add-category-dialog'},{'name': 'AddFriendComponent', 'selector': 'app-add-friend'},{'name': 'AdvanceSearchComponent', 'selector': 'app-advance-search'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'DuplicateComponent', 'selector': 'app-duplicate'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'EventGalleryComponent', 'selector': 'app-event-gallery'},{'name': 'EventListComponent', 'selector': 'event-list'},{'name': 'FaceDetectComponent', 'selector': 'app-face-detect'},{'name': 'FourZeroFourPageComponent', 'selector': 'app-four-zero-four-page'},{'name': 'FriendListComponent', 'selector': 'app-friend-list'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OtherPhotosComponent', 'selector': 'app-other-photos'},{'name': 'PasswordCheckingComponent', 'selector': 'app-password-checking'},{'name': 'PeopleListComponent', 'selector': 'app-people-list'},{'name': 'PhotoThambnailComponent', 'selector': 'app-photo-thambnail'},{'name': 'PhotoViewerComponent', 'selector': 'app-photo-viewer'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReDirectToLatestEventComponent', 'selector': 'app-re-direct-to-latest-event'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SearchEventComponent', 'selector': 'app-search-event'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'SlideShowComponent', 'selector': 'app-slide-show'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
     var DIRECTIVES = [{'name': 'FileDropDirective', 'selector': '[fileDrop]'},{'name': 'WebviewDirective', 'selector': 'webview'}];
     var ACTUAL_COMPONENT = {'name': 'FriendListComponent'};
 </script>

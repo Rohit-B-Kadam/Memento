@@ -71,7 +71,7 @@ export class EventListComponent {
     this.groups = [];
     let allCategory = new Category("All","temp")
     this.groups.push(allCategory)
-    this.groups = _currentUserCollection.Categories;
+    this.groups = this.groups.concat(_currentUserCollection.Categories);
     
     this.isHidden = true;
     

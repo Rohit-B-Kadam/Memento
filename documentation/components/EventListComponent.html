@@ -124,6 +124,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_currentUserCollection">_currentUserCollection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_electronService">_electronService</a>
+                            </li>
+                            <li>
                                 <a href="#dataSource">dataSource</a>
                             </li>
                             <li>
@@ -161,6 +169,10 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#DecryptThisEvent">DecryptThisEvent</a>
+                            </li>
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#DisplayEventList">DisplayEventList</a>
@@ -210,12 +222,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(eventCollection: <a href="../injectables/EventsService.html">EventsService</a>, dialog: MatDialog)</code>
+<code>constructor(eventCollection: <a href="../injectables/EventsService.html">EventsService</a>, dialog: MatDialog, _currentUserCollection: <a href="../injectables/CurrentUserService.html">CurrentUserService</a>, _electronService: <a href="../injectables/ElectronService.html">ElectronService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -256,6 +268,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>_currentUserCollection</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CurrentUserService.html" target="_self" >CurrentUserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_electronService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ElectronService.html" target="_self" >ElectronService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -274,6 +310,78 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DecryptThisEvent"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            DecryptThisEvent
+                        </b>
+                        <a href="#DecryptThisEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>DecryptThisEvent(events: <a href="../classes/EventInfo.html">EventInfo[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="236"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:236</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>events</td>
+                                    <td>
+                                                <code><a href="../classes/EventInfo.html" target="_self" >EventInfo[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -298,8 +406,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:173</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="264"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:264</a></div>
                 </td>
             </tr>
 
@@ -370,8 +478,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:126</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:139</a></div>
                 </td>
             </tr>
 
@@ -436,8 +544,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:113</a></div>
                 </td>
             </tr>
 
@@ -510,8 +618,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:117</a></div>
                 </td>
             </tr>
 
@@ -549,8 +657,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:97</a></div>
                 </td>
             </tr>
 
@@ -621,8 +729,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:108</a></div>
                 </td>
             </tr>
 
@@ -707,8 +815,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="151"
-                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:151</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:175</a></div>
                 </td>
             </tr>
 
@@ -746,8 +854,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:103</a></div>
                 </td>
             </tr>
 
@@ -818,8 +926,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:85</a></div>
                 </td>
             </tr>
 
@@ -890,6 +998,62 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="_currentUserCollection"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _currentUserCollection</b>
+                            <a href="#_currentUserCollection"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/CurrentUserService.html" target="_self" >CurrentUserService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:58</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_electronService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _electronService</b>
+                            <a href="#_electronService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/ElectronService.html" target="_self" >ElectronService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:59</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="dataSource"></a>
                         <span class="name">
                             <b>
@@ -906,7 +1070,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -940,7 +1104,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -967,7 +1131,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:51</a></div>
                             </td>
                         </tr>
 
@@ -994,7 +1158,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -1015,13 +1179,13 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>string[]</code>
+                            <i>Type : </i>        <code><a href="../classes/Category.html" target="_self" >Category[]</a></code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -1049,7 +1213,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -1076,7 +1240,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -1109,7 +1273,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -1136,6 +1300,9 @@ import { EventsService } from &#x27;../../../../providers/Database/events.servic
 import { EventInfo } from &#x27;../../../../classes/event-info&#x27;;
 import { MatDialog } from &#x27;@angular/material&#x27;;
 import { PasswordCheckingComponent } from &#x27;./password-checking/password-checking.component&#x27;;
+import { CurrentUserService } from &#x27;../../../../providers/current-user.service&#x27;;
+import { Category } from &#x27;../../../../classes/category&#x27;;
+import { ElectronService } from &#x27;../../../../providers/electron.service&#x27;;
 
 /** File node data with possible child nodes. */
 export class FileNode {
@@ -1177,11 +1344,13 @@ export class EventListComponent {
   /// My code //////////////////////////////
   eventList: FileNode[];
   fullEventDetail: EventInfo[];
-  groups:string[];
+  groups:Category[];
   public isHidden:boolean;
 
   constructor( private eventCollection: EventsService,
-              public dialog: MatDialog) 
+              public dialog: MatDialog,
+              public _currentUserCollection: CurrentUserService,
+              public _electronService: ElectronService) 
   {
     
     this.treeFlattener &#x3D; new MatTreeFlattener(
@@ -1193,7 +1362,11 @@ export class EventListComponent {
     this.treeControl &#x3D; new FlatTreeControl(this.getLevel, this.isExpandable);
     this.dataSource &#x3D; new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     
-    this.groups &#x3D; [&quot;All&quot;, &quot;Family&quot; , &quot;Friend&quot;, &quot;College Friends&quot;];
+    this.groups &#x3D; [];
+    let allCategory &#x3D; new Category(&quot;All&quot;,&quot;temp&quot;)
+    this.groups.push(allCategory)
+    this.groups &#x3D; _currentUserCollection.Categories;
+    
     this.isHidden &#x3D; true;
     
     this.getEventList();
@@ -1242,10 +1415,14 @@ export class EventListComponent {
     this.eventList &#x3D; [];
 
     // getting data from database
-    this.eventCollection.findAll().then( (events : any[])&#x3D;&gt; 
+    this.eventCollection.find(this._currentUserCollection.UserInfo._id).then( (events : any[])&#x3D;&gt; 
     {
       this.fullEventDetail &#x3D; events;
-      this.DisplayEventList(events)
+      let filterValue &#x3D; this.fullEventDetail.filter((value)&#x3D;&gt;
+      {
+        return !value.isHidden
+      })
+      this.DisplayEventList(filterValue)
     })
     .catch((err)&#x3D;&gt;{
       console.log(&quot;Error: &quot;+err);
@@ -1261,7 +1438,16 @@ export class EventListComponent {
 
     if(value &#x3D;&#x3D; &quot;All&quot;)
     {
-      displayEvent &#x3D; this.fullEventDetail;
+      this.eventCollection.find(this._currentUserCollection.UserInfo._id).then( (events : any[])&#x3D;&gt; 
+      {
+        this.fullEventDetail &#x3D; events;
+        
+        displayEvent &#x3D; events;
+        this.DisplayEventList(displayEvent);
+      })
+      .catch((err)&#x3D;&gt;{
+        console.log(&quot;Error: &quot;+err);
+      });
     }
     else
     {
@@ -1273,31 +1459,100 @@ export class EventListComponent {
           return false;
         }
       })
+
+
+      this.DisplayEventList(displayEvent);
     }
 
-    this.DisplayEventList(displayEvent);
   }
 
   public HiddingAction()
   {
+
+    
+
+    // Decrypt the data
+    let hiddenEvent &#x3D; this.fullEventDetail.filter( (values)&#x3D;&gt;
+    {
+        return values.isHidden
+    })
+
     if(this.isHidden)
     {
+      // Dialog box to accept password
       const dialogRef &#x3D; this.dialog.open(PasswordCheckingComponent, {
         width: &#x27;250px&#x27;
       });
   
-      dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
+      // Dialog box output
+      dialogRef.afterClosed().subscribe(result &#x3D;&gt; 
+      {
         console.log(result);
-        
-        // this.animal &#x3D; result;
+        if (result &#x3D;&#x3D; &quot;Successful&quot;) 
+        { 
+          
+          console.log(hiddenEvent)
+          this.DecryptThisEvent(hiddenEvent)
+
+          this.DisplayEventList(this.fullEventDetail)
+        }
+
       });
 
       this.isHidden &#x3D; false;
     }
     else
     {
+      
+      // display only no hidden event
+      let filterValue &#x3D; this.fullEventDetail.filter((value)&#x3D;&gt;
+      {
+        return !value.isHidden
+      })
+      this.DisplayEventList(filterValue)
+
+      // Delete the extract event
+      let trash &#x3D; this._electronService.trash;
+      let fs &#x3D; this._electronService.fs;
+      
+      hiddenEvent.forEach( (value) &#x3D;&gt;
+      {
+          let path &#x3D; value.eventPath;
+          if(fs.existsSync(path))
+          {
+            trash(path)
+          }
+      })
       this.isHidden &#x3D; true;
     }
+  }
+
+  public DecryptThisEvent( events : EventInfo[] )
+  {
+    // requirement
+    let fstream &#x3D; this._electronService.fstream;
+    let tar &#x3D; this._electronService.tar;
+    let crypto &#x3D; this._electronService.crypto;
+    
+     // Generating the key
+     const KEY &#x3D; &#x27;mySup3rC00lP4ssWord&#x27;
+
+    events.forEach( (event) &#x3D;&gt;
+    {
+      let data &#x3D; fstream.Reader(&quot;/home/rohit/Desktop/Momento-Events/.Encrypt/&quot;+event._id+&quot;.tar&quot;);
+      let decrypt &#x3D; crypto.createDecipher(&quot;aes-256-cbc&quot;,KEY)
+
+      let urlstr &#x3D; event.eventPath;
+      let r &#x3D; /[^\/]*$/;
+      let path &#x3D; urlstr.replace(r, &#x27;&#x27;);
+      console.log(path) 
+      let extract &#x3D; tar.Extract(path);
+      
+      data.pipe(decrypt).pipe(extract);
+
+
+    })
+      
   }
 
   public DisplayEventList(events:any[])
@@ -1372,7 +1627,7 @@ export class EventListComponent {
   &lt;div class&#x3D;&quot;action-container&quot;&gt;
       &lt;div&gt;
         &lt;mat-select class&#x3D;&quot;group-list&quot; placeholder&#x3D;&quot;Select group&quot; (selectionChange)&#x3D;&quot;EventFilter($event.value)&quot;&gt;
-          &lt;mat-option *ngFor&#x3D;&quot;let type of groups&quot; [value]&#x3D;&quot;type&quot;&gt;{{type}}&lt;/mat-option&gt;
+          &lt;mat-option *ngFor&#x3D;&quot;let type of groups&quot; [value]&#x3D;&quot;type.value&quot;&gt;{{type.value}}&lt;/mat-option&gt;
         &lt;/mat-select&gt;
       &lt;/div&gt;
       &lt;button mat-stroked-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;HiddingAction()&quot;&gt;
@@ -1493,8 +1748,8 @@ export class EventListComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-toolbar>    <mat-toolbar-row >      <div class="toolbar-title">        Event List      </div>        </mat-toolbar-row>  </mat-toolbar>  <mat-divider></mat-divider>  <!-- Event List Component -->  <div class="action-container">      <div>        <mat-select class="group-list" placeholder="Select group" (selectionChange)="EventFilter($event.value)">          <mat-option *ngFor="let type of groups" [value]="type">{{type}}</mat-option>        </mat-select>      </div>      <button mat-stroked-button color="primary" (click)="HiddingAction()">        <span *ngIf="isHidden">unhide</span>        <span *ngIf="!isHidden">hide</span>      </button>  </div>  <mat-divider></mat-divider>  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle >        <button mat-icon-button disabled></button>                <a [routerLink]="[\'/timeline\', node.id]" routerLinkActive="link-active" class="child-node">        <button mat-button>        <mat-icon class="type-icon" [attr.aria-label]="node.type + \'icon\'">          {{ node.type === \'event\' ? \'photo\' : \'folder\' }}        </mat-icon>        {{node.name}}      </button>      </a>      </mat-tree-node>            <mat-tree-node *matTreeNodeDef="let node; when: hasChild" >        <button mat-button matTreeNodeToggle class="parent-node"                [attr.aria-label]="\'toggle \' + node.name">          <mat-icon class="mat-icon-rtl-mirror">            {{treeControl.isExpanded(node) ? \'expand_more\' : \'chevron_right\'}}          </mat-icon>                <mat-icon class="type-icon" [attr.aria-label]="node.type + \'icon\'">          {{ node.type ===\'event\' ? \'description\' : \'folder\' }}        </mat-icon>        {{node.name}}      </button>      </mat-tree-node>    </mat-tree>      <mat-divider></mat-divider>  </div>'
-    var COMPONENTS = [{'name': 'AddFriendComponent', 'selector': 'app-add-friend'},{'name': 'AdvanceSearchComponent', 'selector': 'app-advance-search'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'DuplicateComponent', 'selector': 'app-duplicate'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'EventGalleryComponent', 'selector': 'app-event-gallery'},{'name': 'EventListComponent', 'selector': 'event-list'},{'name': 'FaceDetectComponent', 'selector': 'app-face-detect'},{'name': 'FourZeroFourPageComponent', 'selector': 'app-four-zero-four-page'},{'name': 'FriendListComponent', 'selector': 'app-friend-list'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OtherPhotosComponent', 'selector': 'app-other-photos'},{'name': 'PasswordCheckingComponent', 'selector': 'app-password-checking'},{'name': 'PeopleListComponent', 'selector': 'app-people-list'},{'name': 'PhotoThambnailComponent', 'selector': 'app-photo-thambnail'},{'name': 'PhotoViewerComponent', 'selector': 'app-photo-viewer'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReDirectToLatestEventComponent', 'selector': 'app-re-direct-to-latest-event'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SearchEventComponent', 'selector': 'app-search-event'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'SlideShowComponent', 'selector': 'app-slide-show'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
+        var COMPONENT_TEMPLATE = '<div><mat-toolbar>    <mat-toolbar-row >      <div class="toolbar-title">        Event List      </div>        </mat-toolbar-row>  </mat-toolbar>  <mat-divider></mat-divider>  <!-- Event List Component -->  <div class="action-container">      <div>        <mat-select class="group-list" placeholder="Select group" (selectionChange)="EventFilter($event.value)">          <mat-option *ngFor="let type of groups" [value]="type.value">{{type.value}}</mat-option>        </mat-select>      </div>      <button mat-stroked-button color="primary" (click)="HiddingAction()">        <span *ngIf="isHidden">unhide</span>        <span *ngIf="!isHidden">hide</span>      </button>  </div>  <mat-divider></mat-divider>  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle >        <button mat-icon-button disabled></button>                <a [routerLink]="[\'/timeline\', node.id]" routerLinkActive="link-active" class="child-node">        <button mat-button>        <mat-icon class="type-icon" [attr.aria-label]="node.type + \'icon\'">          {{ node.type === \'event\' ? \'photo\' : \'folder\' }}        </mat-icon>        {{node.name}}      </button>      </a>      </mat-tree-node>            <mat-tree-node *matTreeNodeDef="let node; when: hasChild" >        <button mat-button matTreeNodeToggle class="parent-node"                [attr.aria-label]="\'toggle \' + node.name">          <mat-icon class="mat-icon-rtl-mirror">            {{treeControl.isExpanded(node) ? \'expand_more\' : \'chevron_right\'}}          </mat-icon>                <mat-icon class="type-icon" [attr.aria-label]="node.type + \'icon\'">          {{ node.type ===\'event\' ? \'description\' : \'folder\' }}        </mat-icon>        {{node.name}}      </button>      </mat-tree-node>    </mat-tree>      <mat-divider></mat-divider>  </div>'
+    var COMPONENTS = [{'name': 'AddCategoryDialogComponent', 'selector': 'app-add-category-dialog'},{'name': 'AddFriendComponent', 'selector': 'app-add-friend'},{'name': 'AdvanceSearchComponent', 'selector': 'app-advance-search'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'DuplicateComponent', 'selector': 'app-duplicate'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'EventGalleryComponent', 'selector': 'app-event-gallery'},{'name': 'EventListComponent', 'selector': 'event-list'},{'name': 'FaceDetectComponent', 'selector': 'app-face-detect'},{'name': 'FourZeroFourPageComponent', 'selector': 'app-four-zero-four-page'},{'name': 'FriendListComponent', 'selector': 'app-friend-list'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OtherPhotosComponent', 'selector': 'app-other-photos'},{'name': 'PasswordCheckingComponent', 'selector': 'app-password-checking'},{'name': 'PeopleListComponent', 'selector': 'app-people-list'},{'name': 'PhotoThambnailComponent', 'selector': 'app-photo-thambnail'},{'name': 'PhotoViewerComponent', 'selector': 'app-photo-viewer'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReDirectToLatestEventComponent', 'selector': 'app-re-direct-to-latest-event'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SearchEventComponent', 'selector': 'app-search-event'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'SlideShowComponent', 'selector': 'app-slide-show'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
     var DIRECTIVES = [{'name': 'FileDropDirective', 'selector': '[fileDrop]'},{'name': 'WebviewDirective', 'selector': 'webview'}];
     var ACTUAL_COMPONENT = {'name': 'EventListComponent'};
 </script>

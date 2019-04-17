@@ -181,12 +181,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(breakpointObserver: BreakpointObserver, eventCollection: <a href="../injectables/EventsService.html">EventsService</a>, _electronService: <a href="../injectables/ElectronService.html">ElectronService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(breakpointObserver: BreakpointObserver, eventCollection: <a href="../injectables/EventsService.html">EventsService</a>, _electronService: <a href="../injectables/ElectronService.html">ElectronService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, _currentUser: <a href="../injectables/CurrentUserService.html">CurrentUserService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -251,6 +251,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>_currentUser</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CurrentUserService.html" target="_self" >CurrentUserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -293,8 +305,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:96</a></div>
                 </td>
             </tr>
 
@@ -389,8 +401,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="156"
-                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:156</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:152</a></div>
                 </td>
             </tr>
 
@@ -470,8 +482,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:35</a></div>
                 </td>
             </tr>
 
@@ -511,8 +523,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:39</a></div>
                 </td>
             </tr>
 
@@ -583,8 +595,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:46</a></div>
                 </td>
             </tr>
 
@@ -661,7 +673,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/organisation/timeline/timeline.component.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -684,6 +696,9 @@ import { EventInfo } from &#x27;../../../classes/event-info&#x27;;
 import { PhotoInfo } from &#x27;../../../classes/photo-info&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { EventsService } from &#x27;../../../providers/Database/events.service&#x27;;
+import { CurrentUserService } from &#x27;../../../providers/current-user.service&#x27;;
+import { UsersService } from &#x27;../../../providers/Database/users.service&#x27;;
+import { User } from &#x27;../../../classes/user&#x27;;
 
 
 @Component({
@@ -701,7 +716,9 @@ export class TimelineComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver,
               private eventCollection: EventsService,
               private _electronService: ElectronService,
-              private router: Router) {}
+              private router: Router,
+              private _currentUser: CurrentUserService) 
+  { }
 
   ngOnInit() {
   }
@@ -726,9 +743,9 @@ export class TimelineComponent implements OnInit {
     // compress the file(zip) in temp folder
     compressing.zip.uncompress(zipFilePath,fullPath+&quot;/.temp&quot;)
       .catch((err)&#x3D;&gt; { console.log(&quot;Error: &quot;+err)})
-      .then(() &#x3D;&gt; 
+      .then((value) &#x3D;&gt; 
         { 
-          console.log(&quot;unCompression done&quot;) 
+          console.log(&quot;unCompression done&quot;+value) 
           
           // To check if zip file is  created by us or not
           let tempFolderPath &#x3D; fullPath+&quot;/.temp/&quot;+zipFile.name.slice(0, zipFile.name.length-4);
@@ -745,6 +762,11 @@ export class TimelineComponent implements OnInit {
           let eventInfo:EventInfo &#x3D; JSON.parse(data.toString())
           //convert the date string into date object
           eventInfo.date &#x3D; new Date(eventInfo.date)
+          if( eventInfo.userId !&#x3D; this._currentUser.UserInfo._id )
+          {
+            eventInfo.userId &#x3D; this._currentUser.UserInfo._id;
+            this._currentUser.UserInfo._id &#x3D; undefined;
+          }
 
           data &#x3D; fs.readFileSync(photoDesFile);
           let photoInfo: PhotoInfo[] &#x3D; JSON.parse(data.toString())
@@ -767,21 +789,7 @@ export class TimelineComponent implements OnInit {
     console.log(date)
 
     // Creating Folder
-    let fullPath: string&#x3D; &quot;/home/rohit/Desktop/Momento-Events&quot;;
-    if (!fs.existsSync(fullPath))
-    {
-      fs.mkdirSync(fullPath);
-    }
-
-    // check year folder is exist or not
-    fullPath +&#x3D; &quot;/&quot;+date.getFullYear();
-    if (!fs.existsSync(fullPath))
-    {
-      fs.mkdirSync(fullPath);
-    }
-   
-
-    fullPath +&#x3D; &quot;/&quot;+date.getDate()+&#x27;_&#x27;+date.getMonth()+&#x27;_&#x27;+eventInfo.title;
+    let fullPath: string&#x3D; eventInfo.eventPath;
     if (!fs.existsSync(fullPath))
     {
       fs.mkdirSync(fullPath);
@@ -1016,7 +1024,7 @@ export class TimelineComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><mat-sidenav-container class="sidenav-container">    <!-- Eventlist Sidebar -->    <mat-sidenav #drawer class="sidenav"                  [attr.role]="(isHandset$ | async) ? \'dialog\' : \'navigation\'"                  [mode]="(isHandset$ | async) ? \'over\' : \'side\'"                  [opened]="!(isHandset$ | async)"                  position= "end">          <!-- Sidebar Title -->      <event-list></event-list>    </mat-sidenav>      <mat-sidenav-content>            <!--Event Nagivation  -->    <mat-toolbar class="upper-nav">            <mat-toolbar-row>            <div fxFlex fxLayout fxLayoutAlign="flex-end">                <ul fxLayout fxLayoutGap="25px" class="navigation-items">                                    <li>                    <app-search-event></app-search-event>                  </li>                  <li>                    <button mat-stroked-button color="primary" matTooltip="create new event"                            routerLink="/timeline/create-event"                     >                      Create Event                    </button>                  </li>                  <li>                    <button (click)="fileInput.click()" mat-stroked-button color="primary" matTooltip="import external event"                      color="primary">                      <span>Import Event</span>                      <input #fileInput type="file" accept=".zip" (change)="onFileInput($event)" style="display:none;" />                    </button>                  </li>                  <li>                    <button (click)="drawer.toggle()" mat-icon-button matTooltip="toggle event list"                            color = "primary">                      <mat-icon>format_list_bulleted</mat-icon>                  </button>                  </li>                </ul>                            </div>        </mat-toolbar-row>        </mat-toolbar>    <div>      <!-- Event Detail Component -->      <app-event-detail></app-event-detail>    </div>    </mat-sidenav-content>    </mat-sidenav-container></div>'
-    var COMPONENTS = [{'name': 'AddFriendComponent', 'selector': 'app-add-friend'},{'name': 'AdvanceSearchComponent', 'selector': 'app-advance-search'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'DuplicateComponent', 'selector': 'app-duplicate'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'EventGalleryComponent', 'selector': 'app-event-gallery'},{'name': 'EventListComponent', 'selector': 'event-list'},{'name': 'FaceDetectComponent', 'selector': 'app-face-detect'},{'name': 'FourZeroFourPageComponent', 'selector': 'app-four-zero-four-page'},{'name': 'FriendListComponent', 'selector': 'app-friend-list'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OtherPhotosComponent', 'selector': 'app-other-photos'},{'name': 'PasswordCheckingComponent', 'selector': 'app-password-checking'},{'name': 'PeopleListComponent', 'selector': 'app-people-list'},{'name': 'PhotoThambnailComponent', 'selector': 'app-photo-thambnail'},{'name': 'PhotoViewerComponent', 'selector': 'app-photo-viewer'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReDirectToLatestEventComponent', 'selector': 'app-re-direct-to-latest-event'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SearchEventComponent', 'selector': 'app-search-event'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'SlideShowComponent', 'selector': 'app-slide-show'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
+    var COMPONENTS = [{'name': 'AddCategoryDialogComponent', 'selector': 'app-add-category-dialog'},{'name': 'AddFriendComponent', 'selector': 'app-add-friend'},{'name': 'AdvanceSearchComponent', 'selector': 'app-advance-search'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'DuplicateComponent', 'selector': 'app-duplicate'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'EventGalleryComponent', 'selector': 'app-event-gallery'},{'name': 'EventListComponent', 'selector': 'event-list'},{'name': 'FaceDetectComponent', 'selector': 'app-face-detect'},{'name': 'FourZeroFourPageComponent', 'selector': 'app-four-zero-four-page'},{'name': 'FriendListComponent', 'selector': 'app-friend-list'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OtherPhotosComponent', 'selector': 'app-other-photos'},{'name': 'PasswordCheckingComponent', 'selector': 'app-password-checking'},{'name': 'PeopleListComponent', 'selector': 'app-people-list'},{'name': 'PhotoThambnailComponent', 'selector': 'app-photo-thambnail'},{'name': 'PhotoViewerComponent', 'selector': 'app-photo-viewer'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReDirectToLatestEventComponent', 'selector': 'app-re-direct-to-latest-event'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SearchEventComponent', 'selector': 'app-search-event'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'SlideShowComponent', 'selector': 'app-slide-show'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
     var DIRECTIVES = [{'name': 'FileDropDirective', 'selector': '[fileDrop]'},{'name': 'WebviewDirective', 'selector': 'webview'}];
     var ACTUAL_COMPONENT = {'name': 'TimelineComponent'};
 </script>

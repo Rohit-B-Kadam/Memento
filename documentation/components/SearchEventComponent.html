@@ -186,12 +186,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(eventCollection: <a href="../injectables/EventsService.html">EventsService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(eventCollection: <a href="../injectables/EventsService.html">EventsService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, currentUser: <a href="../injectables/CurrentUserService.html">CurrentUserService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -225,6 +225,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>currentUser</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CurrentUserService.html" target="_self" >CurrentUserService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -274,8 +286,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:63</a></div>
                 </td>
             </tr>
 
@@ -346,8 +358,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:52</a></div>
                 </td>
             </tr>
 
@@ -385,8 +397,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:47</a></div>
                 </td>
             </tr>
 
@@ -426,8 +438,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:70</a></div>
                 </td>
             </tr>
 
@@ -469,7 +481,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -496,7 +508,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -523,7 +535,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -549,7 +561,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/organisation/timeline/search-event/search-event.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -569,6 +581,7 @@ import {map, startWith} from &#x27;rxjs/operators&#x27;;
 import { EventsService } from &#x27;../../../../providers/Database/events.service&#x27;;
 import { EventInfo } from &#x27;../../../../classes/event-info&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { CurrentUserService } from &#x27;../../../../providers/current-user.service&#x27;;
 
 @Component({
   selector: &#x27;app-search-event&#x27;,
@@ -583,16 +596,21 @@ export class SearchEventComponent implements OnInit {
   eventId :string[];
 
   constructor(private eventCollection: EventsService,
-              private router: Router) 
+              private router: Router,
+              private currentUser: CurrentUserService) 
   { 
     this.eventList &#x3D; [];
     this.eventId &#x3D; []
     // getting data from database
-    this.eventCollection.findAll().then( (events : EventInfo[])&#x3D;&gt; 
+    this.eventCollection.find(currentUser.UserInfo._id).then( (events : EventInfo[])&#x3D;&gt; 
     {
-        events.forEach( (item) &#x3D;&gt; {
-          this.eventList.push(item.title)
-          this.eventId.push(item._id)
+        events.forEach( (item) &#x3D;&gt; 
+        {
+          if(!item.isHidden)
+          {
+            this.eventList.push(item.title)
+            this.eventId.push(item._id)
+          }
         })
         this.autoComplete();
     })
@@ -722,7 +740,7 @@ export class SearchEventComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="searchbar">  <form >    <input class="search_input" type="text" name="" placeholder="Search..." [formControl]="myControl" [matAutocomplete]="auto">    <mat-autocomplete #auto="matAutocomplete">      <div style="max-height: 200px">      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">        {{option}}      </mat-option>      </div>    </mat-autocomplete>    <button mat-icon-button class="search_icon" type="submit">        <mat-icon color="primary" (click)="SearchTheEvent()">search</mat-icon>      </button></form></div></div>'
-    var COMPONENTS = [{'name': 'AddFriendComponent', 'selector': 'app-add-friend'},{'name': 'AdvanceSearchComponent', 'selector': 'app-advance-search'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'DuplicateComponent', 'selector': 'app-duplicate'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'EventGalleryComponent', 'selector': 'app-event-gallery'},{'name': 'EventListComponent', 'selector': 'event-list'},{'name': 'FaceDetectComponent', 'selector': 'app-face-detect'},{'name': 'FourZeroFourPageComponent', 'selector': 'app-four-zero-four-page'},{'name': 'FriendListComponent', 'selector': 'app-friend-list'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OtherPhotosComponent', 'selector': 'app-other-photos'},{'name': 'PasswordCheckingComponent', 'selector': 'app-password-checking'},{'name': 'PeopleListComponent', 'selector': 'app-people-list'},{'name': 'PhotoThambnailComponent', 'selector': 'app-photo-thambnail'},{'name': 'PhotoViewerComponent', 'selector': 'app-photo-viewer'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReDirectToLatestEventComponent', 'selector': 'app-re-direct-to-latest-event'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SearchEventComponent', 'selector': 'app-search-event'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'SlideShowComponent', 'selector': 'app-slide-show'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
+    var COMPONENTS = [{'name': 'AddCategoryDialogComponent', 'selector': 'app-add-category-dialog'},{'name': 'AddFriendComponent', 'selector': 'app-add-friend'},{'name': 'AdvanceSearchComponent', 'selector': 'app-advance-search'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'DuplicateComponent', 'selector': 'app-duplicate'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'EventGalleryComponent', 'selector': 'app-event-gallery'},{'name': 'EventListComponent', 'selector': 'event-list'},{'name': 'FaceDetectComponent', 'selector': 'app-face-detect'},{'name': 'FourZeroFourPageComponent', 'selector': 'app-four-zero-four-page'},{'name': 'FriendListComponent', 'selector': 'app-friend-list'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OtherPhotosComponent', 'selector': 'app-other-photos'},{'name': 'PasswordCheckingComponent', 'selector': 'app-password-checking'},{'name': 'PeopleListComponent', 'selector': 'app-people-list'},{'name': 'PhotoThambnailComponent', 'selector': 'app-photo-thambnail'},{'name': 'PhotoViewerComponent', 'selector': 'app-photo-viewer'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReDirectToLatestEventComponent', 'selector': 'app-re-direct-to-latest-event'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SearchEventComponent', 'selector': 'app-search-event'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'SlideShowComponent', 'selector': 'app-slide-show'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
     var DIRECTIVES = [{'name': 'FileDropDirective', 'selector': '[fileDrop]'},{'name': 'WebviewDirective', 'selector': 'webview'}];
     var ACTUAL_COMPONENT = {'name': 'SearchEventComponent'};
 </script>

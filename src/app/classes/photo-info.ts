@@ -8,6 +8,8 @@ export class PhotoInfo
         public model ?: string, 
         public people ?: string[],
         public tag ?: string[],
-        public _id ?: string
+        public _id ?: string,
+        public eventName ?:string,
+        public eventId ?:string
     ) { }
 }

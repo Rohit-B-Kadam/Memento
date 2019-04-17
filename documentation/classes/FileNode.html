@@ -140,7 +140,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -168,7 +168,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -195,7 +195,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -222,7 +222,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/organisation/timeline/event-list/event-list.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -249,6 +249,9 @@ import { EventsService } from &#x27;../../../../providers/Database/events.servic
 import { EventInfo } from &#x27;../../../../classes/event-info&#x27;;
 import { MatDialog } from &#x27;@angular/material&#x27;;
 import { PasswordCheckingComponent } from &#x27;./password-checking/password-checking.component&#x27;;
+import { CurrentUserService } from &#x27;../../../../providers/current-user.service&#x27;;
+import { Category } from &#x27;../../../../classes/category&#x27;;
+import { ElectronService } from &#x27;../../../../providers/electron.service&#x27;;
 
 /** File node data with possible child nodes. */
 export class FileNode {
@@ -290,11 +293,13 @@ export class EventListComponent {
   /// My code //////////////////////////////
   eventList: FileNode[];
   fullEventDetail: EventInfo[];
-  groups:string[];
+  groups:Category[];
   public isHidden:boolean;
 
   constructor( private eventCollection: EventsService,
-              public dialog: MatDialog) 
+              public dialog: MatDialog,
+              public _currentUserCollection: CurrentUserService,
+              public _electronService: ElectronService) 
   {
     
     this.treeFlattener &#x3D; new MatTreeFlattener(
@@ -306,7 +311,11 @@ export class EventListComponent {
     this.treeControl &#x3D; new FlatTreeControl(this.getLevel, this.isExpandable);
     this.dataSource &#x3D; new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     
-    this.groups &#x3D; [&quot;All&quot;, &quot;Family&quot; , &quot;Friend&quot;, &quot;College Friends&quot;];
+    this.groups &#x3D; [];
+    let allCategory &#x3D; new Category(&quot;All&quot;,&quot;temp&quot;)
+    this.groups.push(allCategory)
+    this.groups &#x3D; _currentUserCollection.Categories;
+    
     this.isHidden &#x3D; true;
     
     this.getEventList();
@@ -355,10 +364,14 @@ export class EventListComponent {
     this.eventList &#x3D; [];
 
     // getting data from database
-    this.eventCollection.findAll().then( (events : any[])&#x3D;&gt; 
+    this.eventCollection.find(this._currentUserCollection.UserInfo._id).then( (events : any[])&#x3D;&gt; 
     {
       this.fullEventDetail &#x3D; events;
-      this.DisplayEventList(events)
+      let filterValue &#x3D; this.fullEventDetail.filter((value)&#x3D;&gt;
+      {
+        return !value.isHidden
+      })
+      this.DisplayEventList(filterValue)
     })
     .catch((err)&#x3D;&gt;{
       console.log(&quot;Error: &quot;+err);
@@ -374,7 +387,16 @@ export class EventListComponent {
 
     if(value &#x3D;&#x3D; &quot;All&quot;)
     {
-      displayEvent &#x3D; this.fullEventDetail;
+      this.eventCollection.find(this._currentUserCollection.UserInfo._id).then( (events : any[])&#x3D;&gt; 
+      {
+        this.fullEventDetail &#x3D; events;
+        
+        displayEvent &#x3D; events;
+        this.DisplayEventList(displayEvent);
+      })
+      .catch((err)&#x3D;&gt;{
+        console.log(&quot;Error: &quot;+err);
+      });
     }
     else
     {
@@ -386,31 +408,100 @@ export class EventListComponent {
           return false;
         }
       })
+
+
+      this.DisplayEventList(displayEvent);
     }
 
-    this.DisplayEventList(displayEvent);
   }
 
   public HiddingAction()
   {
+
+    
+
+    // Decrypt the data
+    let hiddenEvent &#x3D; this.fullEventDetail.filter( (values)&#x3D;&gt;
+    {
+        return values.isHidden
+    })
+
     if(this.isHidden)
     {
+      // Dialog box to accept password
       const dialogRef &#x3D; this.dialog.open(PasswordCheckingComponent, {
         width: &#x27;250px&#x27;
       });
   
-      dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
+      // Dialog box output
+      dialogRef.afterClosed().subscribe(result &#x3D;&gt; 
+      {
         console.log(result);
-        
-        // this.animal &#x3D; result;
+        if (result &#x3D;&#x3D; &quot;Successful&quot;) 
+        { 
+          
+          console.log(hiddenEvent)
+          this.DecryptThisEvent(hiddenEvent)
+
+          this.DisplayEventList(this.fullEventDetail)
+        }
+
       });
 
       this.isHidden &#x3D; false;
     }
     else
     {
+      
+      // display only no hidden event
+      let filterValue &#x3D; this.fullEventDetail.filter((value)&#x3D;&gt;
+      {
+        return !value.isHidden
+      })
+      this.DisplayEventList(filterValue)
+
+      // Delete the extract event
+      let trash &#x3D; this._electronService.trash;
+      let fs &#x3D; this._electronService.fs;
+      
+      hiddenEvent.forEach( (value) &#x3D;&gt;
+      {
+          let path &#x3D; value.eventPath;
+          if(fs.existsSync(path))
+          {
+            trash(path)
+          }
+      })
       this.isHidden &#x3D; true;
     }
+  }
+
+  public DecryptThisEvent( events : EventInfo[] )
+  {
+    // requirement
+    let fstream &#x3D; this._electronService.fstream;
+    let tar &#x3D; this._electronService.tar;
+    let crypto &#x3D; this._electronService.crypto;
+    
+     // Generating the key
+     const KEY &#x3D; &#x27;mySup3rC00lP4ssWord&#x27;
+
+    events.forEach( (event) &#x3D;&gt;
+    {
+      let data &#x3D; fstream.Reader(&quot;/home/rohit/Desktop/Momento-Events/.Encrypt/&quot;+event._id+&quot;.tar&quot;);
+      let decrypt &#x3D; crypto.createDecipher(&quot;aes-256-cbc&quot;,KEY)
+
+      let urlstr &#x3D; event.eventPath;
+      let r &#x3D; /[^\/]*$/;
+      let path &#x3D; urlstr.replace(r, &#x27;&#x27;);
+      console.log(path) 
+      let extract &#x3D; tar.Extract(path);
+      
+      data.pipe(decrypt).pipe(extract);
+
+
+    })
+      
   }
 
   public DisplayEventList(events:any[])
