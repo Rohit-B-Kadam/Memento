@@ -1,3 +1,5 @@
+
+<mat-progress-bar *ngIf="!isFullLoaded"  mode="indeterminate"></mat-progress-bar>
 <div  class="gallery-container">  
 
 
@@ -6,7 +8,6 @@
       <div *ngFor="let image of imageList; index as i" class="card-container" >
         <img class="image-view" mat-card-image [src]="image" alt="photo"  >
       </div> -->
-
       <mat-card  *ngFor="let image of imageList; index as j"  class="card-container" >
         <div class="ImageHeader" > 
           <h4>{{ duplicate[i][j].eventName }}</h4>

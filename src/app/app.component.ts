@@ -10,13 +10,9 @@ import { AppConfig } from '../environments/environment';
 })
 export class AppComponent 
 {
-  // Which component to show
-  public showComponent:string;
-
   constructor(public electronService: ElectronService,
               private translate: TranslateService)
-    {
-      this.showComponent = "mainlayout"; 
+    { 
       translate.setDefaultLang('en');
       console.log('AppConfig', AppConfig);
 

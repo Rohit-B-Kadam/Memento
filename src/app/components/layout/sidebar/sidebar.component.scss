@@ -15,3 +15,11 @@
 .list-item-active{
   color: red;
 }
+
+
+// disable
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: grey
+}

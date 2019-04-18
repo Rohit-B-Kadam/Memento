@@ -5,15 +5,19 @@ import { EventsService } from '../../../../providers/Database/events.service';
 import { PhotoInfo } from '../../../../classes/photo-info';
 import { ElectronService } from '../../../../providers/electron.service';
 
+
+// Decorator
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.scss']
 })
+
+
 export class EventDetailComponent implements OnInit , OnDestroy
 {
   
-  
+  // Class Properties  
   public eventInfo:EventInfo;
   public months: string[];
   public imageDisplay: string;
@@ -21,8 +25,8 @@ export class EventDetailComponent implements OnInit , OnDestroy
   public setTimer;
   public setClass;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
+  /// Services
+  constructor(private route: ActivatedRoute,              // Get URL data
               private eventCollection: EventsService,
               private _electronService: ElectronService) 
   { 
@@ -31,6 +35,7 @@ export class EventDetailComponent implements OnInit , OnDestroy
       
   }
 
+  // On component load
   ngOnInit() 
   {
 
@@ -40,11 +45,11 @@ export class EventDetailComponent implements OnInit , OnDestroy
       'October', 'November', 'December'
       ];
 
-
     //set the gallery image array
 
   }
 
+  // On component unload
   ngOnDestroy(): void 
   {
     clearInterval(this.setTimer);
@@ -94,7 +99,7 @@ export class EventDetailComponent implements OnInit , OnDestroy
     try
     {
 
-    // Loaded First Image
+    // Loaded Image
       let photoUrl = photoInfo[this.imageIndex % 5].photoUrl;
       data = fs.readFileSync(photoUrl);
       imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');

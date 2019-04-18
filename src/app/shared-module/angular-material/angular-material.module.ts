@@ -26,6 +26,7 @@ import {MatButtonModule,
   import {MatSelectModule} from '@angular/material/select';
   import {ScrollDispatchModule} from '@angular/cdk/scrolling';
   import {MatDialogModule} from '@angular/material/dialog';
+  import {MatProgressBarModule} from '@angular/material/progress-bar';
 
   // FlexLayout
   import { FlexLayoutModule } from '@angular/flex-layout';
@@ -57,7 +58,8 @@ import {MatButtonModule,
     MatNativeDateModule,
     MatSelectModule,
     ScrollDispatchModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
   ],
   exports:[
     MatToolbarModule,
@@ -82,7 +84,8 @@ import {MatButtonModule,
     MatNativeDateModule,
     MatSelectModule,
     ScrollDispatchModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
   ]
 })
 export class AngularMaterialModule { }

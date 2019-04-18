@@ -7,13 +7,15 @@ import { PhotoInfo } from '../../../../classes/photo-info';
 import { ElectronService } from '../../../../providers/electron.service';
 import { interval, Subject } from 'rxjs';
 import { Location } from '@angular/common';
-var EXIF = require('exif-js');
+var EXIF = require('exif-js');  // image ch metadata
 
 @Component({
     selector: 'app-event-gallery',
     templateUrl: './event-gallery.component.html',
     styleUrls: ['./event-gallery.component.scss']
 })
+
+
 export class EventGalleryComponent implements OnInit , OnDestroy {
     
 
@@ -58,7 +60,7 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     public initialisedComponent() {
         this.route.paramMap.subscribe(
             param => {
-                let id: string = param.get('id');
+                let id: string = param.get('id'); // event id
                 this.loadImage(id);
             }
         )
@@ -68,11 +70,8 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     public loadImage(eventId: string) 
     {
         this.photoInteraction.clearData();
-        this.photoInteraction.getEventinfo(eventId)
-
-        
+        this.photoInteraction.getEventinfo(eventId);    // fill all data
         this.loadTheImage();
-        
 
     }
 
@@ -85,6 +84,7 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
             {
                 if(this.index < this.photoInteraction.imagesBuffer.length)
                 {
+                    // adding one by one image data 
                     this.imagesBuffer.push(this.photoInteraction.imagesBuffer[this.index]);
                     this.setClassToImage(this.photoInteraction.photosInfo[this.index].orientation , this.index);
                     this.index++;
@@ -121,7 +121,7 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     this._location.back();
   }
 
-  /// Adding photo
+  /// Adding photo (rohit)
 
   public AddPhoto()
   {

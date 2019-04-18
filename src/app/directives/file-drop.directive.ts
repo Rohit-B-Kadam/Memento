@@ -3,6 +3,8 @@ import { Directive, EventEmitter, Output, HostListener } from '@angular/core';
 @Directive({
   selector: '[fileDrop]'
 })
+
+
 export class FileDropDirective 
 {
   // Emit the data when this event occur

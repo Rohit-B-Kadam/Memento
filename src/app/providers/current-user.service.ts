@@ -7,6 +7,7 @@ import { FriendsService } from './Database/friends.service';
 import { CatergoryCollectionService } from './Database/catergory-collection.service';
 import { Category } from '../classes/category';
 import { UsersService } from './Database/users.service';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,10 @@ export class CurrentUserService {
   public FriendList: FriendProfile[];
   public Categories: Category[];
   public EventList: EventInfo[];
-  
+
+  public userNameSubject= new BehaviorSubject<string>("NotLogin");
+  public isLoginSubject = new BehaviorSubject<boolean>(false);
+
 
   constructor(
     public eventCollection : EventsService,
@@ -25,6 +29,7 @@ export class CurrentUserService {
     public categoriesCollection: CatergoryCollectionService,
     public userCollection: UsersService) 
   {
+
     this.UserInfo = {
           userName: "Rohit Kadam", 
           password: "kadam", 
@@ -32,14 +37,17 @@ export class CurrentUserService {
           profileURL: "/home/rohit/Desktop/Momento-Events/.metadata/profile_pic/14rohitkadam@gmail.com.jpg", 
           _id: "cSM9QFF8kSFKXVVR"}
         
-    this.setCurrentUser(this.UserInfo);
+    //this.setCurrentUser(this.UserInfo);
   }
 
   public setCurrentUser(user: User)
   {
     this.UserInfo = user;
     console.log(this.UserInfo)
-    
+
+    this.setUserName(this.UserInfo.userName)
+    this.setLogin(true)
+
     this.eventCollection.find(this.UserInfo._id).then((values) =>
     {
       this.EventList = values as EventInfo[];
@@ -65,4 +73,24 @@ export class CurrentUserService {
     this.setCurrentUser(this.UserInfo);
   }
 
+  public setUserName(value:string)
+  {
+    this.userNameSubject.next(value)
+  }
+
+  public getUserName(): Observable<string>
+  {
+    return this.userNameSubject.asObservable();
+  }
+
+
+  public setLogin(value:boolean)
+  {
+    this.isLoginSubject.next(value)
+  }
+
+  public getLoginStatus(): Observable<boolean>
+  {
+    return this.isLoginSubject.asObservable();
+  }
 }

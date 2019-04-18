@@ -15,7 +15,7 @@
       <h2 matSubheader> Organisation </h2>
 
       <!-- TimeLine -->
-      <a mat-list-item routerLinkActive="list-item-active" routerLink="/timeline">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/timeline" [ngClass]="{'disabled': !isLogin}">
         <mat-icon matListIcon class="app-nav-list-icon"> timeline </mat-icon>
         Time Line
       </a>
@@ -71,21 +71,15 @@
       </a> -->
 
       <!-- Duplicate -->
-      <a mat-list-item routerLinkActive="list-item-active" routerLink="/duplicate" >
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/duplicate" [ngClass]="{'disabled': !isLogin}">
         <mat-icon matListIcon class="app-nav-list-icon"> photo_library </mat-icon>
         Duplicate
       </a>
 
       <!-- People -->
-      <a mat-list-item routerLinkActive="list-item-active" routerLink="/friend-list">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/friend-list" [ngClass]="{'disabled': !isLogin}">
         <mat-icon matListIcon class="app-nav-list-icon"> people </mat-icon>
         Friend List
-      </a>
-
-      <!-- Profile -->
-      <a mat-list-item routerLinkActive="list-item-active" routerLink="/profile" >
-        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
-        Profile
       </a>
 
       <!-- Remove -->

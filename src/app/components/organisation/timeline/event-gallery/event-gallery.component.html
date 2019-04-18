@@ -1,8 +1,9 @@
 <div class="main-container">
 
-  <!-- Toolbar -->
+  <!--Upper Toolbar -->
   <mat-toolbar class="crm-navigation-bar">
     <mat-toolbar-row>
+        <!-- Back button -->
         <button mat-icon-button class="example-icon" matTooltip="Back" (click)="goBack()" >
             <mat-icon >arrow_back</mat-icon>
         </button>
@@ -26,11 +27,6 @@
       <button (click)="fileInput.click()"  mat-icon-button matTooltip="Add photo to Event" class="example-icon">
         <mat-icon >add_circle</mat-icon>
         <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" multiple />
-      </button>
-
-
-      <button mat-icon-button class="example-icon" matTooltip="Comment">
-          <mat-icon >chat_bubble</mat-icon>
       </button>
 
       <!-- more menu  -->
@@ -72,19 +68,6 @@
         <img class="image-view" mat-card-image [src]="image" alt="photo"  >
       </a>
     </div>
-
-    <!-- <div *ngFor="let image of imagesBuffer">
-        <app-photo-thambnail>
-          <img *ngIf [src]="image" class="image-view">
-      </app-photo-thambnail>
-    </div> -->
-   
-    <!-- <mat-card  *ngFor="let image of imagesBuffer; index as i"  class="card-container" >
-      <a [routerLink]="['/timeline/photo-viewer' , i]">
-        <img class="image-view" mat-card-image [src]="image" alt="photo" [ngClass]="setClass[i]" >
-      </a>
-    </mat-card> -->
-
 
 </div>
 </div>

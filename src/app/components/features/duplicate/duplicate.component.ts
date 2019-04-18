@@ -4,7 +4,6 @@ import { PhotoInfo } from '../../../classes/photo-info';
 import { EventsService } from '../../../providers/Database/events.service';
 import { ElectronService } from '../../../providers/electron.service';
 import { CurrentUserService } from '../../../providers/current-user.service';
-import { async } from 'q';
 
 @Component({
   selector: 'app-duplicate',
@@ -19,7 +18,7 @@ export class DuplicateComponent implements OnInit
     duplicate: PhotoInfo[][];
     imageBufferss: string[][];
     setClass: string[];
-
+    public isFullLoaded = false;
   constructor(
                 private _eventCollection: EventsService,
                 private _electronService: ElectronService,
@@ -153,6 +152,7 @@ export class DuplicateComponent implements OnInit
         }
         this.imageBufferss.push(bufferArray)
       }
+      this.isFullLoaded = true;
 
   }
 

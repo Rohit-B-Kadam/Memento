@@ -8,26 +8,12 @@
 
     <span class="toolbar-title"> {{ Title }}</span>
 
-<!-- 
-    TODO: add notification and switch user on navbar    
-    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+    <!-- TODO: add notification and switch user on navbar     -->
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" *ngIf="isLogin">
 
-      <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-      
-        
-        <li fxHide.xs>
-          <button mat-icon-button>
-            <mat-icon>notifications</mat-icon>
-          </button>
-        </li>
-
-
-
-        <li>
-
-          
-          <button mat-icon-button [matMenuTriggerFor]="auth">
+          <button mat-stroked-button [matMenuTriggerFor]="auth">
             <mat-icon>person_outline</mat-icon>
+            {{ UserName }}
           </button>
 
           <mat-menu #auth="matMenu">
@@ -38,11 +24,7 @@
             </button>
           </mat-menu>
 
-        </li>
-
-      </ul>
-
-    </div> -->
+    </div>
 
   </mat-toolbar-row>
 

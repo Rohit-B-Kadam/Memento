@@ -33,14 +33,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
 import { TimelineComponent } from './components/organisation/timeline/timeline.component';
-import { DocumentsComponent } from './components/organisation/documents/documents.component';
-import { OtherPhotosComponent } from './components/organisation/other-photos/other-photos.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegistrationComponent } from './components/authentication/registration/registration.component';
 import { DuplicateComponent } from './components/features/duplicate/duplicate.component';
-import { PeopleListComponent } from './components/features/people-list/people-list.component';
-import { ProfileComponent } from './components/features/profile/profile.component';
 import { EventDetailComponent } from './components/organisation/timeline/event-detail/event-detail.component';
 import { EventListComponent } from './components/organisation/timeline/event-list/event-list.component';
 import { EventGalleryComponent } from './components/organisation/timeline/event-gallery/event-gallery.component';
@@ -51,9 +47,6 @@ import { SearchEventComponent } from './components/organisation/timeline/search-
 import { CreateEventComponent } from './components/organisation/timeline/create-event/create-event.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FourZeroFourPageComponent } from './components/four-zero-four-page/four-zero-four-page.component';
-import { SlideShowComponent } from './components/features/slide-show/slide-show.component';
-import { AdvanceSearchComponent } from './components/features/advance-search/advance-search.component';
-import { PhotoThambnailComponent } from './components/organisation/timeline/photo-thambnail/photo-thambnail.component';
 import { ReDirectToLatestEventComponent } from './components/organisation/timeline/re-direct-to-latest-event/re-direct-to-latest-event.component';
 import { FriendListComponent } from './components/features/friend-list/friend-list.component';
 import { AddFriendComponent } from './components/features/friend-list/add-friend/add-friend.component';
@@ -75,14 +68,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     WebviewDirective,
     SidebarComponent,
     TimelineComponent,
-    DocumentsComponent,
-    OtherPhotosComponent,
     NavbarComponent,
     LoginComponent,
     RegistrationComponent,
     DuplicateComponent,
-    PeopleListComponent,
-    ProfileComponent,
     EventDetailComponent,
     EventListComponent,
     EventGalleryComponent,
@@ -91,9 +80,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     SearchEventComponent,
     CreateEventComponent,
     FourZeroFourPageComponent,
-    SlideShowComponent,
-    AdvanceSearchComponent,
-    PhotoThambnailComponent,
     ReDirectToLatestEventComponent,
     FriendListComponent,
     AddFriendComponent,

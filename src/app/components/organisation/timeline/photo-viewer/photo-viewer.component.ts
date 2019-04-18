@@ -24,20 +24,6 @@ export class PhotoViewerComponent implements OnInit {
   public index;
   public setClass;
 
-  public friendLists:string[] = [
-    'Sonam Karale',
-    'Abhishek Zambre',
-    'Sanket Hebbal',
-    'Shubham Bangar'
-  ];
-
-  public TagList:string[] = [
-    'car',
-    'beach',
-    'sunlight'
-  ];
-
-
   constructor(private breakpointObserver: BreakpointObserver,
               private route: ActivatedRoute,
               private photoInteraction: EventPhotoInteractionService,
@@ -54,7 +40,7 @@ export class PhotoViewerComponent implements OnInit {
   public initialisedComponent() {
     this.route.paramMap.subscribe(
         param => {
-            let id: string = param.get('id');
+            let id: string = param.get('id'); // id == index (photoInfo)
             this.loadImage(id);
         });
   }
@@ -66,9 +52,9 @@ export class PhotoViewerComponent implements OnInit {
     // index + id
     this.index += +id;
     if(this.index < 0 )
-      this.index = 0;
+      this.index = 0;     // less mini
     else  
-      this.index %= this.photoInteraction.imagesBuffer.length;
+      this.index %= this.photoInteraction.imagesBuffer.length;  // more max (circle)
     
     this.photoInfo = this.photoInteraction.photosInfo[this.index];
     this.imagebuffer = this.photoInteraction.imagesBuffer[this.index];
