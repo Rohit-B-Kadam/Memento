@@ -14,6 +14,7 @@ import * as canvas from 'canvas';
 import { TNetInput } from 'face-api.js';
 import { UsersService } from '../../../providers/Database/users.service';
 import { ErrorStateMatcher } from '@angular/material';
+import { CurrentUserService } from '../../../providers/current-user.service';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher 
@@ -57,7 +58,8 @@ export class RegistrationComponent implements OnInit
   constructor(private _formBuilder: FormBuilder,
               private _electronService: ElectronService,
               private _faceRecognition: FaceRecognitionService,
-              private _userCollection: UsersService) 
+              private _userCollection: UsersService,
+              private _currentUser: CurrentUserService) 
   { 
     
   }
@@ -122,6 +124,9 @@ export class RegistrationComponent implements OnInit
     
     this.saveProfilePic("/home/rohit/Desktop/Momento-Events");
     this.userInfo = new User(name,password,email,this.imagePath);
+    this._currentUser.setCurrentUser(this.userInfo)
+    
+    
     /* 
     // Face detection
     //console.log(this.profilePic)

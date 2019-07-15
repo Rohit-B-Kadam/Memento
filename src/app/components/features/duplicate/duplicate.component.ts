@@ -16,9 +16,12 @@ export class DuplicateComponent implements OnInit
     eventList: EventInfo[];
     photoList: PhotoInfo[];
     duplicate: PhotoInfo[][];
+
+    // display on template
     imageBufferss: string[][];
     setClass: string[];
     public isFullLoaded = false;
+
   constructor(
                 private _eventCollection: EventsService,
                 private _electronService: ElectronService,
@@ -61,12 +64,14 @@ export class DuplicateComponent implements OnInit
                     
                     let mapPhoto = photos as PhotoInfo[]
                     
+                    // Fill the eventName and id to photoInfo
                     for(let i = 0 ; i < mapPhoto.length; i++)
                     {
                       mapPhoto[i].eventName = value.title;
                       mapPhoto[i].eventId = value._id;
                     }
 
+                    // Add(concat)
                     this.photoList = this.photoList.concat(mapPhoto)
                     len--;
                     if(len == 0)
@@ -84,6 +89,8 @@ export class DuplicateComponent implements OnInit
   public FindDuplicate()
   {
     let fs = this._electronService.fs;
+
+    // Map same as hashtable
     let mapChecksum = new Map<string , PhotoInfo[] >()
 
     // 1. Calculate CheckSum for every photo
@@ -107,6 +114,7 @@ export class DuplicateComponent implements OnInit
     })
 
     this.duplicate = [];
+    
     // pushing only those value whose value len more then 1
     mapChecksum.forEach( (value , key) => 
     {
@@ -117,6 +125,7 @@ export class DuplicateComponent implements OnInit
 
     })
 
+    // Display on Screen
     this.readTheDuplicateFile()
   }
 
@@ -184,6 +193,7 @@ export class DuplicateComponent implements OnInit
       console.log("Photo is deleted")
 
       setTimeout( ()=>{
+        this.isFullLoaded = false;
         this.StartSearching();
       }, 2000)
       

@@ -11,18 +11,10 @@
     <!-- TODO: add notification and switch user on navbar     -->
     <div fxFlex fxLayout fxLayoutAlign="flex-end" *ngIf="isLogin">
 
-          <button mat-stroked-button [matMenuTriggerFor]="auth">
+          <button mat-stroked-button>
             <mat-icon>person_outline</mat-icon>
             {{ UserName }}
           </button>
-
-          <mat-menu #auth="matMenu">
-            <button mat-menu-item>
-              
-              <mat-icon>exit_to_app</mat-icon>
-              <span>Switch Account</span>
-            </button>
-          </mat-menu>
 
     </div>
 

@@ -19,37 +19,6 @@
         <mat-icon matListIcon class="app-nav-list-icon"> timeline </mat-icon>
         Time Line
       </a>
-
-      <!-- TODO: add document and other photo-->
-      <!-- Document -->
-      <!--       
-      <a mat-list-item routerLinkActive routerLink="/document" #routerLinkActiveInstance2="routerLinkActive"
-        [class.list-item-active]="routerLinkActiveInstance2.isActive">
-        <mat-icon matListIcon class="app-nav-list-icon"> insert_drive_file </mat-icon>
-        Document
-      </a> -->
-
-      <!-- Other Photo -->
-      <!-- <a mat-list-item routerLinkActive routerLink="/login" #routerLinkActiveInstance3="routerLinkActive"
-        [class.list-item-active]="routerLinkActiveInstance3.isActive">
-        <mat-icon matListIcon class="app-nav-list-icon"> folder </mat-icon>
-        Other Photos
-      </a> -->
-
-      <!--
-
-        <a *ngFor="let item of myWorkRoutes"
-         mat-list-item
-         (click)="sidenav.close()"
-         routerLinkActive
-         #routerLinkActiveInstance="routerLinkActive"
-         [class.list-item-active]="routerLinkActiveInstance.isActive"
-         [routerLink]="[item.route]">
-        <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
-        {{item.title}}
-      </a>
-
-      -->
     </mat-nav-list>
 
     <!-- Divider -->
@@ -59,16 +28,6 @@
     <mat-nav-list>
       <h2 matSubheader> Features </h2>
 
-      <!-- Slideshow -->
-      <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/slideshow" >
-        <mat-icon matListIcon class="app-nav-list-icon"> slideshow </mat-icon>
-        Slideshow
-      </a> -->
-      <!-- Searching -->
-      <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/advance-search" >
-        <mat-icon matListIcon class="app-nav-list-icon"> search </mat-icon>
-        Advance Search
-      </a> -->
 
       <!-- Duplicate -->
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/duplicate" [ngClass]="{'disabled': !isLogin}">
@@ -82,19 +41,18 @@
         Friend List
       </a>
 
-      <!-- Remove -->
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/login" >
-        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
+        <mat-icon matListIcon class="app-nav-list-icon"> exit_to_app </mat-icon>
         Switch Account
       </a>
 
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/registration">
-        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
+        <mat-icon matListIcon class="app-nav-list-icon"> person_add </mat-icon>
         Create NewAccount
       </a>
 
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/face-detect">
-        <mat-icon matListIcon class="app-nav-list-icon"> person </mat-icon>
+        <mat-icon matListIcon class="app-nav-list-icon"> face </mat-icon>
         Face-Detection
       </a>
 

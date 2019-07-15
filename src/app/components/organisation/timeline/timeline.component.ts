@@ -66,7 +66,7 @@ export class TimelineComponent implements OnInit {
 
           if(!fs.existsSync(eventDesFile) || !fs.existsSync(photoDesFile) )
           {
-            console.log("It's not our zip")
+            alert("Please Select proper Event zip file or some data corrupted")
             return
           }
 
@@ -129,6 +129,7 @@ export class TimelineComponent implements OnInit {
       
       console.log(value)
       setTimeout(() => {
+        alert("Successfully Import Event")
         this.router.navigate(['/timeline', value._id]);
 
         // delete the temp folder

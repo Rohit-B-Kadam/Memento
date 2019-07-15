@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventPhotoInteractionService } from '../../../../providers/event-photo-interaction.service';
 import { PhotoInfo } from '../../../../classes/photo-info';
 import { Location } from '@angular/common';
-
 @Component({
   selector: 'app-photo-viewer',
   templateUrl: './photo-viewer.component.html',
@@ -23,6 +22,9 @@ export class PhotoViewerComponent implements OnInit {
   public photoInfo: PhotoInfo;
   public index;
   public setClass;
+  public isAutoPlay = false;
+  public intervalhandle; // = setInterval 
+
 
   constructor(private breakpointObserver: BreakpointObserver,
               private route: ActivatedRoute,
@@ -61,8 +63,8 @@ export class PhotoViewerComponent implements OnInit {
     this.setClassToImage(this.photoInteraction.photosInfo[this.index].orientation);
   }
 
-
-  public setClassToImage( id : number)
+  // default value 1 because if orientation can undefined
+  public setClassToImage( id : number = 1)
   {
       if(id == 1 || id == 2)
       {
@@ -95,6 +97,24 @@ export class PhotoViewerComponent implements OnInit {
 
     //check for last and first
     this.loadImage(0)
+  }
+
+  public ToggleAutoPlay()
+  {
+    this.isAutoPlay = !this.isAutoPlay;
+    if(this.isAutoPlay)
+    {
+      // start autoplay
+      this.intervalhandle = setInterval( () => 
+      {
+        this.loadImage(1);
+      },2000)
+    }
+    else
+    {
+      // stop autoplay
+      clearInterval(this.intervalhandle)
+    }
   }
 
 }

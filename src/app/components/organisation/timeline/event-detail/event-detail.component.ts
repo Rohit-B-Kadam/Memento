@@ -32,7 +32,6 @@ export class EventDetailComponent implements OnInit , OnDestroy
   { 
       this.eventInfo = new EventInfo('',new Date(),'',[],'',[]);
       this.initialiseEventDetail();
-      
   }
 
   // On component load
@@ -44,8 +43,6 @@ export class EventDetailComponent implements OnInit , OnDestroy
       'June', 'July', 'August', 'September',
       'October', 'November', 'December'
       ];
-
-    //set the gallery image array
 
   }
 
@@ -61,8 +58,8 @@ export class EventDetailComponent implements OnInit , OnDestroy
     this.route.paramMap.subscribe(
       param => {
 
-        let id: string = param.get('id');
-        this.eventCollection.getEventDetail(param.get('id'))
+        let id: string = param.get('id'); // eventid
+        this.eventCollection.getEventDetail(id)
           .then(value => {
             this.eventInfo = value[0];
             this.getPhoto();
@@ -88,7 +85,7 @@ export class EventDetailComponent implements OnInit , OnDestroy
   {
     // initialising
     clearInterval(this.setTimer);
-    this.imageIndex = 0;
+    
     let timer = 0;
 
     let fs = this._electronService.fs;
@@ -100,10 +97,16 @@ export class EventDetailComponent implements OnInit , OnDestroy
     {
 
     // Loaded Image
-      let photoUrl = photoInfo[this.imageIndex % 5].photoUrl;
+      this.imageIndex = 0;
+      let photoI = photoInfo[this.imageIndex % 5];
+      let photoUrl = photoI.photoUrl;
+      
       data = fs.readFileSync(photoUrl);
+
+      
       imagebuffer = "data:image/jpg;base64,"+Buffer.from(data).toString('base64');
-      this.setClassToImage(photoInfo[this.imageIndex % 5].orientation);
+      
+      this.setClassToImage(photoI.orientation);
       this.imageDisplay = imagebuffer;
       this.imageIndex++;
 
@@ -135,7 +138,9 @@ export class EventDetailComponent implements OnInit , OnDestroy
     }, 2000);
   }
 
-  public setClassToImage( id : number)
+
+  // default value 1 because if orientation can be undefined
+  public setClassToImage( id : number = 1)
   {
       if(id == 1 || id == 2)
       {

@@ -58,9 +58,9 @@ export class LoginComponent implements OnInit {
         this.currentUserService.setCurrentUser(user)
 
         setTimeout( ()=>
-        {
-          this.router.navigate(['/timeline'])
-        },2000
+          {
+            this.router.navigate(['/timeline'])
+          },2000
         );
       }
     })

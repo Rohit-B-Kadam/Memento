@@ -50,13 +50,16 @@ export class EventListComponent {
   /// My code //////////////////////////////
   eventList: FileNode[];
   fullEventDetail: EventInfo[];
+  nonHiddenEvent: EventInfo[];
+  showEventList: EventInfo[];
   groups:Category[];
+
   public isHidden:boolean;
 
   constructor( private eventCollection: EventsService,
-              public dialog: MatDialog,
-              public _currentUserCollection: CurrentUserService,
-              public _electronService: ElectronService) 
+               public dialog: MatDialog,
+               public _currentUserCollection: CurrentUserService,
+               public _electronService: ElectronService) 
   {
     
     this.treeFlattener = new MatTreeFlattener(
@@ -68,6 +71,7 @@ export class EventListComponent {
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     
+    // Fill the category
     this.groups = [];
     let allCategory = new Category("All","temp")
     this.groups.push(allCategory)
@@ -124,11 +128,13 @@ export class EventListComponent {
     this.eventCollection.find(this._currentUserCollection.UserInfo._id).then( (events : any[])=> 
     {
       this.fullEventDetail = events;
-      let filterValue = this.fullEventDetail.filter((value)=>
+      this.nonHiddenEvent = this.fullEventDetail.filter((value)=>
       {
         return !value.isHidden
       })
-      this.DisplayEventList(filterValue)
+
+      this.showEventList = this.nonHiddenEvent;
+      this.DisplayEventList(this.showEventList)
     })
     .catch((err)=>{
       console.log("Error: "+err);
@@ -144,12 +150,16 @@ export class EventListComponent {
 
     if(value == "All")
     {
-      this.eventCollection.find(this._currentUserCollection.UserInfo._id).then( (events : any[])=> 
-      {
-        this.fullEventDetail = events;
-        
-        displayEvent = events;
-        this.DisplayEventList(displayEvent);
+        this.eventCollection.find(this._currentUserCollection.UserInfo._id).then( (events : any[])=> 
+        {
+          this.fullEventDetail = events;
+        this.nonHiddenEvent = this.fullEventDetail.filter((value)=>
+        {
+          return !value.isHidden
+        })
+
+        this.showEventList = this.nonHiddenEvent;
+        this.DisplayEventList(this.showEventList)
       })
       .catch((err)=>{
         console.log("Error: "+err);
@@ -157,7 +167,7 @@ export class EventListComponent {
     }
     else
     {
-      displayEvent = this.fullEventDetail.filter((detail) => {
+      displayEvent = this.showEventList.filter((detail) => {
         if (detail.categories.includes(value)) {
           return true;
         }
@@ -174,9 +184,6 @@ export class EventListComponent {
 
   public HiddingAction()
   {
-
-    
-
     // Decrypt the data
     let hiddenEvent = this.fullEventDetail.filter( (values)=>
     {
@@ -199,8 +206,8 @@ export class EventListComponent {
           
           console.log(hiddenEvent)
           this.DecryptThisEvent(hiddenEvent)
-
-          this.DisplayEventList(this.fullEventDetail)
+          this.showEventList = this.fullEventDetail;
+          this.DisplayEventList(this.showEventList)
         }
 
       });
@@ -211,11 +218,12 @@ export class EventListComponent {
     {
       
       // display only no hidden event
-      let filterValue = this.fullEventDetail.filter((value)=>
-      {
-        return !value.isHidden
-      })
-      this.DisplayEventList(filterValue)
+      // let filterValue = this.fullEventDetail.filter((value)=>
+      // {
+      //   return !value.isHidden
+      // })
+      this.showEventList = this.nonHiddenEvent;
+      this.DisplayEventList(this.showEventList)
 
       // Delete the extract event
       let trash = this._electronService.trash;

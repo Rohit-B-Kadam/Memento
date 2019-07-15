@@ -75,7 +75,7 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
 
     }
 
-    public async  loadTheImage() 
+    public  loadTheImage() 
     {
         this.index = 0;
         // console.log("started reading")
@@ -99,7 +99,7 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
         );//endFunc
     }
 
-    public setClassToImage(id: number,index: number) 
+    public setClassToImage(id: number = 1,index: number) 
     {
         if (id == 1 || id == 2) {
             this.setClass[index] = 'orientation_1';
@@ -279,16 +279,18 @@ export class EventGalleryComponent implements OnInit , OnDestroy {
     var data = JSON.stringify(this.photoInteraction.photosInfo,null,2);
     fs.writeFileSync(fullPath+"/photo_description.json", data);
 
-    if(!fs.existsSync("/home/rohit/Desktop/ImportFolder"))
+    // TODO: make path dynamic
+    if(!fs.existsSync("/home/rohit/Desktop/ExportFolder"))
     {
-        fs.mkdirSync("/home/rohit/Desktop/ImportFolder");
+        fs.mkdirSync("/home/rohit/Desktop/ExportFolder");
     }
 
     // compress the file(zip)
-    compressing.zip.compressDir(fullPath,"/home/rohit/Desktop/ImportFolder/"+zipFileName+".zip")
+    compressing.zip.compressDir(fullPath,"/home/rohit/Desktop/ExportFolder/"+zipFileName+".zip")
                     .then(() => { console.log("Compression done") })
                     .catch((err)=> { console.log("Error: "+err)})
 
+    alert("Export Event in .zip file create on desktop/ExportFolder")
   }
 
 

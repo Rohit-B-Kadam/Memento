@@ -31,15 +31,19 @@
   <mat-toolbar class="upper-nav">    
       <mat-toolbar-row>
           
+        <!--Back-->
         <div  fxFlex fxLayout >
           <button mat-icon-button matTooltip="Back" color="accent">
               <mat-icon color="accent" (click)="goBack()">arrow_back</mat-icon>
           </button>
         </div>
+          
           <div fxFlex fxLayout fxLayoutAlign="center">
+            <!--prev-->
               <button mat-stroked-button (click)="loadImage(-1)"  color="accent" matTooltip="Prev">
                 <mat-icon  color="accent">chevron_left</mat-icon>
               </button>
+              <!--next-->
               <button mat-stroked-button (click)="loadImage(1)"  color="accent" matTooltip="Next">
                 <mat-icon color="accent">chevron_right </mat-icon>
               </button>
@@ -47,7 +51,15 @@
 
           <div fxFlex fxLayout fxLayoutAlign="flex-end">
               <ul fxLayout fxLayoutGap="25px" class="navigation-items" >
+                  <li>
+                      <!--Auto Play-->
+                      <button mat-stroked-button color="accent" matTooltip="SlideShow" (click)="ToggleAutoPlay()">
+                        <span *ngIf="isAutoPlay" > Stop AutoPlay </span>
+                        <span *ngIf="!isAutoPlay">Start AutoPlay</span>
+                      </button>
+                    </li>
                 <li>
+                  <!--Delete-->
                   <button mat-stroked-button color="accent" matTooltip="Delete Photo" (click)="DeletePhoto()">
                     <mat-icon>delete</mat-icon>
                   </button>
@@ -64,12 +76,6 @@
   
   </mat-toolbar>
   
-
-
-  <!-- Add Content Here -->
-  <!-- <div class="card-container">
-          <img class="image-view" src="/assets/Image/IMG_20190121_144905.jpg" alt="photo">
-  </div> -->
 
     <mat-grid-list cols=1  rowHeight="93.2%">
       <mat-grid-tile>
